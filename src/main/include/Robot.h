@@ -20,6 +20,7 @@ class Robot : public frc::TimedRobot {
   void TeleopInit() override;
   void TeleopPeriodic() override;
   void TestPeriodic() override;
+  void WriteToSmartDashboard(void);
 
  private:
   // Have it null by default so that if testing teleop it

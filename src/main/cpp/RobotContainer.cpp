@@ -1,21 +1,20 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 #include "RobotContainer.h"
+#include "commands/CmdDriveWithGamepad.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
-  // Initialize all of your commands and subsystems here
-
-  // Configure the button bindings
+RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) 
+{
+  m_drivetrain.SetDefaultCommand(CmdDriveWithGamepad( &m_drivetrain, &m_bot_driver ));
+  
   ConfigureButtonBindings();
 }
 
-void RobotContainer::ConfigureButtonBindings() {
-  // Configure your button bindings here
+void RobotContainer::ConfigureButtonBindings() 
+{
+  
 }
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
+frc2::Command* RobotContainer::GetAutonomousCommand() 
+{
+ 
   return &m_autonomousCommand;
 }
