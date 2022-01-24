@@ -1,14 +1,16 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/DoubleSolenoid.h>
 #include "Constants.h"
+#include <frc/DoubleSolenoid.h>
 #include <frc/PneumaticsModuleType.h>
 
-class Intake : public frc2::SubsystemBase {
+class Intake : public frc2::SubsystemBase 
+{
  public:
- 
-    Intake(int intakeType);
+   enum Type {FRONT, REAR};
+
+    Intake(Type type);
     void Deploy(void);
     void Retract(void);
     void SetPower(double power);

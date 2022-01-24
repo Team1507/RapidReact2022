@@ -1,6 +1,6 @@
 #include "subsystems/Intake.h"
 
-Intake::Intake(int intakeType)
+Intake::Intake(Intake::Type type)
 {
 
 }
