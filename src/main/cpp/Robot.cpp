@@ -11,6 +11,7 @@ void Robot::RobotInit()
     std::cout<<"          ~~~ Deus ~~~"<<std::endl;
     std::cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<std::endl<<std::endl; 
     //Test Test Test
+    //Test on  Second Laptop
     
 }
 
