@@ -10,18 +10,20 @@ void Robot::RobotInit()
     std::cout<<"FRC2022: Rapid React"<<std::endl;
     std::cout<<"          ~~~ Deus ~~~"<<std::endl;
     std::cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<std::endl<<std::endl; 
-
+    //Test Test Test
+    
 }
 
 
-void Robot::RobotPeriodic() {
+void Robot::RobotPeriodic() 
+{
   frc2::CommandScheduler::GetInstance().Run();
 }
 
 
 void Robot::DisabledInit() 
 {
-        std::cout<<"Disabled Init"<<std::endl;
+    std::cout<<"Disabled Init"<<std::endl;
 }
 
 void Robot::DisabledPeriodic() 
