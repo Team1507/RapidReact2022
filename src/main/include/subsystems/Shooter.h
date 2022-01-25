@@ -10,7 +10,8 @@ class Shooter : public frc2::SubsystemBase {
   void SetShooterRPM(double rpm);
   void SetFeederPower(double power);
   void SetHoodEncoder(double angle);
-
+  void SetTurretYaw(double angle);
+  void SetTurretHome();
 
   double GetLimelightAngle(void);
   double GetLimelightDistance(void);

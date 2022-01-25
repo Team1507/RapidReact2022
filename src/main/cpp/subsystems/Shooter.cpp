@@ -1,64 +1,72 @@
 #include "subsystems/Shooter.h"
 
-Shooter::Shooter() = default;
-
-
-void SetShooterPower(double power)
-{
-
-}
-void SetShooterRPM(double rpm)
-{
-
-}
-void SetFeederPower(double power)
-{
-
-}
-void SetHoodEncoder(double angle)
+Shooter::Shooter()
 {
 
 }
 
 
-double GetLimelightAngle(void)
+void Shooter::SetShooterPower(double power)
+{
+
+}
+void Shooter::SetShooterRPM(double rpm)
+{
+
+}
+void Shooter::SetFeederPower(double power)
+{
+
+}
+void Shooter::SetHoodEncoder(double angle)
+{
+
+}
+void Shooter::SetTurretYaw(double angle)
+{
+
+}
+void Shooter::SetTurretHome(void)
+{
+
+}
+
+double Shooter::GetLimelightAngle(void)
 {
     return 0;
 }
-double GetLimelightDistance(void)
+double Shooter::GetLimelightDistance(void)
 {
     return 0;
 }
-double GetShooterPower(void)
+double Shooter::GetShooterPower(void)
 {
     return 0;
 }
-double GetShooterRPM(void)
+double Shooter::GetShooterRPM(void)
 {
     return 0;
 }
-double GetFeederPower(void)
+double Shooter::GetFeederPower(void)
 {
     return 0;
 }
-double GetHoodEncoder(void)
+double Shooter::GetHoodEncoder(void)
 {
     return 0;
 }
-bool GetLeftLimitSW(void)
+bool Shooter::GetLeftLimitSW(void)
 {
     return 0;
 }
-bool GetRightLimitSW(void)
+bool Shooter::GetRightLimitSW(void)
 {
     return 0;
 }
-bool GetHomeSW(void)
+bool Shooter::GetHomeSW(void)
 {
     return 0;
 }
-
-
 
 void Shooter::Periodic() 
 {
