@@ -14,7 +14,9 @@ class Intake : public frc2::SubsystemBase
     void Deploy(void);
     void Retract(void);
     void SetPower(double power);
+    bool GetLimitSwitch(void);
     double GetPower(void);
+
 
 
 
