@@ -22,19 +22,7 @@ void CmdCalculateAll::Execute()
   m_shooter->SetShooterRPM(0);
 }
 
-void CmdCalculateAll::End(bool interrupted) 
-{
-//   m_topDriver->SetRumble(frc::XboxController::kLeftRumble,1);
-//   m_topDriver->SetRumble(frc::XboxController::kRightRumble,1);
-//   m_timer.Reset();
-//   m_timer.Start();
-//   if(m_timer.Get() >= (units::second_t)1.0)
-//   {
-// 	m_topDriver->SetRumble(frc::XboxController::kLeftRumble,0);
-//   	m_topDriver->SetRumble(frc::XboxController::kRightRumble,0);
-//   }
-
-}
+void CmdCalculateAll::End(bool interrupted) {}
 
 bool CmdCalculateAll::IsFinished() {
   return true;

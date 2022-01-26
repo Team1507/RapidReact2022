@@ -2,33 +2,36 @@
 
 Shooter::Shooter()
 {
-
+    double m_shooterRPM  = 0;
+    double m_feederPower = 0;
+    double m_hoodEncoder = 0;
+    double m_turretYaw   = 0;
 }
 
 
 void Shooter::SetShooterPower(double power)
 {
-
+    //set motor
 }
 void Shooter::SetShooterRPM(double rpm)
 {
-
+    m_shooterRPM = rpm;
 }
 void Shooter::SetFeederPower(double power)
 {
-
+    m_feederPower = power;
 }
 void Shooter::SetHoodEncoder(double angle)
 {
-
+    m_hoodEncoder = angle;
 }
 void Shooter::SetTurretYaw(double angle)
 {
-
+    m_turretYaw = angle;
 }
 void Shooter::SetTurretHome(void)
 {
-
+    m_turretYaw = 0;
 }
 
 double Shooter::GetLimelightAngle(void)
@@ -45,27 +48,27 @@ double Shooter::GetShooterPower(void)
 }
 double Shooter::GetShooterRPM(void)
 {
-    return 0;
+    return m_shooterRPM;
 }
 double Shooter::GetFeederPower(void)
 {
-    return 0;
+    return m_feederPower;
 }
 double Shooter::GetHoodEncoder(void)
 {
-    return 0;
+    return m_hoodEncoder;
 }
 bool Shooter::GetLeftLimitSW(void)
 {
-    return 0;
+    return false;
 }
 bool Shooter::GetRightLimitSW(void)
 {
-    return 0;
+    return false;
 }
 bool Shooter::GetHomeSW(void)
 {
-    return 0;
+    return false;
 }
 
 void Shooter::Periodic() 

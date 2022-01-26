@@ -72,6 +72,14 @@ void CmdShooterDefault::Execute()
     }
   }
   
+
+
+
+
+
+
+
+  //Calcualate
 }
 
 void CmdShooterDefault::End(bool interrupted) {}
