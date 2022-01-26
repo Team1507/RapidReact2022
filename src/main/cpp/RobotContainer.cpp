@@ -4,6 +4,7 @@
 #include "commands/CmdIntakeDefault.h"
 #include "commands/CmdClimberDefault.h"
 #include "commands/CmdShooterDefault.h"
+#include "commands/CmdCalculateAll.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) 
 {
@@ -24,7 +25,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
 
 void RobotContainer::ConfigureButtonBindings() 
 {
-  
+  m_top_driver_A.WhenPressed(new CmdCalculateAll(&m_shooter,&m_top_driver));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() 

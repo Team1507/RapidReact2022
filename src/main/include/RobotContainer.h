@@ -4,6 +4,8 @@
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "frc/smartdashboard/SendableChooser.h"
+#include <frc2/command/button/JoystickButton.h>
+#include "GamepadMap.h"
 
 //*****************Subsystems*******************
 #include "subsystems/Drivetrain.h"
@@ -41,4 +43,5 @@ class RobotContainer
   ExampleCommand m_autonomousCommand;
 
   void ConfigureButtonBindings();
+  frc2::JoystickButton m_top_driver_A{&m_top_driver,GAMEPADMAP_BUTTON_A};
 };

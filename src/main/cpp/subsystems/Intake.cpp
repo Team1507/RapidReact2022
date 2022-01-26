@@ -2,7 +2,7 @@
 
 Intake::Intake(Intake::Type type)
 {
-
+    m_type = type;
 }
 
 void Intake::Deploy(void)
@@ -33,4 +33,8 @@ double Intake::GetPower(void)
 void Intake::Periodic() 
 {
 
+}
+Intake::Type Intake::GetType(void)
+{
+    return m_type;
 }

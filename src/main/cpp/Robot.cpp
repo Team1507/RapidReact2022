@@ -29,11 +29,12 @@ void Robot::DisabledInit()
 
 void Robot::DisabledPeriodic() 
 {
-    std::cout<<"Auto Init"<<std::endl;
+    
 }
 
 
 void Robot::AutonomousInit() {
+  std::cout<<"Auto Init"<<std::endl;
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {

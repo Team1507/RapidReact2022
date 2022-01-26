@@ -1,4 +1,5 @@
 #include "commands/CmdIntakeDefault.h"
+#include <iostream>
 
 CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver) 
 {
@@ -15,29 +16,34 @@ void CmdIntakeDefault::Initialize()
 
 void CmdIntakeDefault::Execute() 
 {
-
-	if(m_topDriver->GetRightBumper())
+	if( m_intake->GetType() == Intake::Type::FRONT)
 	{
-		m_intake->Deploy();
-		m_intake->SetPower(0);
+		if(m_topDriver->GetRightBumper())
+		{
+			m_intake->Deploy();
+			m_intake->SetPower(0);
+		}
+		else
+		{
+			m_intake->Retract();
+			m_intake->SetPower(0);
+		}
 	}
-	else
-	{
-		m_intake->Retract();
-		m_intake->SetPower(0);
-	}
+	
 //****************************************************************
-	if(m_topDriver->GetLeftBumper())
+	if( m_intake->GetType() == Intake::Type::REAR)
 	{
-		m_intake->Deploy();
-		m_intake->SetPower(0);
+		if(m_topDriver->GetLeftBumper())
+		{
+			m_intake->Deploy();
+			m_intake->SetPower(0);
+		}
+		else
+		{
+			m_intake->Retract();
+			m_intake->SetPower(0);
+		}
 	}
-	else
-	{
-		m_intake->Retract();
-		m_intake->SetPower(0);
-	}
-
 }
 
 

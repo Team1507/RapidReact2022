@@ -1,23 +1,42 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 #include "commands/CmdCalculateAll.h"
 
-CmdCalculateAll::CmdCalculateAll() {
-  // Use addRequirements() here to declare subsystem dependencies.
+
+CmdCalculateAll::CmdCalculateAll(Shooter *shooter, frc::XboxController *topDriver)
+
+{
+  m_shooter = shooter;
+  m_topDriver = topDriver;
+  AddRequirements(m_shooter);
 }
 
-// Called when the command is initially scheduled.
 void CmdCalculateAll::Initialize() {}
 
-// Called repeatedly when this Command is scheduled to run
-void CmdCalculateAll::Execute() {}
+void CmdCalculateAll::Execute() 
+{
+  hAngle = m_shooter->GetLimelightAngle();
+  //Calculate Limelight math here
+  m_shooter->SetTurretYaw(0);
+  vAngle = m_shooter->GetLimelightDistance();
+  //Find hood angle & shooter speed
+  m_shooter->SetHoodEncoder(0);
+  m_shooter->SetShooterRPM(0);
+}
 
-// Called once the command ends or is interrupted.
-void CmdCalculateAll::End(bool interrupted) {}
+void CmdCalculateAll::End(bool interrupted) 
+{
+//   m_topDriver->SetRumble(frc::XboxController::kLeftRumble,1);
+//   m_topDriver->SetRumble(frc::XboxController::kRightRumble,1);
+//   m_timer.Reset();
+//   m_timer.Start();
+//   if(m_timer.Get() >= (units::second_t)1.0)
+//   {
+// 	m_topDriver->SetRumble(frc::XboxController::kLeftRumble,0);
+//   	m_topDriver->SetRumble(frc::XboxController::kRightRumble,0);
+//   }
 
-// Returns true when the command should end.
+}
+
 bool CmdCalculateAll::IsFinished() {
-  return false;
+  return true;
+  //If GetLimeLightAngle is 0 then return true
 }
