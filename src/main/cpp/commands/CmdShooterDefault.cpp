@@ -50,25 +50,25 @@ void CmdShooterDefault::Execute()
     switch(DpadState)
     {
       case 0:
-      m_shooter->SetShooterRPM(0);//make a state
-      m_shooter->SetHoodEncoder(0);//make a state
-      m_shooter->SetTurretYaw(0);//make a state
-      break;
+        m_shooter->SetShooterRPM(0);//make a state
+        m_shooter->SetHoodEncoder(0);//make a state
+        m_shooter->SetTurretYaw(0);//make a state
+        break;
       case 90:
-      m_shooter->SetShooterRPM(0);//make a state
-      m_shooter->SetHoodEncoder(0);//make a state
-      m_shooter->SetTurretYaw(0);//make a state
-      break;
+        m_shooter->SetShooterRPM(0);//make a state
+        m_shooter->SetHoodEncoder(0);//make a state
+        m_shooter->SetTurretYaw(0);//make a state
+        break;
       case 180:
-      m_shooter->SetShooterRPM(0);//make a state
-      m_shooter->SetHoodEncoder(0);//make a state
-      m_shooter->SetTurretYaw(0);//make a state
-      break;
+        m_shooter->SetShooterRPM(0);//make a state
+        m_shooter->SetHoodEncoder(0);//make a state
+        m_shooter->SetTurretYaw(0);//make a state
+        break;
       case 270:
-      m_shooter->SetShooterRPM(0);//make a state
-      m_shooter->SetHoodEncoder(0);//make a state
-      m_shooter->SetTurretYaw(0);//make a state
-      break;
+        m_shooter->SetShooterRPM(0);//make a state
+        m_shooter->SetHoodEncoder(0);//make a state
+        m_shooter->SetTurretYaw(0);//make a state
+        break;
     }
   }
   

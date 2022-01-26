@@ -5,35 +5,27 @@ Climber::Climber()
     
 }
 
-void ExtendFirstStage(double power)
+void Climber::MidBarPower(double power)
 {
 
 }
-void RetractFirstStage(double power)
+void Climber::HighBarPower(double power)
 {
 
 }
-void ExtendSecondStage(double power)
+void Climber::SetRightWinchMotor(double power)
 {
 
 }
-void RetractSecondStage(double power)
+void Climber::SetLeftWinchMotor(double power)
 {
 
 }
-void SetRightWinchMotor(double power)
-{
-
-}
-void SetLeftWinchMotor(double power)
-{
-
-}
-double GetRightWinchMotor(void)
+double Climber::GetRightWinchMotor(void)
 {
     return 0;
 }
-double GetLeftWinchMotor(void)
+double Climber::GetLeftWinchMotor(void)
 {
     return 0;
 }

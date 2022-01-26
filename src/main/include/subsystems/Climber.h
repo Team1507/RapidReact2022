@@ -5,10 +5,8 @@
 class Climber : public frc2::SubsystemBase {
  public:
   	Climber();
-	void ExtendFirstStage(double power);
-	void RetractFirstStage(double power);
-	void ExtendSecondStage(double power);
-	void RetractSecondStage(double power);
+	void MidBarPower(double power);
+	void HighBarPower(double power);
 	void SetRightWinchMotor(double power);
 	void SetLeftWinchMotor(double power);
 

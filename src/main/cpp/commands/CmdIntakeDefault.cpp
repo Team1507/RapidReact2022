@@ -21,10 +21,20 @@ void CmdIntakeDefault::Execute()
 		m_intake->Deploy();
 		m_intake->SetPower(0);
 	}
-
+	else
+	{
+		m_intake->Retract();
+		m_intake->SetPower(0);
+	}
+//****************************************************************
 	if(m_topDriver->GetLeftBumper())
 	{
 		m_intake->Deploy();
+		m_intake->SetPower(0);
+	}
+	else
+	{
+		m_intake->Retract();
 		m_intake->SetPower(0);
 	}
 

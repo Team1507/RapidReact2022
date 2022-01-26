@@ -56,6 +56,11 @@ void CmdDriveWithGamepad::Execute()
     //Arcade Drive
     m_ptrDrivetrain->ArcadeDrive( -yL * MAX_DRIVE_POWER    , xR * MAX_TURN_POWER );
 
+    if(m_ptrDriverXbox->GetLeftTriggerAxis() || m_ptrDriverXbox->GetRightTriggerAxis())
+    {
+        m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)/2)    , ((xR * MAX_TURN_POWER)/2) );
+    }
+
     //Tank Drive
     //m_ptrDrivetrain->Drive( -yL* MAX_DRIVE_POWER , -yR * MAX_DRIVE_POWER );
 
