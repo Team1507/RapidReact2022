@@ -28,5 +28,8 @@ class Shooter : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-
+    double m_shooterRPM;
+    double m_feederPower;
+    double m_hoodEncoder;
+    double m_turretYaw;
 };
