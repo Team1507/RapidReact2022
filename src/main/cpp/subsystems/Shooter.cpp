@@ -3,7 +3,8 @@
 Shooter::Shooter()
 {
     double m_shooterRPM  = 0;
-    double m_feederPower = 0;
+    double m_topFeederPower = 0;
+    double m_bottomFeederPower = 0;
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
 }
@@ -17,9 +18,13 @@ void Shooter::SetShooterRPM(double rpm)
 {
     m_shooterRPM = rpm;
 }
-void Shooter::SetFeederPower(double power)
+void Shooter::SetTopFeederPower(double power)
 {
-    m_feederPower = power;
+    m_topFeederPower = power;
+}
+void Shooter::SetBottomFeederPower(double power)
+{
+    m_bottomFeederPower = power;
 }
 void Shooter::SetHoodEncoder(double angle)
 {
@@ -54,9 +59,13 @@ double Shooter::GetShooterVelocity(void)
 {
     return 0; // m_shooterMotos.GetSelectedSensorVelocity(SHOOTER_PID_SLOT)
 }
-double Shooter::GetFeederPower(void)
+double Shooter::GetTopFeederPower(void)
 {
-    return m_feederPower;
+    return m_topFeederPower;
+}
+double Shooter::GetBottomFeederPower(void)
+{
+    return m_bottomFeederPower;
 }
 double Shooter::GetHoodEncoder(void)
 {

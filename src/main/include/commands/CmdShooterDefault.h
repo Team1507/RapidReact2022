@@ -6,6 +6,7 @@
 #include "subsystems/Shooter.h"
 #include <frc/XboxController.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "GamepadMap.h"
 
 //x = return to home
 //Lt = caculate all
@@ -29,5 +30,8 @@ class CmdShooterDefault
 
   Shooter *m_shooter;
   frc::XboxController *m_topDriver;
+  bool isRTriggerPressed;
+  double m_topFeederPower;
+  double m_bottomFeederPower;
 
 };

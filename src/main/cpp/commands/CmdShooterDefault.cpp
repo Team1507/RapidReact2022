@@ -14,31 +14,58 @@ void CmdShooterDefault::Initialize() {}
 
 void CmdShooterDefault::Execute() 
 {
+  bool TurretHomePressed = m_topDriver->GetXButton();
+  bool CalculateAllPressed = m_topDriver->GetLeftTriggerAxis();
+  bool ShootPressed = m_topDriver->GetRightTriggerAxis();
+  bool TopFeederActivate = m_topDriver->GetYButton();
+  bool BottomFeederActivate = m_topDriver->GetAButton();
+  bool HoodControlActivate = m_topDriver->GetBButton();
+  double LJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+  double RJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
   //*******************************************************
   //x = return to home
-  if(m_topDriver->GetXButton())
+  if(TurretHomePressed)
   {
     m_shooter->SetTurretHome();
   }
 
   //*******************************************************
   //Lt = caculate all
-  if(m_topDriver->GetLeftTriggerAxis())
+  if(CalculateAllPressed)
   {
     
   }
 
   //*******************************************************
   //rt = shoot
-  if(m_topDriver->GetRightTriggerAxis())
+  if(ShootPressed)
   {
-    m_shooter->SetFeederPower(1.0);
+    m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_SPEED);
+    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_SPEED);
+  }
+  else
+  
+  //*******************************************************
+  //Y + LJ = Top Feeder Manual
+  if(TopFeederActivate) 
+  {
+    m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+    m_shooter->SetTopFeederPower(m_topFeederPower);
+  }
+  else 
+  
+  //*******************************************************
+  //A + LJ = Bottom Feeder Manual
+  if(BottomFeederActivate) 
+  {
+    m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+    m_shooter->SetBottomFeederPower(m_bottomFeederPower);
   }
   else
   {
-    m_shooter->SetFeederPower(0.5);//idle1
+    m_shooter->SetTopFeederPower(0);
+    m_shooter->SetBottomFeederPower(0);
   }
-
   //*******************************************************
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
