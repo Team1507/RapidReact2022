@@ -50,6 +50,10 @@ double Shooter::GetShooterRPM(void)
 {
     return m_shooterRPM;
 }
+double Shooter::GetShooterVelocity(void)
+{
+    return 0; // m_shooterMotos.GetSelectedSensorVelocity(SHOOTER_PID_SLOT)
+}
 double Shooter::GetFeederPower(void)
 {
     return m_feederPower;

@@ -5,6 +5,7 @@
 
 #include "subsystems/Shooter.h"
 #include <frc/XboxController.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 //x = return to home
 //Lt = caculate all

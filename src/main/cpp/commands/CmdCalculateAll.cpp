@@ -14,10 +14,11 @@ void CmdCalculateAll::Initialize() {}
 void CmdCalculateAll::Execute() 
 {
   hAngle = m_shooter->GetLimelightAngle();
-  //Calculate Limelight math here
+
   m_shooter->SetTurretYaw(0);
+
   vAngle = m_shooter->GetLimelightDistance();
-  //Find hood angle & shooter speed
+  
   m_shooter->SetHoodEncoder(0);
   m_shooter->SetShooterRPM(0);
 }

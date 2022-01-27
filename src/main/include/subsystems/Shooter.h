@@ -17,6 +17,7 @@ class Shooter : public frc2::SubsystemBase {
   double GetLimelightDistance(void);
   double GetShooterPower(void);
   double GetShooterRPM(void);
+  double GetShooterVelocity(void);
   double GetFeederPower(void);
   double GetHoodEncoder(void);
   bool GetLeftLimitSW(void);
@@ -32,4 +33,5 @@ class Shooter : public frc2::SubsystemBase {
     double m_feederPower;
     double m_hoodEncoder;
     double m_turretYaw;
+    
 };
