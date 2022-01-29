@@ -30,24 +30,30 @@ void Shooter::SetBottomFeederPower(double power)
 {
     m_bottomFeederPower = power;
 }
-void Shooter::SetHoodEncoder(double angle)
+void Shooter::SetHoodAngle(double angle)
 {
-    m_hoodEncoder = angle;
+    m_hoodAngle = angle;
 }
-void Shooter::SetTurretYaw(double angle)
+void Shooter::SetTurretAngle(double angle)
 {
-    m_turretYaw = angle;
+    m_turretAngle = angle;
 }
-void Shooter::SetTurretHome(void)
+void Shooter::SetTurretPower(double power)
 {
-    m_turretYaw = 0;
+    m_turretPower = power;
 }
 void Shooter::SetFeederOn(bool status)
 {
     m_feederStatus = status;
 }
 
-double Shooter::GetLimelightAngle(void)
+
+
+double Shooter::GetLimelightHAngle(void)
+{
+    return 0;
+}
+double Shooter::GetLimelightVAngle(void)
 {
     return 0;
 }
@@ -75,27 +81,35 @@ double Shooter::GetBottomFeederPower(void)
 {
     return m_bottomFeederPower;
 }
-double Shooter::GetHoodEncoder(void)
+double Shooter::GetHoodAngle(void)
 {
-    return m_hoodEncoder;
+    return m_hoodAngle;
 }
-bool Shooter::GetLeftLimitSW(void)
+double Shooter::GetTurretAngle(void)
+{
+    return m_turretAngle;
+}
+double Shooter::GetTurretPower(void)
+{
+    return m_turretPower;
+}
+bool Shooter::GetLeftTurretLimitSW(void)
 {
     return false;
 }
-bool Shooter::GetRightLimitSW(void)
+bool Shooter::GetRightTurretLimitSW(void)
 {
     return false;
 }
-bool Shooter::GetHomeSW(void)
+bool Shooter::GetTurretHomeSW(void)
 {
     return false;
 }
-bool Shooter::GetTopPhotoeye(void)
+bool Shooter::GetTopFeederPhotoeye(void)
 {
     return topFeederDetect;
 }
-bool Shooter::GetBotPhotoeye(void)
+bool Shooter::GetBotFeederPhotoeye(void)
 {
     return botFeederDetect;
 }

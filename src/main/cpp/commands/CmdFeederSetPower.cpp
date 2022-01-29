@@ -9,11 +9,11 @@ CmdFeederSetPower::CmdFeederSetPower(Shooter *shooter ,Level level, double power
 
 void CmdFeederSetPower::Initialize() 
 {
-  if(m_level = CmdFeederSetPower::Level::Top)
+  if(m_level == CmdFeederSetPower::Level::Top)
   {
     m_shooter->SetTopFeederPower(m_power);
   }
-  else if(m_level = CmdFeederSetPower::Level::Bottom)
+  else if(m_level == CmdFeederSetPower::Level::Bottom)
   {
     m_shooter->SetBottomFeederPower(m_power);
   }

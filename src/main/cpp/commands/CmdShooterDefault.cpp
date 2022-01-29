@@ -3,6 +3,8 @@
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
 
+#define TURRET_DEADBAND_CONSTANT 0.05
+
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
 {
   m_shooter = shooter;
@@ -22,12 +24,12 @@ void CmdShooterDefault::Execute()
   bool BottomFeederActivate = m_topDriver->GetAButton();
   bool HoodControlActivate = m_topDriver->GetBButton();
   double LJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-  double RJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
+  double RJXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
   //x = return to home
   if(TurretHomePressed)
   {
-    m_shooter->SetTurretHome();
+    m_shooter->SetTurretAngle(0);
   }
 
   //*******************************************************
@@ -35,6 +37,13 @@ void CmdShooterDefault::Execute()
   if(CalculateAllPressed)
   {
     
+  }
+  //*******************************************************
+  //RJX = Manual Turret Control 
+  if((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT))
+  {
+    double power = RJXAxis;
+    m_shooter->SetTurretPower(power);
   }
 
   //*******************************************************
@@ -71,19 +80,19 @@ void CmdShooterDefault::Execute()
   else
   //*************************************************
   //Feeder State Machine
-  if(m_shooter->GetFeederOn() && !m_shooter->GetTopPhotoeye())
+  if(m_shooter->GetFeederOn() && !m_shooter->GetTopFeederPhotoeye())
   {
-    m_shooter->SetTopFeederPower(TOP_FEEDER_IDLE_POWER);   
+    m_shooter->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
   }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetTopPhotoeye())
+  else if(m_shooter->GetFeederOn() && m_shooter->GetTopFeederPhotoeye())
   {
     m_shooter->SetTopFeederPower(0);
   }
-  if(m_shooter->GetFeederOn() && !m_shooter->GetBotPhotoeye())
+  if(m_shooter->GetFeederOn() && !m_shooter->GetBotFeederPhotoeye())
   {
-    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_IDLE_POWER);
+    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
   }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetBotPhotoeye() && m_shooter->GetTopPhotoeye())
+  else if(m_shooter->GetFeederOn() && m_shooter->GetBotFeederPhotoeye() && m_shooter->GetTopFeederPhotoeye())
   {
     m_shooter->SetBottomFeederPower(0);
     m_shooter->SetTopFeederPower(0); //fail safe just in case
@@ -104,23 +113,23 @@ void CmdShooterDefault::Execute()
     {
       case 0:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 90:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 180:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 270:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
     }
   }

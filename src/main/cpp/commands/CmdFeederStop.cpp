@@ -8,11 +8,11 @@ CmdFeederStop::CmdFeederStop(Shooter *shooter, Level level)
 
 void CmdFeederStop::Initialize() 
 {
-  if(m_level = Top)
+  if(m_level == Top)
   {
     m_shooter->SetTopFeederPower(0.0);
   }
-  else if(m_level = Bottom) 
+  else if(m_level == Bottom) 
   {
     m_shooter->SetBottomFeederPower(0.0);
   }

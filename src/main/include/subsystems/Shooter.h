@@ -13,26 +13,33 @@ class Shooter : public frc2::SubsystemBase {
   void SetShooterRPM(double rpm);
   void SetTopFeederPower(double power);
   void SetBottomFeederPower(double power);
-  void SetHoodEncoder(double angle);
-  void SetTurretYaw(double angle);
-  void SetTurretHome();
+  void SetHoodAngle(double angle);
+  void SetTurretAngle(double angle);
+  void SetTurretPower(double power);
   void SetFeederOn(bool status);
 
-  double GetLimelightAngle(void);
+  double GetLimelightHAngle(void);
+  double GetLimelightVAngle(void);
   double GetLimelightDistance(void);
+  bool GetLimelightTargetValid(void);
   double GetShooterPower(void);
   double GetShooterRPM(void);
   double GetShooterVelocity(void);
   double GetTopFeederPower(void);
   double GetBottomFeederPower(void);
-  double GetHoodEncoder(void);
-  bool GetLeftLimitSW(void);
-  bool GetRightLimitSW(void);
-  bool GetHomeSW(void);
-  bool GetTopPhotoeye(void);
-  bool GetBotPhotoeye(void);
+  double GetHoodAngle(void);
+  double GetTurretAngle(void);
+  double GetTurretPower(void);
+  bool GetLeftTurretLimitSW(void);
+  bool GetRightTurretLimitSW(void);
+  bool GetTurretHomeSW(void);
+  bool GetTopFeederPhotoeye(void);
+  bool GetBotFeederPhotoeye(void);
   bool GetFeederOn(void);
+  bool GetTopHoodLimitSW(void);
+  bool GetBotHoodLimitSW(void);
   
+
 
   void Periodic() override;
 
@@ -40,12 +47,13 @@ class Shooter : public frc2::SubsystemBase {
     frc::DigitalInput *topFeederDetect;
     frc::DigitalInput *botFeederDetect;
     double m_shooterRPM;
-    double m_hoodEncoder;
-    double m_turretYaw;
+    double m_hoodAngle;
+    double m_turretAngle;
     frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
     frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
     double m_topFeederPower;
     double m_bottomFeederPower;
     bool m_feederStatus;
+    double m_turretPower;
     
 };

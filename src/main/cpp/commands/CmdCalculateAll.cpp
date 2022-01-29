@@ -20,7 +20,7 @@ void CmdCalculateAll::Initialize()
     std::cout<<"Aiming towards target with limelight"<<std::endl;
     //m_shooter->SetTurretAngle(m_shooter->GetTurretAngle() + m_shooter->GetLimelightAngle());
     m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
-    //m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
+    m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
   }
   //else 
   {

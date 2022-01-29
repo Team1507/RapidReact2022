@@ -3,7 +3,16 @@
 Intake::Intake(Intake::Type type)
 {
     m_type = type;
- 
+    if(type == Type::FRONT)
+    {
+        m_intakeSpark = new frc::Spark(FRONT_INTAKE_PWM);
+        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, 0, 1);
+    }
+    if(type == Type::REAR)
+    {
+        m_intakeSpark = new frc::Spark(REAR_INTAKE_PWM);
+        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, 2, 3);
+    }
 }
 
 void Intake::Deploy(void)
@@ -21,18 +30,13 @@ void Intake::SetPower(double power)
 
 }
 
-bool GetLimitSwitch(void)
-{
-    return false;
-}
-
 double Intake::GetPower(void)
 {
     return 0;
 }
 bool Intake::GetIsIntaking(void)
 {
-    return isIntaking;
+    return m_isIntaking;
 }
 
 void Intake::Periodic() 
