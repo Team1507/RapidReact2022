@@ -5,7 +5,7 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/PneumaticsModuleType.h>
 #include "Shooter.h"
-
+#include <frc/motorcontrol/Spark.h>
 class Intake : public frc2::SubsystemBase 
 {
  public:
@@ -17,13 +17,17 @@ class Intake : public frc2::SubsystemBase
     bool GetLimitSwitch(void);
     double GetPower(void);
     Type GetType(void);
+    double Test(void);
 
     void Periodic() override;
     bool GetIsIntaking(void);
 
  private:
   Type m_type;
-  bool isIntaking;
+  bool m_isIntaking;
+  frc::Spark *m_intakeSpark;
+  frc::DoubleSolenoid *m_pnumatic;
+  
  
 
 };

@@ -15,6 +15,7 @@ class Shooter : public frc2::SubsystemBase {
   void SetBottomFeederPower(double power);
   void SetHoodAngle(double angle);
   void SetTurretAngle(double angle);
+  void SetTurretPower(double power);
   void SetFeederOn(bool status);
 
   double GetLimelightHAngle(void);
@@ -28,6 +29,7 @@ class Shooter : public frc2::SubsystemBase {
   double GetBottomFeederPower(void);
   double GetHoodAngle(void);
   double GetTurretAngle(void);
+  double GetTurretPower(void);
   bool GetLeftTurretLimitSW(void);
   bool GetRightTurretLimitSW(void);
   bool GetTurretHomeSW(void);
@@ -52,5 +54,6 @@ class Shooter : public frc2::SubsystemBase {
     double m_topFeederPower;
     double m_bottomFeederPower;
     bool m_feederStatus;
+    double m_turretPower;
     
 };

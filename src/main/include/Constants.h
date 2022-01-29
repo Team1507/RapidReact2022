@@ -15,7 +15,8 @@
 #define BOTTOM_FEEDER_INTAKE_POWER   0.35
 
 //**********INTAKE CONSTANTS**********
-//#define INTAKE_CAN_ID           8
+#define FRONT_INTAKE_PWM              2
+#define REAR_INTAKE_PWM               3
 
 //**********CONTROL CONSTANTS**********
 // #define CP_SPINNER_CAN_ID       13
@@ -31,7 +32,7 @@
 // #define SHOOTER_HOOD_PORT       0
 
 //**********PCM CONSTANTS********** 
-// #define PCM_CAN_ID              15
+ #define PCM_CAN_ID              13
 // #define PCM_RAMP_ID             0
 
 //**********CLIMBER CONSTANTS**********

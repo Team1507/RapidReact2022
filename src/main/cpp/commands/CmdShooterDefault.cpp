@@ -3,6 +3,8 @@
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
 
+#define TURRET_DEADBAND_CONSTANT 0.05
+
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
 {
   m_shooter = shooter;
@@ -22,7 +24,7 @@ void CmdShooterDefault::Execute()
   bool BottomFeederActivate = m_topDriver->GetAButton();
   bool HoodControlActivate = m_topDriver->GetBButton();
   double LJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-  double RJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
+  double RJXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
   //x = return to home
   if(TurretHomePressed)
@@ -35,6 +37,13 @@ void CmdShooterDefault::Execute()
   if(CalculateAllPressed)
   {
     
+  }
+  //*******************************************************
+  //RJX = Manual Turret Control 
+  if((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT))
+  {
+    double power = RJXAxis;
+    m_shooter->SetTurretPower(power);
   }
 
   //*******************************************************

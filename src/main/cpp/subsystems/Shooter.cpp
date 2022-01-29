@@ -38,11 +38,16 @@ void Shooter::SetTurretAngle(double angle)
 {
     m_turretAngle = angle;
 }
-
+void Shooter::SetTurretPower(double power)
+{
+    m_turretPower = power;
+}
 void Shooter::SetFeederOn(bool status)
 {
     m_feederStatus = status;
 }
+
+
 
 double Shooter::GetLimelightHAngle(void)
 {
@@ -79,6 +84,14 @@ double Shooter::GetBottomFeederPower(void)
 double Shooter::GetHoodAngle(void)
 {
     return m_hoodAngle;
+}
+double Shooter::GetTurretAngle(void)
+{
+    return m_turretAngle;
+}
+double Shooter::GetTurretPower(void)
+{
+    return m_turretPower;
 }
 bool Shooter::GetLeftTurretLimitSW(void)
 {
