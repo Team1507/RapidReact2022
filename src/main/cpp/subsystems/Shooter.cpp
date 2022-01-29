@@ -7,6 +7,10 @@ Shooter::Shooter()
     double m_bottomFeederPower = 0;
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
+    topFeederDetect = new frc::DigitalInput(0);
+    botFeederDetect = new frc::DigitalInput(1);
+    
+
 }
 
 
@@ -37,6 +41,10 @@ void Shooter::SetTurretYaw(double angle)
 void Shooter::SetTurretHome(void)
 {
     m_turretYaw = 0;
+}
+void Shooter::SetFeederOn(bool status)
+{
+    m_feederStatus = status;
 }
 
 double Shooter::GetLimelightAngle(void)
@@ -83,7 +91,18 @@ bool Shooter::GetHomeSW(void)
 {
     return false;
 }
-
+bool Shooter::GetTopPhotoeye(void)
+{
+    return topFeederDetect;
+}
+bool Shooter::GetBotPhotoeye(void)
+{
+    return botFeederDetect;
+}
+bool Shooter::GetFeederOn(void)
+{
+    return m_feederStatus;
+}
 void Shooter::Periodic() 
 {
     

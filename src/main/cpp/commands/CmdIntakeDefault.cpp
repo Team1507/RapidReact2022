@@ -1,10 +1,11 @@
 #include "commands/CmdIntakeDefault.h"
 #include <iostream>
 
-CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver) 
+CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter) 
 {
 	m_intake = intake;
 	m_topDriver = topDriver;
+	m_shooter = shooter;
 	AddRequirements(m_intake);
 }
 
@@ -22,6 +23,8 @@ void CmdIntakeDefault::Execute()
 		{
 			m_intake->Deploy();
 			m_intake->SetPower(0);
+			m_shooter->SetFeederOn(true);
+
 		}
 		else
 		{
@@ -37,6 +40,7 @@ void CmdIntakeDefault::Execute()
 		{
 			m_intake->Deploy();
 			m_intake->SetPower(0);
+			m_shooter->SetFeederOn(true);
 		}
 		else
 		{

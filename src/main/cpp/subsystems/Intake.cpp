@@ -3,16 +3,17 @@
 Intake::Intake(Intake::Type type)
 {
     m_type = type;
+ 
 }
 
 void Intake::Deploy(void)
 {
-
+    
 }
 
 void Intake::Retract(void)
 {
-
+    
 }
 
 void Intake::SetPower(double power)
@@ -28,6 +29,10 @@ bool GetLimitSwitch(void)
 double Intake::GetPower(void)
 {
     return 0;
+}
+bool Intake::GetIsIntaking(void)
+{
+    return isIntaking;
 }
 
 void Intake::Periodic() 

@@ -8,6 +8,7 @@ CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topD
   m_shooter = shooter;
   m_topDriver = topDriver;
   AddRequirements(m_shooter);
+
 }
 
 void CmdShooterDefault::Initialize() {}
@@ -16,7 +17,7 @@ void CmdShooterDefault::Execute()
 {
   bool TurretHomePressed = m_topDriver->GetXButton();
   bool CalculateAllPressed = m_topDriver->GetLeftTriggerAxis();
-  bool ShootPressed = m_topDriver->GetRightTriggerAxis();
+  bool ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
   bool TopFeederActivate = m_topDriver->GetYButton();
   bool BottomFeederActivate = m_topDriver->GetAButton();
   bool HoodControlActivate = m_topDriver->GetBButton();
@@ -38,12 +39,18 @@ void CmdShooterDefault::Execute()
 
   //*******************************************************
   //rt = shoot
-  if(ShootPressed)
+  if(ShootPressed == 1) // pressed
   {
-    m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_SPEED);
-    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_SPEED);
+    m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
+    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
+    m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
+
   }
-  else
+  else if (ShootPressed == 0) // released 
+  {
+    m_shooter->SetTopFeederPower(0);
+    m_shooter->SetBottomFeederPower(0);
+  }
   
   //*******************************************************
   //Y + LJ = Top Feeder Manual
@@ -62,11 +69,27 @@ void CmdShooterDefault::Execute()
     m_shooter->SetBottomFeederPower(m_bottomFeederPower);
   }
   else
+  //*************************************************
+  //Feeder State Machine
+  if(m_shooter->GetFeederOn() && !m_shooter->GetTopPhotoeye())
+  {
+    m_shooter->SetTopFeederPower(TOP_FEEDER_IDLE_POWER);   
+  }
+  else if(m_shooter->GetFeederOn() && m_shooter->GetTopPhotoeye())
   {
     m_shooter->SetTopFeederPower(0);
-    m_shooter->SetBottomFeederPower(0);
   }
-  //*******************************************************
+  if(m_shooter->GetFeederOn() && !m_shooter->GetBotPhotoeye())
+  {
+    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_IDLE_POWER);
+  }
+  else if(m_shooter->GetFeederOn() && m_shooter->GetBotPhotoeye() && m_shooter->GetTopPhotoeye())
+  {
+    m_shooter->SetBottomFeederPower(0);
+    m_shooter->SetTopFeederPower(0); //fail safe just in case
+    m_shooter->SetFeederOn(false);
+  }
+  //*************************************************
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
   static bool isDpadCenter = false;

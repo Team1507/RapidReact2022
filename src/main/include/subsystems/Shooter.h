@@ -3,6 +3,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/Spark.h>
 #include <Constants.h>
+#include <frc/DigitalInput.h>
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -15,6 +16,7 @@ class Shooter : public frc2::SubsystemBase {
   void SetHoodEncoder(double angle);
   void SetTurretYaw(double angle);
   void SetTurretHome();
+  void SetFeederOn(bool status);
 
   double GetLimelightAngle(void);
   double GetLimelightDistance(void);
@@ -27,12 +29,16 @@ class Shooter : public frc2::SubsystemBase {
   bool GetLeftLimitSW(void);
   bool GetRightLimitSW(void);
   bool GetHomeSW(void);
-
-
+  bool GetTopPhotoeye(void);
+  bool GetBotPhotoeye(void);
+  bool GetFeederOn(void);
+  
 
   void Periodic() override;
 
  private:
+    frc::DigitalInput *topFeederDetect;
+    frc::DigitalInput *botFeederDetect;
     double m_shooterRPM;
     double m_hoodEncoder;
     double m_turretYaw;
@@ -40,6 +46,6 @@ class Shooter : public frc2::SubsystemBase {
     frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
     double m_topFeederPower;
     double m_bottomFeederPower;
-
+    bool m_feederStatus;
     
 };

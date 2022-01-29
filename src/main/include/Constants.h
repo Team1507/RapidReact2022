@@ -9,10 +9,10 @@
 //*********FEEDER CONSTANTS**********
 #define TOP_FEEDER_PWM_ID            0
 #define BOTTOM_FEEDER_PWM_ID         1
-#define TOP_FEEDER_SHOOTING_SPEED    0.7
-#define BOTTOM_FEEDER_SHOOTING_SPEED 0.7
-#define TOP_SHOOTER_IDLE_SPEED       0.35
-#define BOTTOM_SHOOTER_IDLE SPEED    0.35
+#define TOP_FEEDER_SHOOTING_POWER    0.7
+#define BOTTOM_FEEDER_SHOOTING_POWER 0.7
+#define TOP_FEEDER_IDLE_POWER      0.35
+#define BOTTOM_FEEDER_IDLE_POWER   0.35
 
 //**********INTAKE CONSTANTS**********
 //#define INTAKE_CAN_ID           8

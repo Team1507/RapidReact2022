@@ -4,6 +4,7 @@
 #include "Constants.h"
 #include <frc/DoubleSolenoid.h>
 #include <frc/PneumaticsModuleType.h>
+#include "Shooter.h"
 
 class Intake : public frc2::SubsystemBase 
 {
@@ -18,8 +19,11 @@ class Intake : public frc2::SubsystemBase
     Type GetType(void);
 
     void Periodic() override;
+    bool GetIsIntaking(void);
 
  private:
   Type m_type;
+  bool isIntaking;
+ 
 
 };
