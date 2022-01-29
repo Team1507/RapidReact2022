@@ -17,6 +17,8 @@
 //*********************AUTO**********************
 
 #include "commands/AutoDoNothing.h"
+#include "commands/AutoJustShootLimelight.h"
+#include "commands/AutoJustShootNoLimelight.h"
 
 class RobotContainer 
 {
@@ -34,6 +36,8 @@ class RobotContainer
 
   //******************AUTO*************************
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
+  AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain};
+  AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain};
 
   frc2::Command* GetAutonomousCommand();
   
@@ -43,5 +47,4 @@ class RobotContainer
   ExampleCommand m_autonomousCommand;
 
   void ConfigureButtonBindings();
-  frc2::JoystickButton m_top_driver_A{&m_top_driver,GAMEPADMAP_BUTTON_A};
 };

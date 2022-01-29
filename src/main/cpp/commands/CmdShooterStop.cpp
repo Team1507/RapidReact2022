@@ -3,7 +3,6 @@
 CmdShooterStop::CmdShooterStop(Shooter *shooter) 
 {
   m_shooter = shooter;
-  AddRequirements(m_shooter);
 }
 
 void CmdShooterStop::Initialize() 

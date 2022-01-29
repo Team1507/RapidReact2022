@@ -1,31 +1,30 @@
 #include "commands/CmdCalculateAll.h"
+#include <iostream>
 
-
-CmdCalculateAll::CmdCalculateAll(Shooter *shooter, frc::XboxController *topDriver)
-
+CmdCalculateAll::CmdCalculateAll(Shooter *shooter) 
 {
   m_shooter = shooter;
-  m_topDriver = topDriver;
-  AddRequirements(m_shooter);
 }
 
-void CmdCalculateAll::Initialize() {}
-
-void CmdCalculateAll::Execute() 
+void CmdCalculateAll::Initialize() 
 {
-  hAngle = m_shooter->GetLimelightAngle();
-
-  m_shooter->SetTurretYaw(0);
-
-  vAngle = m_shooter->GetLimelightDistance();
   
-  m_shooter->SetHoodEncoder(0);
-  m_shooter->SetShooterRPM(0);
-}
 
-void CmdCalculateAll::End(bool interrupted) {}
-
-bool CmdCalculateAll::IsFinished() {
-  return true;
-  //If GetLimeLightAngle is 0 then return true
+  const double SHOOTER_POWER_RATIO = 0; //Change later
+  const double SHOOTER_HOOD_RATIO = 0; //Change later
+  
+  //getting limelight and aim and speed
+  
+  //if(m_shooter->GetLimelightSeeTarget() == true) 
+  {
+    std::cout<<"Aiming towards target with limelight"<<std::endl;
+    //m_shooter->SetTurretYaw(m_shooter->GetTurretYaw() + m_shooter->GetLimelightAngle());
+    m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
+    m_shooter->SetHoodEncoder(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
+  }
+  //else 
+  {
+    std::cout<<"Target not found"<<std::endl;
+  }
+  
 }

@@ -1,6 +1,6 @@
-#include "commands/AutoJustShootNoLimelight.h"
-#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/AutoJustShootLimelight.h" 
 
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/WaitCommand.h>
 
 #include "commands/CmdDriveClearAll.h"
@@ -12,26 +12,24 @@
 #include "commands/CmdTurretSetHome.h"
 #include "commands/CmdFeederSetPower.h"
 #include "commands/CmdFeederStop.h"
+#include "commands/CmdCalculateAll.h"
 
-AutoJustShootNoLimelight::AutoJustShootNoLimelight(Shooter *shooter, Drivetrain *drivetrain) 
+AutoJustShootLimelight::AutoJustShootLimelight(Shooter *shooter, Drivetrain *drivetrain) 
 {
-
-
-  AddCommands(
-    
-    
+  AddCommands
+  (
     CmdDriveClearAll(drivetrain),
-    CmdPrintAutoText("Just Shoot No limelight"),
+    CmdPrintAutoText("Just Shoot with limelight"),
 
-    //SetShooter to Idle speed and aim
-    CmdHoodSetAngle(shooter,frc::SmartDashboard::GetNumber("Hood Angle", 0.0)),
+    //SetShooter to Idle speed
     CmdShooterSetPower(shooter,frc::SmartDashboard::GetNumber("Idle Power", 0.0)),
-    CmdTurretSetAngle(shooter,frc::SmartDashboard::GetNumber("Turret Angle", 0.0)),
+    
 
     frc2::WaitCommand(2.0_s),
     
-    //Set to shooting speed
-    CmdShooterSetPower(shooter,frc::SmartDashboard::GetNumber("Shooting Power", 0.0)),
+    //Aim & Set Shooting Speed
+    CmdCalculateAll(shooter),
+
     //Wait to get to up to speed
     frc2::WaitCommand(2.0_s),
 
@@ -50,11 +48,6 @@ AutoJustShootNoLimelight::AutoJustShootNoLimelight(Shooter *shooter, Drivetrain 
     CmdFeederStop(shooter, CmdFeederStop::Bottom),
 
     //Done
-    CmdPrintAutoText("Just Shot Done")
-
-    
+    CmdPrintAutoText("Just Shoot Done")
   );
-
-  // Add your commands here, e.g.
-  // AddCommands(FooCommand(), BarCommand());
 }
