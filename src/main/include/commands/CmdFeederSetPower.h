@@ -4,14 +4,17 @@
 #include <frc2/command/InstantCommand.h>
 #include "subsystems/Shooter.h"
 
-class CmdBotFeederSetPower
+class CmdFeederSetPower
+
     : public frc2::CommandHelper<frc2::InstantCommand,
-                                 CmdBotFeederSetPower> {
+                                 CmdFeederSetPower> {
  public:
-  CmdBotFeederSetPower(Shooter *shooter, double power);
+  enum Level{Top,Bottom};
+  CmdFeederSetPower(Shooter *shooter ,Level level, double power);
 
   void Initialize() override;
   private:
   Shooter *m_shooter;
+  Level m_level;
   double m_power;
 };

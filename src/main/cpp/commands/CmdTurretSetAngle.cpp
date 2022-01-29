@@ -4,7 +4,6 @@ CmdTurretSetAngle::CmdTurretSetAngle( Shooter *shooter, double angle)
 {
   m_shooter = shooter;
   m_angle = angle;
-  AddRequirements(m_shooter);
 }
 
 // Called when the command is initially scheduled.

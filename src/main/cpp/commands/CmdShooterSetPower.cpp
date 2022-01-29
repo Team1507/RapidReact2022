@@ -5,7 +5,6 @@ CmdShooterSetPower::CmdShooterSetPower(Shooter *shooter, double power)
 {
   m_shooter = shooter;
   m_power = power;
-  AddRequirements(m_shooter);
 }
 
 void CmdShooterSetPower::Initialize() 

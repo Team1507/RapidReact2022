@@ -4,7 +4,6 @@
 CmdTurretSetHome::CmdTurretSetHome(Shooter *shooter) 
 {
   m_shooter = shooter;
-  AddRequirements(m_shooter);
 }
 
 // Called when the command is initially scheduled.
