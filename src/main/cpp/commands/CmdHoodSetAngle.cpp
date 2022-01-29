@@ -8,5 +8,5 @@ CmdHoodSetAngle::CmdHoodSetAngle(Shooter *shooter, int angle)
 
 void CmdHoodSetAngle::Initialize() 
 {
-  m_shooter->SetHoodEncoder(m_angle);
+  m_shooter->SetHoodAngle(m_angle);
 }

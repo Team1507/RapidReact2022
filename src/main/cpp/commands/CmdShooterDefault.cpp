@@ -27,7 +27,7 @@ void CmdShooterDefault::Execute()
   //x = return to home
   if(TurretHomePressed)
   {
-    m_shooter->SetTurretHome();
+    m_shooter->SetTurretAngle(0);
   }
 
   //*******************************************************
@@ -71,19 +71,19 @@ void CmdShooterDefault::Execute()
   else
   //*************************************************
   //Feeder State Machine
-  if(m_shooter->GetFeederOn() && !m_shooter->GetTopPhotoeye())
+  if(m_shooter->GetFeederOn() && !m_shooter->GetTopFeederPhotoeye())
   {
-    m_shooter->SetTopFeederPower(TOP_FEEDER_IDLE_POWER);   
+    m_shooter->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
   }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetTopPhotoeye())
+  else if(m_shooter->GetFeederOn() && m_shooter->GetTopFeederPhotoeye())
   {
     m_shooter->SetTopFeederPower(0);
   }
-  if(m_shooter->GetFeederOn() && !m_shooter->GetBotPhotoeye())
+  if(m_shooter->GetFeederOn() && !m_shooter->GetBotFeederPhotoeye())
   {
-    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_IDLE_POWER);
+    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
   }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetBotPhotoeye() && m_shooter->GetTopPhotoeye())
+  else if(m_shooter->GetFeederOn() && m_shooter->GetBotFeederPhotoeye() && m_shooter->GetTopFeederPhotoeye())
   {
     m_shooter->SetBottomFeederPower(0);
     m_shooter->SetTopFeederPower(0); //fail safe just in case
@@ -104,23 +104,23 @@ void CmdShooterDefault::Execute()
     {
       case 0:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 90:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 180:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
       case 270:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodEncoder(0);//make a state
-        m_shooter->SetTurretYaw(0);//make a state
+        m_shooter->SetHoodAngle(0);//make a state
+        m_shooter->SetTurretAngle(0);//make a state
         break;
     }
   }

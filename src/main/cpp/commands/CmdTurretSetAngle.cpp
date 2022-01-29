@@ -9,5 +9,5 @@ CmdTurretSetAngle::CmdTurretSetAngle( Shooter *shooter, double angle)
 // Called when the command is initially scheduled.
 void CmdTurretSetAngle::Initialize() 
 {
-  m_shooter->SetTurretYaw(m_angle);
+  m_shooter->SetTurretAngle(m_angle);
 }

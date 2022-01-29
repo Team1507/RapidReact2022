@@ -9,5 +9,5 @@ CmdTurretSetHome::CmdTurretSetHome(Shooter *shooter)
 // Called when the command is initially scheduled.
 void CmdTurretSetHome::Initialize() 
 {
-  m_shooter->SetTurretYaw(0);
+  m_shooter->SetTurretAngle(0);
 }
