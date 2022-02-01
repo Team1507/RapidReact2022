@@ -17,7 +17,7 @@ void CmdCalculateAllV2::Initialize()
 
 void CmdCalculateAllV2::Execute() 
 {
-  m_limeLightAngle = m_shooter->GetLimelightAngle();
+  m_limeLightAngle = m_shooter->GetLimelightHAngle();
   m_limeLightDistance = m_shooter->GetLimelightDistance();
   //getting limelight and aim and speed
   
@@ -39,7 +39,7 @@ bool CmdCalculateAllV2::IsFinished()
   double wantedShooterPower = m_limeLightDistance * SHOOTER_POWER_RATIO;
   double wantedHoodAngle = m_limeLightDistance * SHOOTER_HOOD_RATIO;
   double shooterPower = m_shooter->GetShooterPower();
-  double hoodEncoder = m_shooter->GetHoodEncoder();
+  double hoodEncoder = m_shooter->GetHoodAngle();
 
   if ((units::time::second_t) m_timeout > m_timer.Get()) 
   {
