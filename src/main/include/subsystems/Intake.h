@@ -26,7 +26,7 @@ class Intake : public frc2::SubsystemBase
   Type m_type;
   bool m_isIntaking;
   frc::Spark *m_intakeSpark;
-  frc::DoubleSolenoid *m_pnumatic;
+  frc::DoubleSolenoid *m_doubleSolinoid;
   
  
 

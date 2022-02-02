@@ -9,6 +9,9 @@ Shooter::Shooter()
     double m_turretYaw   = 0;
     topFeederDetect = new frc::DigitalInput(0);
     botFeederDetect = new frc::DigitalInput(1);
+    m_topHoodLimitSwitch = new frc::DigitalInput(HOOD_TOP_LIMIT_SWITCH);
+    m_botHoodLimtSwitch = new frc::DigitalInput(HOOD_BOTTOM_LIMIT_SWITCH);
+    
     
 
 }
@@ -33,6 +36,10 @@ void Shooter::SetBottomFeederPower(double power)
 void Shooter::SetHoodAngle(double angle)
 {
     m_hoodAngle = angle;
+}
+void Shooter::SetHoodPower(double power)
+{
+    m_hoodPower = power;
 }
 void Shooter::SetTurretAngle(double angle)
 {
@@ -85,6 +92,10 @@ double Shooter::GetHoodAngle(void)
 {
     return m_hoodAngle;
 }
+double Shooter::GetHoodPower(void)
+{
+    return m_hoodPower;
+}
 double Shooter::GetTurretAngle(void)
 {
     return m_turretAngle;
@@ -116,6 +127,14 @@ bool Shooter::GetBotFeederPhotoeye(void)
 bool Shooter::GetFeederOn(void)
 {
     return m_feederStatus;
+}
+bool Shooter::GetTopHoodLimitSW(void)
+{
+    return m_topHoodLimitSwitch; // return limit switch objects here once i create it 
+}
+bool Shooter::GetBotHoodLimitSW(void)
+{
+    return m_botHoodLimtSwitch;
 }
 void Shooter::Periodic() 
 {

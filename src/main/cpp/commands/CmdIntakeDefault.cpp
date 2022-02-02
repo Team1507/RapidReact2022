@@ -22,14 +22,14 @@ void CmdIntakeDefault::Execute()
 		if(m_topDriver->GetRightBumper())
 		{
 			m_intake->Deploy();
-			m_intake->SetPower(0);
+			m_intake->SetPower(FRONT_INTAKE_POWER);
 			m_shooter->SetFeederOn(true);
 
 		}
 		else
-		{
-			m_intake->Retract();
+		{	
 			m_intake->SetPower(0);
+			m_intake->Retract();
 		}
 	}
 	
@@ -39,13 +39,13 @@ void CmdIntakeDefault::Execute()
 		if(m_topDriver->GetLeftBumper())
 		{
 			m_intake->Deploy();
-			m_intake->SetPower(0);
+			m_intake->SetPower(REAR_INTAKE_POWER);
 			m_shooter->SetFeederOn(true);
 		}
 		else
-		{
-			m_intake->Retract();
+		{	
 			m_intake->SetPower(0);
+			m_intake->Retract();
 		}
 	}
 }

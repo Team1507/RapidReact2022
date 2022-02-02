@@ -17,6 +17,8 @@
 //**********INTAKE CONSTANTS**********
 #define FRONT_INTAKE_PWM              2
 #define REAR_INTAKE_PWM               3
+#define FRONT_INTAKE_POWER            0.6
+#define REAR_INTAKE_POWER             0.6
 
 //**********CONTROL CONSTANTS**********
 // #define CP_SPINNER_CAN_ID       13
@@ -24,10 +26,11 @@
 
 
 //**********SHOOTER CONSTANTS**********
-// #define LEFT_SHOOTER_FALCON_ID  5
-// #define RIGHT_SHOOTER_FALCON_ID 6
-// #define FEEDER_CAN_ID           7  //may not be on CAN
-// #define CAROUSEL_CAN_ID         9
+#define LEFT_SHOOTER_FALCON_ID  5
+#define RIGHT_SHOOTER_FALCON_ID 6
+#define HOOD_SLOW_POWER         0.3
+#define HOOD_BOTTOM_LIMIT_SWITCH 7
+#define HOOD_TOP_LIMIT_SWITCH    8
 
 // #define SHOOTER_HOOD_PORT       0
 
