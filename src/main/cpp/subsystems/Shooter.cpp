@@ -136,6 +136,14 @@ bool Shooter::GetBotHoodLimitSW(void)
 {
     return m_botHoodLimtSwitch;
 }
+void Shooter::ResetHoodEncoder(void)
+{
+    //Jack Waz Here
+}
+void Shooter::ResetTurretEncoder(void)
+{
+
+}
 void Shooter::Periodic() 
 {
     

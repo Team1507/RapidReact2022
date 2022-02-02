@@ -28,6 +28,7 @@ void CmdHoodFindHome::Execute()
 void CmdHoodFindHome::End(bool interrupted) 
 {
   std::cout<<"Hood Has Found Home"<<std::endl;
+  m_shooter->ResetHoodEncoder();
 }
 
 

@@ -40,6 +40,9 @@ class Shooter : public frc2::SubsystemBase {
   bool GetFeederOn(void);
   bool GetTopHoodLimitSW(void);
   bool GetBotHoodLimitSW(void);
+
+  void ResetHoodEncoder(void);
+  void ResetTurretEncoder(void);
   
 
 
