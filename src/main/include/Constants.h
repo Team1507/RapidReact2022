@@ -6,10 +6,10 @@
 #define RIGHTDRIVE_FRONT_CAN_ID      2
 #define RIGHTDRIVE_BACK_CAN_ID       3
 
-#define LEFT_DRIVE_FRONT_ENCODER     0
-#define LEFT_DRIVE_REAR_ENCODER      1
-#define RIGHT_DRIVE_FRONT_ENCODER    2
-#define RIGHT_DRIVE_REAR_ENCODER     3
+#define LEFT_DRIVE_ENCODER_A         0
+#define LEFT_DRIVE_ENCODER_B         1
+#define RIGHT_DRIVE_ENCODER_A        2
+#define RIGHT_DRIVE_ENCODER_B        3
 
 //*********FEEDER CONSTANTS**********
 #define TOP_FEEDER_PWM_ID            0
@@ -42,7 +42,9 @@
 #define HI_CLIMB_RETURN_PCM         5
 #define CLIMB_BRAKE_ENGAGE_PCM      6
 #define CLIMB_BRAKE_DISENGAGE_PCM   7
-//#define CLIMB_HI_DIO_HALLEFFECT     
+
+#define CLIMB_HI_DIO_HALLEFFECT     7
+#define CLIMB_MID_DIO_HALLEFFECT     8
 
 //**********SHOOTER CONSTANTS**********
 #define TURRET_TALON_CAN           5
