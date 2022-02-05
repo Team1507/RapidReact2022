@@ -7,6 +7,7 @@
 #include "ctre/Phoenix.h"
 #include "AHRS.h"
 #include "Constants.h"
+#include <frc/Encoder.h>
 
 using namespace frc;  //Had to add this to get SPI port enum
 
@@ -33,8 +34,10 @@ class Drivetrain : public frc2::SubsystemBase {
   //Encoders
   int  GetLeftEncoder(void);
   int  GetLeftEncoder2(void);
+  int  GetLeftEncoder3(void);
   int  GetRightEncoder(void);
   int  GetRightEncoder2(void);
+  int  GetRightEncoder3(void);
   void HardResetEncoders(void);   //Full Falcon Encoder Reset
   void ResetEncoders(void);       //Local Reset
 
@@ -69,12 +72,17 @@ class Drivetrain : public frc2::SubsystemBase {
 
     frc::Timer m_timer;
 
+    //Encoders
+    frc::Encoder m_rightEncoder3{RIGHT_DRIVE_ENCODER_A, RIGHT_DRIVE_ENCODER_B};
+    frc::Encoder m_leftEncoder3{LEFT_DRIVE_ENCODER_A, LEFT_DRIVE_ENCODER_B};
 
     //Encoder Zeros
     int m_l1_enc_zero;
     int m_l2_enc_zero;
+    int m_l3_enc_zero;
     int m_r1_enc_zero;
     int m_r2_enc_zero;
+    int m_r3_enc_zero;
 
 
     //Odometry
