@@ -47,8 +47,8 @@ bool CmdCalculateAllV2::IsFinished()
   }
   else if (
     (m_limeLightAngle > -SHOOTER_ANGLE_TOLERANCE)                     && (m_limeLightAngle < SHOOTER_ANGLE_TOLERANCE) && 
-    (shooterPower     > wantedShooterPower - SHOOTER_ANGLE_TOLERANCE) && (shooterPower     < wantedShooterPower + SHOOTER_ANGLE_TOLERANCE)&&
-    (hoodEncoder      > wantedHoodAngle    - SHOOTER_ANGLE_TOLERANCE) && (hoodEncoder      < wantedHoodAngle    + SHOOTER_ANGLE_TOLERANCE)) 
+    (shooterPower     > (wantedShooterPower - SHOOTER_ANGLE_TOLERANCE)) && (shooterPower     < (wantedShooterPower + SHOOTER_ANGLE_TOLERANCE))&&
+    (hoodEncoder      > (wantedHoodAngle    - SHOOTER_ANGLE_TOLERANCE)) && (hoodEncoder      < (wantedHoodAngle    + SHOOTER_ANGLE_TOLERANCE))) 
   {
     return true;
   }
