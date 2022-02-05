@@ -54,11 +54,16 @@ void CmdDriveWithGamepad::Execute()
 
 
     //Arcade Drive
-    m_ptrDrivetrain->ArcadeDrive( -yL * MAX_DRIVE_POWER    , xR * MAX_TURN_POWER );
 
-    if(m_ptrDriverXbox->GetLeftTriggerAxis() || m_ptrDriverXbox->GetRightTriggerAxis())
+    static const double LEFT_TRIGGER_DEADBAND = 0.9;
+    //Creep Mode
+    if(m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND)
     {
         m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)/2)    , ((xR * MAX_TURN_POWER)/2) );
+    }
+    else
+    {
+      m_ptrDrivetrain->ArcadeDrive( -yL * MAX_DRIVE_POWER    , xR * MAX_TURN_POWER );
     }
 
     //Tank Drive

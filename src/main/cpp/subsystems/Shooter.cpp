@@ -68,6 +68,10 @@ double Shooter::GetLimelightDistance(void)
 {
     return 0;
 }
+bool Shooter::GetLimelightTargetValid(void)
+{
+    return false;
+}
 double Shooter::GetShooterPower(void)
 {
     return 0;
@@ -144,6 +148,31 @@ void Shooter::ResetTurretEncoder(void)
 {
 
 }
+double Shooter::GetWantedHoodAngle()
+{
+ return wantedHoodAngle;
+}
+double Shooter::GetCurrentHoodAngle()
+{
+ return 0;
+}
+double Shooter::GetWantedTurretAngle()
+{
+ return wantedTurrentAngle;
+}
+double Shooter::GetCurrentTurretAngle()
+{
+    return 0;
+}
+double Shooter::GetWantedShooterRPM()
+{
+ return wantedShooterRPM;
+}
+double Shooter::GetCurrentShooterRPM()
+{
+    return 0;
+}
+
 void Shooter::Periodic() 
 {
     

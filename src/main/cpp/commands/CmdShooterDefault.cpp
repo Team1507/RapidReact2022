@@ -154,6 +154,9 @@ void CmdShooterDefault::Execute()
     
     const int MAX_POS_ERROR = 1500;
     const int MAX_NEG_ERROR = -100;
+    
+    const double HOOD_TOLERANCE = 2;
+    const double SHOOTER_RPM = 3;
 
     double curr_velocity = m_shooter->GetShooterVelocity();
     double curr_power = m_shooter->GetShooterPower();
@@ -172,6 +175,7 @@ void CmdShooterDefault::Execute()
     if( shoot_power < 0.0 ) shoot_power = 0.0;
 
     //m_shooter->(shoot_power); ************wtf???????
+    m_shooter->SetShooterPower(shoot_power);
 
     frc::SmartDashboard::PutNumber("Curr Power", curr_power);
     frc::SmartDashboard::PutNumber("Curr Velocity", curr_velocity);
@@ -180,9 +184,13 @@ void CmdShooterDefault::Execute()
 
   //*****************************************************
   //*********************TURRET ERROR********************
+  // const double TURRET_TOLERANCE = 1;
 
   
-
+  // const int MAX_POS_ERROR_TURRET = 0.7;
+  // const int MAX_NEG_ERROR_TURRET = -0.7;
+  // double turretangle = m_shooter->GetTurretAngle();
+  // double hood_error = m_shooter->GetTurretAngle();
 
 }
 

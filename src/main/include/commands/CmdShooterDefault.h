@@ -34,6 +34,6 @@ class CmdShooterDefault
   bool isRTriggerPressed;
   double m_topFeederPower;
   double m_bottomFeederPower;
-
+  
 
 };

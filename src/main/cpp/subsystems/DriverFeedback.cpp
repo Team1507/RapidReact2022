@@ -6,11 +6,11 @@ DriverFeedback::DriverFeedback() = default;
 
 
 
-void RumbleOn(void)
+void DriverFeedback::RumbleOn(void)
 {
 
 }
-void RumbleOff(void)
+void DriverFeedback::RumbleOff(void)
 {
 
 }
