@@ -42,6 +42,7 @@
 #define HI_CLIMB_RETURN_PCM         5
 #define CLIMB_BRAKE_ENGAGE_PCM      6
 #define CLIMB_BRAKE_DISENGAGE_PCM   7
+//#define CLIMB_HI_DIO_HALLEFFECT     
 
 //**********SHOOTER CONSTANTS**********
 #define TURRET_TALON_CAN           5

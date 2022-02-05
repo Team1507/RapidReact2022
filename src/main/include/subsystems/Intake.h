@@ -20,11 +20,9 @@ class Intake : public frc2::SubsystemBase
     double Test(void);
 
     void Periodic() override;
-    bool GetIsIntaking(void);
 
  private:
   Type m_type;
-  bool m_isIntaking;
   frc::Spark *m_intakeSpark;
   frc::DoubleSolenoid *m_doubleSolinoid;
   

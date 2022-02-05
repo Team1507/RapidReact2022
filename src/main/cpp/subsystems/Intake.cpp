@@ -6,12 +6,12 @@ Intake::Intake(Intake::Type type)
     if(type == Type::FRONT)
     {
         m_intakeSpark = new frc::Spark(FRONT_INTAKE_PWM);
-        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, 0, 1);
+        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, FRONT_INTAKE_DEPLOY_PCM, FRONT_INTAKE_RETRACT_PCM);
     }
     if(type == Type::REAR)
     {
         m_intakeSpark = new frc::Spark(REAR_INTAKE_PWM);
-        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, 2, 3);
+        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, REAR_INTAKE_DEPLOY_PCM, REAR_INTAKE_RETRACT_PCM);
     }
     m_doubleSolinoid->Set(frc::DoubleSolenoid::kReverse);
 }
@@ -34,11 +34,6 @@ double Intake::GetPower(void)
 {
     return 0;
 }
-bool Intake::GetIsIntaking(void)
-{
-    return m_isIntaking;
-}
-
 void Intake::Periodic() 
 {
 
