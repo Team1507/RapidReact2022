@@ -7,6 +7,7 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/PneumaticsModuleType.h>
 #include <frc/Digitalinput.h>
+#include "Constants.h"
 
 class Climber : public frc2::SubsystemBase {
  public:
@@ -18,6 +19,9 @@ class Climber : public frc2::SubsystemBase {
 	void HighBarRetract(void);
 	void ClimbBrakeExtend(void);
 	void ClimbBrakeRetract(void);
+
+	bool GetHighHallEffect(void);
+	bool GetMidHallEffect(void);
 
 	bool IsClimbActivated(void);
 
@@ -34,5 +38,6 @@ class Climber : public frc2::SubsystemBase {
     frc::DoubleSolenoid m_climbBrake {PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM};
 	//frc::DoubleSolenoid *m_highBarControl;
 	//frc::DoubleSolenoid *m_climbBrake;
-	//frc::DigitalInput m_hallEffectSensor{DIO_ID_HALLEFFECT};
+	frc::DigitalInput m_highBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
+	frc::DigitalInput m_midBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
 };

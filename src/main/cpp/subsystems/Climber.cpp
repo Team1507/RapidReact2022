@@ -37,6 +37,16 @@ void Climber::ClimbBrakeRetract()
     m_climbBrake.Set(frc::DoubleSolenoid::kReverse);
 }
 
+bool Climber::GetHighHallEffect(void)
+{
+    return m_highBarHallEffectSensor.Get();
+}
+
+bool Climber::GetMidHallEffect(void)
+{
+    return m_midBarHallEffectSensor.Get();
+}
+
 bool Climber::IsClimbActivated(void)
 {
     return m_isClimbActivated;
