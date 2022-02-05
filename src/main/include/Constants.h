@@ -55,6 +55,8 @@
 #define HOOD_SLOW_POWER            0.3
 #define HOOD_BOTTOM_LIMIT_SWITCH   7
 #define HOOD_TOP_LIMIT_SWITCH      8
+#define TURRET_RIGHT_LIMIT_SWITCH  9
+#define TURRET_LEFT_LIMIT_SWITCH   10
 
 // #define SHOOTER_HOOD_PORT       0
 
