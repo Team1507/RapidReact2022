@@ -1,33 +1,52 @@
 #pragma once
 
 //********** DRIVETRAIN CONSTANTS **********
-#define LEFTDRIVE_FRONT_CAN_ID       1
-#define LEFTDRIVE_BACK_CAN_ID        2
-#define RIGHTDRIVE_FRONT_CAN_ID      3
-#define RIGHTDRIVE_BACK_CAN_ID       4 
+#define LEFTDRIVE_FRONT_CAN_ID       0
+#define LEFTDRIVE_BACK_CAN_ID        1
+#define RIGHTDRIVE_FRONT_CAN_ID      2
+#define RIGHTDRIVE_BACK_CAN_ID       3
+
+#define LEFT_DRIVE_FRONT_ENCODER     0
+#define LEFT_DRIVE_REAR_ENCODER      1
+#define RIGHT_DRIVE_FRONT_ENCODER    2
+#define RIGHT_DRIVE_REAR_ENCODER     3
 
 //*********FEEDER CONSTANTS**********
 #define TOP_FEEDER_PWM_ID            0
 #define BOTTOM_FEEDER_PWM_ID         1
+
 #define TOP_FEEDER_SHOOTING_POWER    0.7
 #define BOTTOM_FEEDER_SHOOTING_POWER 0.7
 #define TOP_FEEDER_INTAKE_POWER      0.35
 #define BOTTOM_FEEDER_INTAKE_POWER   0.35
 
+#define UPPER_FEEDER_PHOTOEYE        4
+#define LOWER_FEEDER_PHOTOEYE        5
+
 //**********INTAKE CONSTANTS**********
 #define FRONT_INTAKE_PWM              2
 #define REAR_INTAKE_PWM               3
+#define FRONT_INTAKE_DEPLOY_PCM       0
+#define FRONT_INTAKE_RETRACT_PCM      1
+#define REAR_INTAKE_DEPLOY_PCM        2
+#define REAR_INTAKE_RETRACT_PCM       3
 
-//**********CONTROL CONSTANTS**********
-// #define CP_SPINNER_CAN_ID       13
-// #define CP_DEPLOY_CAN_ID        14
-
+//**********CLIMBER CONSTANTS**********
+#define LO_CLIMB_LEFT_FALCON        6
+#define LO_CLIMB_RIGHT_FALCON       7
+#define HI_CLIMB_LEFT_FALCON        8
+#define HI_CLIMB_RIGHT_FALCON       9
+#define HI_CLIMB_DEPLOY_PCM         4
+#define HI_CLIMB_RETURN_PCM         5
+#define CLIMB_BRAKE_ENGAGE_PCM      6
+#define CLIMB_BRAKE_DISENGAGE       7
 
 //**********SHOOTER CONSTANTS**********
-// #define LEFT_SHOOTER_FALCON_ID  5
-// #define RIGHT_SHOOTER_FALCON_ID 6
-// #define FEEDER_CAN_ID           7  //may not be on CAN
-// #define CAROUSEL_CAN_ID         9
+#define LEFT_SHOOTER_FALCON_ID  10
+#define RIGHT_SHOOTER_FALCON_ID 11
+#define TURRET_775_PRO_TALON    5
+#define HOOD_TALON              12
+#define TURRET_HOME_HALL_EFFECT 6
 
 // #define SHOOTER_HOOD_PORT       0
 
