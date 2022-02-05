@@ -26,7 +26,7 @@ void CmdTurretFindHome::Execute()
 void CmdTurretFindHome::End(bool interrupted) 
 {
  m_shooter->SetTurretPower(0.0);
- //add turret reset 
+ m_shooter->ResetTurretEncoder();
 }
 
 

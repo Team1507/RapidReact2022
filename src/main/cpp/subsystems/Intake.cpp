@@ -32,7 +32,7 @@ void Intake::SetPower(double power)
 
 double Intake::GetPower(void)
 {
-    return 0;
+    return m_intakeSpark->Get();
 }
 void Intake::Periodic() 
 {

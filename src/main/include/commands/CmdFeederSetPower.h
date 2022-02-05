@@ -9,7 +9,7 @@ class CmdFeederSetPower
     : public frc2::CommandHelper<frc2::InstantCommand,
                                  CmdFeederSetPower> {
  public:
-  enum Level{Top,Bottom};
+  enum Level{Top,Bottom};//put in shooter
   CmdFeederSetPower(Shooter *shooter ,Level level, double power);
 
   void Initialize() override;

@@ -12,6 +12,7 @@
 #include "subsystems/Intake.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/Climber.h"
+#include "subsystems/DriverFeedback.h"
 #include <frc/XboxController.h>
 
 //*********************AUTO**********************
@@ -19,6 +20,7 @@
 #include "commands/AutoDoNothing.h"
 #include "commands/AutoJustShootLimelight.h"
 #include "commands/AutoJustShootNoLimelight.h"
+#include "commands/AutoTwoBall.h"
 
 class RobotContainer 
 {
@@ -33,11 +35,13 @@ class RobotContainer
   Climber             m_climber;
   frc::XboxController m_bot_driver{0};
   frc::XboxController m_top_driver{1};
+  DriverFeedback      m_driverFeedback{&m_top_driver};
 
   //******************AUTO*************************
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
   AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain};
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain};
+  AutoTwoBall m_autoTwoBall;
 
   frc2::Command* GetAutonomousCommand();
   

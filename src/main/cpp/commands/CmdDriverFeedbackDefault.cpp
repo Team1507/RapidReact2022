@@ -31,7 +31,7 @@ void CmdDriverFeedbackDefault::Execute()
      (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE) && m_shooter->GetLimelightTargetValid())
   {
     m_driverFeedback->RumbleOn();
-    //LedS green
+    m_driverFeedback->UpdateLEDs(0,255,0);
   }
   else
   {

@@ -5,6 +5,7 @@
 #include "commands/CmdClimberDefault.h"
 #include "commands/CmdShooterDefault.h"
 #include "commands/CmdCalculateAll.h"
+#include "commands/CmdDriverFeedbackDefault.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) 
 {
@@ -15,13 +16,14 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   m_frontIntake.SetDefaultCommand(CmdIntakeDefault( &m_frontIntake, &m_top_driver, &m_shooter));
   m_climber.SetDefaultCommand(CmdClimberDefault( &m_climber, &m_top_driver, &m_bot_driver));
   m_shooter.SetDefaultCommand(CmdShooterDefault( &m_shooter, &m_top_driver));
+  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_shooter ));
 
   //*************************************Auto**********************************************
 
   m_chooser.SetDefaultOption("Auto Do Nothing", &m_autoDoNothing);
   m_chooser.AddOption("Auto Just Shoot With Limelight", &m_autoJustShootLimelight);
   m_chooser.AddOption("Auto Just Shoot Without Limelight", &m_autoJustShootNoLimelight);
-
+  m_chooser.AddOption("Auto Shoot Two Ball", &m_autoTwoBall);
   frc::SmartDashboard::PutData(&m_chooser);
 
   //********************************Smart Dashboard Buttons**************************************

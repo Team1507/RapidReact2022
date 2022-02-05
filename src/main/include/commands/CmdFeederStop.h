@@ -8,7 +8,7 @@ class CmdFeederStop
     : public frc2::CommandHelper<frc2::InstantCommand,
                                  CmdFeederStop> {
  public:
- enum Level{Top,Bottom};
+ enum Level{Top,Bottom};//put in shooter
   CmdFeederStop(Shooter *shooter, Level level);
 
   void Initialize() override;

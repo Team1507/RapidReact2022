@@ -143,7 +143,7 @@ void Shooter::ResetHoodEncoder(void)
 }
 void Shooter::ResetTurretEncoder(void)
 {
-
+    
 }
 double Shooter::GetWantedHoodAngle()
 {
