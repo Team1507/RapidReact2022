@@ -58,7 +58,20 @@ void Robot::TeleopPeriodic() {}
 
 void Robot::WriteToSmartDashboard(void)
 {
+  frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());
+  frc::SmartDashboard::PutBoolean("Bottom Hood Limit Switch", m_container.m_shooter.GetBotHoodLimitSW());
+  frc::SmartDashboard::PutBoolean("Left Turret Limit Switch", m_container.m_shooter.GetLeftTurretLimitSW());
+  frc::SmartDashboard::PutBoolean("Right Turret Limit Switch", m_container.m_shooter.GetRightTurretLimitSW());
+  frc::SmartDashboard::PutBoolean("Turret Home Limit Switch", m_container.m_shooter.GetTurretHomeSW());
+  frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetMidHallEffect());
+  frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
+  frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_shooter.GetTopFeederPhotoeye());
+  frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_shooter.GetBotFeederPhotoeye());
 
+  frc::SmartDashboard::PutBoolean("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
+  frc::SmartDashboard::PutBoolean("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
+  frc::SmartDashboard::PutBoolean("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
+  frc::SmartDashboard::PutBoolean("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
 }
 
 void Robot::TestPeriodic() {}

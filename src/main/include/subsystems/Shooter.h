@@ -71,6 +71,12 @@ class Shooter : public frc2::SubsystemBase {
     frc::DigitalInput m_topHoodLimitSwitch{HOOD_TOP_LIMIT_SWITCH};
     frc::DigitalInput m_botHoodLimtSwitch{HOOD_BOTTOM_LIMIT_SWITCH};
 
+    frc::DigitalInput m_rightTurretLimitSwitch{TURRET_RIGHT_LIMIT_SWITCH};
+    frc::DigitalInput m_leftTurretLimitSwitch{TURRET_LEFT_LIMIT_SWITCH};
+
+    frc::DigitalInput m_turretHomeHallEffect{TURRET_HOME_HALL_EFFECT};
+    
+
     frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
     frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
 

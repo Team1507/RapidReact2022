@@ -107,15 +107,15 @@ double Shooter::GetTurretPower(void)
 }
 bool Shooter::GetLeftTurretLimitSW(void)
 {
-    return false;
+    return m_leftTurretLimitSwitch.Get();
 }
 bool Shooter::GetRightTurretLimitSW(void)
 {
-    return false;
+    return m_rightTurretLimitSwitch.Get();
 }
 bool Shooter::GetTurretHomeSW(void)
 {
-    return false;
+    return m_turretHomeHallEffect.Get();
 }
 bool Shooter::GetTopFeederPhotoeye(void)
 {
@@ -169,7 +169,22 @@ double Shooter::GetCurrentShooterRPM()
 {
     return 0;
 }
-
+double Shooter::GetTempatureLeftShooter()
+{
+    return m_leftShooter.GetTemperature();
+}
+double Shooter::GetTempatureRightShooter()
+{
+    return m_rightShooter.GetTemperature();
+}
+double Shooter::GetTempatureHoodMotor()
+{
+    return m_hoodMotor.GetTemperature();
+}
+double Shooter::GetTempatureTurretMotor()
+{
+    return m_turretMotor.GetTemperature();
+}
 void Shooter::Periodic() 
 {
     
