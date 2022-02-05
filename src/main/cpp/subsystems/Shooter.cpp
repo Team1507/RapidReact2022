@@ -7,10 +7,7 @@ Shooter::Shooter()
     double m_bottomFeederPower = 0;
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
-    topFeederDetect = new frc::DigitalInput(0);
-    botFeederDetect = new frc::DigitalInput(1);
-    m_topHoodLimitSwitch = new frc::DigitalInput(HOOD_TOP_LIMIT_SWITCH);
-    m_botHoodLimtSwitch = new frc::DigitalInput(HOOD_BOTTOM_LIMIT_SWITCH);
+    
     
     
 
@@ -122,11 +119,11 @@ bool Shooter::GetTurretHomeSW(void)
 }
 bool Shooter::GetTopFeederPhotoeye(void)
 {
-    return topFeederDetect;
+    return m_topFeederDetect.Get();
 }
 bool Shooter::GetBotFeederPhotoeye(void)
 {
-    return botFeederDetect;
+    return m_botFeederDetect.Get();
 }
 bool Shooter::GetFeederOn(void)
 {
@@ -134,11 +131,11 @@ bool Shooter::GetFeederOn(void)
 }
 bool Shooter::GetTopHoodLimitSW(void)
 {
-    return m_topHoodLimitSwitch; // return limit switch objects here once i create it 
+    return m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 
 }
 bool Shooter::GetBotHoodLimitSW(void)
 {
-    return m_botHoodLimtSwitch;
+    return m_botHoodLimtSwitch.Get();
 }
 void Shooter::ResetHoodEncoder(void)
 {
@@ -150,7 +147,7 @@ void Shooter::ResetTurretEncoder(void)
 }
 double Shooter::GetWantedHoodAngle()
 {
- return wantedHoodAngle;
+ return m_wantedHoodAngle;
 }
 double Shooter::GetCurrentHoodAngle()
 {
@@ -158,7 +155,7 @@ double Shooter::GetCurrentHoodAngle()
 }
 double Shooter::GetWantedTurretAngle()
 {
- return wantedTurrentAngle;
+ return m_wantedTurrentAngle;
 }
 double Shooter::GetCurrentTurretAngle()
 {
@@ -166,7 +163,7 @@ double Shooter::GetCurrentTurretAngle()
 }
 double Shooter::GetWantedShooterRPM()
 {
- return wantedShooterRPM;
+ return m_wantedShooterRPM;
 }
 double Shooter::GetCurrentShooterRPM()
 {

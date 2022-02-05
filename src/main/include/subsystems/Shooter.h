@@ -66,26 +66,33 @@ class Shooter : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-    frc::DigitalInput *topFeederDetect;
-    frc::DigitalInput *botFeederDetect;
+    frc::DigitalInput m_topFeederDetect{TOP_FEEDER_PWM_ID};
+    frc::DigitalInput m_botFeederDetect{BOTTOM_FEEDER_PWM_ID};
+    frc::DigitalInput m_topHoodLimitSwitch{HOOD_TOP_LIMIT_SWITCH};
+    frc::DigitalInput m_botHoodLimtSwitch{HOOD_BOTTOM_LIMIT_SWITCH};
+
+    frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
+    frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
+
+    TalonFX m_leftShooter{LEFT_SHOOTER_CAN};
+    TalonFX m_rightShooter{RIGHT_SHOOTER_CAN};
+    TalonSRX m_hoodMotor{HOOD_TALON_CAN};
+    TalonSRX m_turretMotor{TURRET_TALON_CAN};
+
     double m_shooterRPM;
     double m_hoodAngle;
     double m_turretAngle;
-    frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
-    frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
+
     double m_topFeederPower;
     double m_bottomFeederPower;
-    bool m_feederStatus;
     double m_turretPower;
     double m_hoodPower;
-    frc::DigitalInput *m_topHoodLimitSwitch;
-    frc::DigitalInput *m_botHoodLimtSwitch;
-    double wantedHoodAngle;
-    double wantedTurrentAngle;
-    double wantedShooterRPM;
-    TalonFX leftShooter{LEFT_SHOOTER_CAN};
-    TalonFX rightShooter{RIGHT_SHOOTER_CAN};
-    TalonSRX hoodMotor{HOOD_TALON_CAN};
-    TalonSRX turretMotor{TURRET_TALON_CAN};
+    
+    bool   m_feederStatus;
+
+    double m_wantedHoodAngle;
+    double m_wantedTurrentAngle;
+    double m_wantedShooterRPM;
+
     
 };

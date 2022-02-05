@@ -145,13 +145,8 @@ void CmdShooterDefault::Execute()
 
 
 //***************************SHOOTER ERROR****************************
-  if(m_shooter->GetShooterRPM() == 0)
+  if(m_shooter->GetShooterRPM() > 0.0)
   {
-    m_shooter->SetShooterPower(0);
-  }
-  else
-  {
-    
     const int MAX_POS_ERROR = 1500;
     const int MAX_NEG_ERROR = -100;
     
