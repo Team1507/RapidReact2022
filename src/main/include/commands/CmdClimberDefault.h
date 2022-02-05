@@ -25,5 +25,5 @@ class CmdClimberDefault
   Climber *m_climber;
   frc::XboxController *m_topDriver;
   frc::XboxController *m_bottomDriver;
-
+  
 };

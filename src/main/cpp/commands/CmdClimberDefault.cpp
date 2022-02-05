@@ -1,5 +1,9 @@
 #include "commands/CmdClimberDefault.h"
 
+//LB ENABLE WINCH ON BOTTOM DRIVE
+//RIGHT AND LEFT ON LEFT STICK TOP DRIVER IS HIGH BAR
+//UP AND DOWN ON LEFT STICK TOP DRIVER MID BAR
+//BACK BUTTON TOP DRIVER ALSO ENBALES WINCH
 CmdClimberDefault::CmdClimberDefault(Climber *climber, frc::XboxController *topDriver, frc::XboxController *bottomDriver) 
 {
 	m_climber = climber;
@@ -34,6 +38,9 @@ void CmdClimberDefault::End(bool interrupted)
 }
 
 
-bool CmdClimberDefault::IsFinished() {
+bool CmdClimberDefault::IsFinished() 
+{
   return false;
 }
+
+

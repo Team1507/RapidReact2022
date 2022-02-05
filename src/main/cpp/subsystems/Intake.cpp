@@ -6,12 +6,12 @@ Intake::Intake(Intake::Type type)
     if(type == Type::FRONT)
     {
         m_intakeSpark = new frc::Spark(FRONT_INTAKE_PWM);
-        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, 0, 1);
+        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, 0, 1);
     }
     if(type == Type::REAR)
     {
         m_intakeSpark = new frc::Spark(REAR_INTAKE_PWM);
-        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, 2, 3);
+        m_pnumatic = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, 2, 3);
     }
 }
 

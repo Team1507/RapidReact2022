@@ -2,6 +2,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
 #include <math.h>
+#include <frc/Encoder.h>
 
 const double PI  = 3.14159265;
 
