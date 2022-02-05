@@ -4,12 +4,13 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/XboxController.h>
 #include "subsystems/DriverFeedback.h"
+#include "subsystems/Shooter.h"
 
 
 class CmdDriverFeedbackDefault
     : public frc2::CommandHelper<frc2::CommandBase, CmdDriverFeedbackDefault> {
  public:
-  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver);
+  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter);
 
   void Initialize() override;
 
@@ -23,4 +24,5 @@ class CmdDriverFeedbackDefault
 
   frc::XboxController *m_topDriver;
   DriverFeedback *m_driverFeedback;
+  Shooter *m_shooter;
 };

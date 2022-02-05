@@ -4,6 +4,7 @@
 #include <frc/motorcontrol/Spark.h>
 #include <Constants.h>
 #include <frc/DigitalInput.h>
+#include <ctre/phoenix.h>
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -41,9 +42,25 @@ class Shooter : public frc2::SubsystemBase {
   bool GetTopHoodLimitSW(void);
   bool GetBotHoodLimitSW(void);
 
+  double GetWantedHoodAngle(void);
+  double GetCurrentHoodAngle(void);
+  double GetWantedTurretAngle(void);
+  double GetCurrentTurretAngle(void);
+  double GetWantedShooterRPM(void);
+  double GetCurrentShooterRPM(void);
+  
+  double GetTempatureLeftShooter(void);
+  double GetTempatureRightShooter(void);
+  double GetTempatureHoodMotor(void);
+  double GetTempatureTurretMotor(void);
+
   void ResetHoodEncoder(void);
   void ResetTurretEncoder(void);
-  
+
+  const double TURRET_TOLERANCE = 0; //Change Later
+  const double HOOD_TOLERANCE = 0; //CHANGE LATER
+  const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
+  const double LIMELIGHT_ANGLE_TOLERANCE = 0; //CHANGE LATER
 
 
   void Periodic() override;
@@ -63,5 +80,12 @@ class Shooter : public frc2::SubsystemBase {
     double m_hoodPower;
     frc::DigitalInput *m_topHoodLimitSwitch;
     frc::DigitalInput *m_botHoodLimtSwitch;
+    double wantedHoodAngle;
+    double wantedTurrentAngle;
+    double wantedShooterRPM;
+    TalonFX leftShooter{LEFT_SHOOTER_CAN};
+    TalonFX rightShooter{RIGHT_SHOOTER_CAN};
+    TalonSRX hoodMotor{HOOD_TALON_CAN};
+    TalonSRX turretMotor{TURRET_TALON_CAN};
     
 };
