@@ -38,11 +38,12 @@ class RobotContainer
   frc::XboxController m_bot_driver{0};
   frc::XboxController m_top_driver{1};
   DriverFeedback      m_driverFeedback{&m_top_driver};
+  Feeder              m_feeder;
 
   //******************AUTO*************************
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
-  AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain};
-  AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain};
+  AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain,&m_feeder};
+  AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoTwoBall m_autoTwoBall;
 
   frc2::Command* GetAutonomousCommand();

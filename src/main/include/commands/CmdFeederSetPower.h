@@ -3,6 +3,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/InstantCommand.h>
 #include "subsystems/Shooter.h"
+#include "subsystems/Feeder.h"
 
 class CmdFeederSetPower
 
@@ -10,11 +11,11 @@ class CmdFeederSetPower
                                  CmdFeederSetPower> {
  public:
   enum Level{Top,Bottom};//put in shooter
-  CmdFeederSetPower(Shooter *shooter ,Level level, double power);
+  CmdFeederSetPower(Feeder *feeder ,Level level, double power);
 
   void Initialize() override;
   private:
-  Shooter *m_shooter;
+  Feeder *m_feeder;
   Level m_level;
   double m_power;
 };

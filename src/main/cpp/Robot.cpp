@@ -65,8 +65,8 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutBoolean("Turret Home Limit Switch", m_container.m_shooter.GetTurretHomeSW());
   frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetMidHallEffect());
   frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
-  frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_shooter.GetTopFeederPhotoeye());
-  frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_shooter.GetBotFeederPhotoeye());
+  frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_feeder.GetTopFeederPhotoeye());
+  frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_feeder.GetBotFeederPhotoeye());
 
   frc::SmartDashboard::PutBoolean("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
   frc::SmartDashboard::PutBoolean("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
