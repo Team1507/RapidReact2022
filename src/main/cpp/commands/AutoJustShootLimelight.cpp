@@ -14,7 +14,7 @@
 #include "commands/CmdFeederStop.h"
 #include "commands/CmdCalculateAll.h"
 
-AutoJustShootLimelight::AutoJustShootLimelight(Shooter *shooter, Drivetrain *drivetrain) 
+AutoJustShootLimelight::AutoJustShootLimelight(Shooter *shooter, Drivetrain *drivetrain, Feeder *feeder) 
 {
   AddCommands
   (
@@ -35,8 +35,8 @@ AutoJustShootLimelight::AutoJustShootLimelight(Shooter *shooter, Drivetrain *dri
 
 
     //Shoot 
-    CmdFeederSetPower(shooter,CmdFeederSetPower::Level::Top,frc::SmartDashboard::GetNumber("Top Feeder Shooting Power", 0.0)),
-    CmdFeederSetPower(shooter,CmdFeederSetPower::Level::Bottom,frc::SmartDashboard::GetNumber("Bot Feeder Shooting Power", 0.0)),
+    CmdFeederSetPower(feeder,CmdFeederSetPower::Level::Top,frc::SmartDashboard::GetNumber("Top Feeder Shooting Power", 0.0)),
+    CmdFeederSetPower(feeder,CmdFeederSetPower::Level::Bottom,frc::SmartDashboard::GetNumber("Bot Feeder Shooting Power", 0.0)),
 
     frc2::WaitCommand(2.0_s),
 
@@ -44,8 +44,8 @@ AutoJustShootLimelight::AutoJustShootLimelight(Shooter *shooter, Drivetrain *dri
     //Stop Everything
     CmdShooterStop(shooter),
     CmdTurretSetHome(shooter),
-    CmdFeederStop(shooter, CmdFeederStop::Top),
-    CmdFeederStop(shooter, CmdFeederStop::Bottom),
+    CmdFeederStop(feeder, CmdFeederStop::Top),
+    CmdFeederStop(feeder, CmdFeederStop::Bottom),
 
     //Done
     CmdPrintAutoText("Just Shoot Done")
