@@ -57,6 +57,8 @@ class Shooter : public frc2::SubsystemBase {
   void ResetHoodEncoder(void);
   void ResetTurretEncoder(void);
 
+  void LimeLight3xMode(bool is3XMode);
+
   const double TURRET_TOLERANCE = 0; //Change Later
   const double HOOD_TOLERANCE = 0; //CHANGE LATER
   const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
@@ -99,6 +101,8 @@ class Shooter : public frc2::SubsystemBase {
     double m_wantedHoodAngle;
     double m_wantedTurrentAngle;
     double m_wantedShooterRPM;
+
+    bool m_isLimeLight3xMode;
 
     
 };

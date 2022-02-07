@@ -36,6 +36,7 @@ void CmdDriverFeedbackDefault::Execute()
   else
   {
     m_driverFeedback->RumbleOff();
+    m_driverFeedback->UpdateLEDs(0,0,0);
   }
   
 }

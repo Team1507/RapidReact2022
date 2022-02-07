@@ -6,6 +6,8 @@
 #include "frc/smartdashboard/SendableChooser.h"
 #include <frc2/command/button/JoystickButton.h>
 #include "GamepadMap.h"
+#include <frc2/command/button/JoystickButton.h>
+#include "commands/CmdLimeLight3xMode.h"
 
 //*****************Subsystems*******************
 #include "subsystems/Drivetrain.h"
@@ -51,4 +53,5 @@ class RobotContainer
   ExampleCommand m_autonomousCommand;
 
   void ConfigureButtonBindings();
+  frc2::JoystickButton m_btn_driver_A{&m_bot_driver, GAMEPADMAP_BUTTON_A};
 };

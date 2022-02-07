@@ -4,13 +4,16 @@
 #include <frc2/command/InstantCommand.h>
 #include "subsystems/Shooter.h"
 
-class CmdShooterStop
+class CmdLimeLight3xMode
     : public frc2::CommandHelper<frc2::InstantCommand,
-                                 CmdShooterStop> {
+                                 CmdLimeLight3xMode> {
  public:
-  CmdShooterStop(Shooter *shooter);
+  CmdLimeLight3xMode(Shooter *shooter, bool is3xMode);
 
   void Initialize() override;
+
   private:
+
+  bool m_is3xOn;
   Shooter *m_shooter;
 };
