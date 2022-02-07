@@ -189,3 +189,7 @@ void Shooter::Periodic()
 {
     
 }
+void Shooter::LimeLight3xMode(bool is3xMode)
+{
+    m_isLimeLight3xMode = is3xMode;
+}
