@@ -14,6 +14,7 @@ Intake::Intake(Intake::Type type)
         m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, REAR_INTAKE_DEPLOY_PCM, REAR_INTAKE_RETRACT_PCM);
     }
     m_doubleSolinoid->Set(frc::DoubleSolenoid::kReverse);
+    m_intakeSpark->Set(0);
 }
 
 void Intake::Deploy(void)
