@@ -12,13 +12,13 @@ class Shooter : public frc2::SubsystemBase {
 
   void SetShooterPower(double power);
   void SetShooterRPM(double rpm);
-  void SetTopFeederPower(double power);
-  void SetBottomFeederPower(double power);
+  //void SetTopFeederPower(double power);
+  //void SetBottomFeederPower(double power);
   void SetHoodAngle(double angle);
   void SetHoodPower(double power);
   void SetTurretAngle(double angle);
   void SetTurretPower(double power);
-  void SetFeederOn(bool status);
+  //void SetFeederOn(bool status);
 
   double GetLimelightHAngle(void);
   double GetLimelightVAngle(void);
@@ -27,8 +27,8 @@ class Shooter : public frc2::SubsystemBase {
   double GetShooterPower(void);
   double GetShooterRPM(void);
   double GetShooterVelocity(void);
-  double GetTopFeederPower(void);
-  double GetBottomFeederPower(void);
+  //double GetTopFeederPower(void);
+  //double GetBottomFeederPower(void);
   double GetHoodAngle(void);
   double GetHoodPower(void);
   double GetTurretAngle(void);
@@ -36,9 +36,9 @@ class Shooter : public frc2::SubsystemBase {
   bool GetLeftTurretLimitSW(void);
   bool GetRightTurretLimitSW(void);
   bool GetTurretHomeSW(void);
-  bool GetTopFeederPhotoeye(void);
-  bool GetBotFeederPhotoeye(void);
-  bool GetFeederOn(void);
+  //bool GetTopFeederPhotoeye(void);
+  //bool GetBotFeederPhotoeye(void);
+  //bool GetFeederOn(void);
   bool GetTopHoodLimitSW(void);
   bool GetBotHoodLimitSW(void);
 
@@ -66,8 +66,8 @@ class Shooter : public frc2::SubsystemBase {
   void Periodic() override;
 
  private:
-    frc::DigitalInput m_topFeederDetect{TOP_FEEDER_PWM_ID};
-    frc::DigitalInput m_botFeederDetect{BOTTOM_FEEDER_PWM_ID};
+    //frc::DigitalInput m_topFeederDetect{TOP_FEEDER_PWM_ID};
+    //frc::DigitalInput m_botFeederDetect{BOTTOM_FEEDER_PWM_ID};
     frc::DigitalInput m_topHoodLimitSwitch{HOOD_TOP_LIMIT_SWITCH};
     frc::DigitalInput m_botHoodLimtSwitch{HOOD_BOTTOM_LIMIT_SWITCH};
 
@@ -77,8 +77,8 @@ class Shooter : public frc2::SubsystemBase {
     frc::DigitalInput m_turretHomeHallEffect{TURRET_HOME_HALL_EFFECT};
     
 
-    frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
-    frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
+    //frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
+    //frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
 
     TalonFX m_leftShooter{LEFT_SHOOTER_CAN};
     TalonFX m_rightShooter{RIGHT_SHOOTER_CAN};
@@ -89,12 +89,12 @@ class Shooter : public frc2::SubsystemBase {
     double m_hoodAngle;
     double m_turretAngle;
 
-    double m_topFeederPower;
-    double m_bottomFeederPower;
+    //double m_topFeederPower;
+    //double m_bottomFeederPower;
     double m_turretPower;
     double m_hoodPower;
     
-    bool   m_feederStatus;
+    //bool   m_feederStatus;
 
     double m_wantedHoodAngle;
     double m_wantedTurrentAngle;

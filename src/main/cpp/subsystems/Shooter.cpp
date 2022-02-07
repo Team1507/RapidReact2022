@@ -22,14 +22,14 @@ void Shooter::SetShooterRPM(double rpm)
 {
     m_shooterRPM = rpm;
 }
-void Shooter::SetTopFeederPower(double power)
-{
-    m_topFeederPower = power;
-}
-void Shooter::SetBottomFeederPower(double power)
-{
-    m_bottomFeederPower = power;
-}
+//void Shooter::SetTopFeederPower(double power)
+//{
+//    m_topFeederPower = power;
+//}
+//void Shooter::SetBottomFeederPower(double power)
+//{
+//    m_bottomFeederPower = power;
+//}
 void Shooter::SetHoodAngle(double angle)
 {
     m_hoodAngle = angle;
@@ -46,10 +46,10 @@ void Shooter::SetTurretPower(double power)
 {
     m_turretPower = power;
 }
-void Shooter::SetFeederOn(bool status)
-{
-    m_feederStatus = status;
-}
+//void Shooter::SetFeederOn(bool status)
+//{
+//    m_feederStatus = status;
+//}
 
 
 
@@ -81,14 +81,14 @@ double Shooter::GetShooterVelocity(void)
 {
     return 0; // m_shooterMotos.GetSelectedSensorVelocity(SHOOTER_PID_SLOT)
 }
-double Shooter::GetTopFeederPower(void)
-{
-    return m_topFeederPower;
-}
-double Shooter::GetBottomFeederPower(void)
-{
-    return m_bottomFeederPower;
-}
+//double Shooter::GetTopFeederPower(void)
+//{
+//   return m_topFeederPower;
+//}
+//double Shooter::GetBottomFeederPower(void)
+//{
+//   return m_bottomFeederPower;
+//}
 double Shooter::GetHoodAngle(void)
 {
     return m_hoodAngle;
@@ -117,18 +117,18 @@ bool Shooter::GetTurretHomeSW(void)
 {
     return m_turretHomeHallEffect.Get();
 }
-bool Shooter::GetTopFeederPhotoeye(void)
-{
-    return m_topFeederDetect.Get();
-}
-bool Shooter::GetBotFeederPhotoeye(void)
-{
-    return m_botFeederDetect.Get();
-}
-bool Shooter::GetFeederOn(void)
-{
-    return m_feederStatus;
-}
+//bool Shooter::GetTopFeederPhotoeye(void)
+//{
+//    return m_topFeederDetect.Get();
+//}
+//bool Shooter::GetBotFeederPhotoeye(void)
+//{
+//    return m_botFeederDetect.Get();
+//}
+//bool Shooter::GetFeederOn(void)
+//{
+//    return m_feederStatus;
+//}
 bool Shooter::GetTopHoodLimitSW(void)
 {
     return m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 

@@ -50,54 +50,54 @@ void CmdShooterDefault::Execute()
   //rt = shoot
   if(ShootPressed == 1) // pressed
   {
-    m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
-    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
-    m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
+    //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
+    //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
+    //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
 
   }
-  else if (ShootPressed == 0) // released 
-  {
-    m_shooter->SetTopFeederPower(0);
-    m_shooter->SetBottomFeederPower(0);
-  }
+ else if (ShootPressed == 0) // released 
+ {
+ //   m_shooter->SetTopFeederPower(0);
+ //   m_shooter->SetBottomFeederPower(0);
+ }
   
   //*******************************************************
   //Y + LJ = Top Feeder Manual
-  if(TopFeederActivate) 
-  {
-    m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-    m_shooter->SetTopFeederPower(m_topFeederPower);
-  }
-  else 
+  // if(TopFeederActivate) 
+  // {
+  //   m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+  //   m_shooter->SetTopFeederPower(m_topFeederPower);
+  // }
+  // else 
   
-  //*******************************************************
-  //A + LJ = Bottom Feeder Manual
-  if(BottomFeederActivate) 
-  {
-    m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-    m_shooter->SetBottomFeederPower(m_bottomFeederPower);
-  }
-  else
-  //*************************************************
-  //Feeder State Machine
-  if(m_shooter->GetFeederOn() && !m_shooter->GetTopFeederPhotoeye())
-  {
-    m_shooter->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
-  }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetTopFeederPhotoeye())
-  {
-    m_shooter->SetTopFeederPower(0);
-  }
-  if(m_shooter->GetFeederOn() && !m_shooter->GetBotFeederPhotoeye())
-  {
-    m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
-  }
-  else if(m_shooter->GetFeederOn() && m_shooter->GetBotFeederPhotoeye() && m_shooter->GetTopFeederPhotoeye())
-  {
-    m_shooter->SetBottomFeederPower(0);
-    m_shooter->SetTopFeederPower(0); //fail safe just in case
-    m_shooter->SetFeederOn(false);
-  }
+  // //*******************************************************
+  // //A + LJ = Bottom Feeder Manual
+  // if(BottomFeederActivate) 
+  // {
+  //   m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+  //   m_shooter->SetBottomFeederPower(m_bottomFeederPower);
+  // }
+  // else
+  // //*************************************************
+  // //Feeder State Machine
+  // if(m_shooter->GetFeederOn() && !m_shooter->GetTopFeederPhotoeye())
+  // {
+  //   m_shooter->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
+  // }
+  // else if(m_shooter->GetFeederOn() && m_shooter->GetTopFeederPhotoeye())
+  // {
+  //   m_shooter->SetTopFeederPower(0);
+  // }
+  // if(m_shooter->GetFeederOn() && !m_shooter->GetBotFeederPhotoeye())
+  // {
+  //   m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
+  // }
+  // else if(m_shooter->GetFeederOn() && m_shooter->GetBotFeederPhotoeye() && m_shooter->GetTopFeederPhotoeye())
+  // {
+  //   m_shooter->SetBottomFeederPower(0);
+  //   m_shooter->SetTopFeederPower(0); //fail safe just in case
+  //   m_shooter->SetFeederOn(false);
+  // }
   //*************************************************
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
