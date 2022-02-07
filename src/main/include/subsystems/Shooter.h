@@ -102,7 +102,5 @@ class Shooter : public frc2::SubsystemBase {
     double m_wantedTurrentAngle;
     double m_wantedShooterRPM;
 
-    bool m_isLimeLight3xMode;
-
     
 };

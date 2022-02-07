@@ -1,6 +1,7 @@
 #include "subsystems/Shooter.h"
 #define PI 3.1415
-
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
 Shooter::Shooter()
 {
     double m_shooterRPM  = 0;
@@ -56,76 +57,25 @@ void Shooter::SetTurretPower(double power)
 
 double Shooter::GetLimelightHAngle(void)
 {
-    if(m_isLimeLight3xMode)
-    {
-        //Three Times Mode
-        //Change Limelight name
-        //return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx", 0);
-    }
-    else
-    {
-        //This is normal mode
-        //Change Limelight name
-        //return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx", 0);
-    }
-    
-    return 0;
+    return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx", 0);
 }
 double Shooter::GetLimelightVAngle(void)
 {
-    if(m_isLimeLight3xMode)
-    {
-        //Three Times Mode
-        //Change Limelight name
-        //return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);
-    }
-    else
-    {
-        //This is normal mode
-        //Change Limelight name
-        //return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);
-    }
-    
-    return 0;
+
+    return nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);    
 }
 double Shooter::GetLimelightDistance(void)
 {
     const double a1 = 19.3;//68.4;
     const double h1 = 24;
     const double h2 = 103.50;
-    double a2;
+    double a2 = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);
     
-    if(m_isLimeLight3xMode)
-    {
-        //Three Times Mode
-        //Change Limelight name
-        //a2 = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);
-    }
-    else
-    {
-        //This is normal mode
-        //Change Limelight name
-        //a2 = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);
-    }
-    return 0;
-    //return (h2-h1)/tan((a1+a2)*(PI/180));
+    return (h2-h1)/tan((a1+a2)*(PI/180));
 }
 bool Shooter::GetLimelightTargetValid(void)
 {
-    if(m_isLimeLight3xMode)
-    {
-        //Three Times Mode
-        //Change Limelight name
-        //return (bool)nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv", 0);
-    }
-    else
-    {
-        //This is normal mode
-        //Change Limelight name
-        //return (bool)nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv", 0);
-    }
-    
-    return false;
+    return (bool)nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv", 0);
 }
 double Shooter::GetShooterPower(void)
 {
@@ -249,5 +199,12 @@ void Shooter::Periodic()
 }
 void Shooter::LimeLight3xMode(bool is3xMode)
 {
-    m_isLimeLight3xMode = is3xMode;
+    if(is3xMode)
+    {
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 1);
+    }
+    else
+    {
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 0);
+    }
 }
