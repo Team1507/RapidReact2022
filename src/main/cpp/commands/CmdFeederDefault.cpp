@@ -1,5 +1,5 @@
 #include "commands/CmdFeederDefault.h"
-
+#include <iostream>
 CmdFeederDefault::CmdFeederDefault(Feeder *feeder, frc::XboxController *topDriver) 
 {
 
@@ -67,7 +67,7 @@ void CmdFeederDefault::Execute()
 }
 void CmdFeederDefault::End(bool interrupted) 
 {
-
+    std::cout << "POOP!!!" << std::endl;
 }
 
 

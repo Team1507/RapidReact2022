@@ -4,7 +4,7 @@ CmdTurretFindHome::CmdTurretFindHome(Shooter *shooter)
 {
 
 m_shooter = shooter;
-
+AddRequirements(m_shooter);
 }
 
 
@@ -27,6 +27,7 @@ void CmdTurretFindHome::End(bool interrupted)
 {
  m_shooter->SetTurretPower(0.0);
  m_shooter->ResetTurretEncoder();
+ m_shooter->SetTurretAngle(0.0);
 }
 
 

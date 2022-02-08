@@ -5,6 +5,9 @@
 
 #define TURRET_DEADBAND_CONSTANT 0.05
 
+#define TURRET_kF_CONSTANT 0.058
+#define TURRET_kP_CONSTANT 0.067
+
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
 {
   m_shooter = shooter;
@@ -145,7 +148,7 @@ void CmdShooterDefault::Execute()
 
 
 //***************************SHOOTER ERROR****************************
-  if(m_shooter->GetShooterRPM() > 0.0)
+  if(m_shooter->GetCurrentShooterRPM() > 0.0)
   {
     const int MAX_POS_ERROR = 1500;
     const int MAX_NEG_ERROR = -100;
@@ -156,12 +159,12 @@ void CmdShooterDefault::Execute()
     double curr_velocity = m_shooter->GetShooterVelocity();
     double curr_power = m_shooter->GetShooterPower();
 
-    double v_error = RPM2Velocity(m_shooter->GetShooterRPM()) - curr_velocity;
+    double v_error = RPM2Velocity(m_shooter->GetCurrentShooterRPM()) - curr_velocity;
     frc::SmartDashboard::PutNumber("v error", v_error);
     if( v_error > MAX_POS_ERROR)    v_error = MAX_POS_ERROR;
     if( v_error < MAX_NEG_ERROR)    v_error = MAX_NEG_ERROR;
 
-    double shoot_power = (m_shooter->GetShooterRPM() * SHOOTER_kF_CONSTANT) + (v_error * SHOOTER_kP_CONSTANT); // kP/kF made for Dot, will have to recalc once build team gives us the bot
+    double shoot_power = (m_shooter->GetCurrentShooterRPM() * SHOOTER_kF_CONSTANT) + (v_error * SHOOTER_kP_CONSTANT); // kP/kF made for Dot, will have to recalc once build team gives us the bot
     frc::SmartDashboard::PutNumber("shoot_power", shoot_power);
 
     if( shoot_power < curr_power ) shoot_power-= 0.01;    //Ramp down slowly to prevent belt slip
@@ -179,14 +182,22 @@ void CmdShooterDefault::Execute()
 
   //*****************************************************
   //*********************TURRET ERROR********************
-  // const double TURRET_TOLERANCE = 1;
+  const double TURRET_TOLERANCE = 1;
 
   
-  // const int MAX_POS_ERROR_TURRET = 0.7;
-  // const int MAX_NEG_ERROR_TURRET = -0.7;
-  // double turretangle = m_shooter->GetTurretAngle();
-  // double hood_error = m_shooter->GetTurretAngle();
+  const int MAX_POS_ERROR_TURRET = 0.7;
+  const int MAX_NEG_ERROR_TURRET = -0.7;
+  double turretangle = m_shooter->GetCurrentTurretAngle();
+  double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
+  
+  double turret_error = turretangle - wantedTurretAngle;
 
+  double turret_power = (turretangle * TURRET_kF_CONSTANT) + (turret_error * TURRET_kP_CONSTANT);
+  m_shooter->SetTurretPower(turret_power);        
+    if( turret_power > 1.0 ) turret_power = 1.0;
+    if( turret_power < -1.0 ) turret_power = 0.0;
+  
+  
 }
 
 void CmdShooterDefault::End(bool interrupted) {}

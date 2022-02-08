@@ -10,8 +10,13 @@ void Robot::RobotInit()
     std::cout<<"FRC2022: Rapid React"<<std::endl;
     std::cout<<"          ~~~ Deus ~~~"<<std::endl;
     std::cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<std::endl<<std::endl; 
-    //Test Test Test
-    //Test on  Second Laptop
+
+    m_container.m_drivetrain.InitFalcons();
+    m_container.m_drivetrain.Stop();
+    m_container.m_drivetrain.HardResetEncoders();
+    m_container.m_drivetrain.ZeroGyro(); 
+    m_container.m_drivetrain.ResetOdometry();
+    m_container.m_shooter.InitFalcons();
     
 }
 
@@ -68,10 +73,12 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_feeder.GetTopFeederPhotoeye());
   frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_feeder.GetBotFeederPhotoeye());
 
-  frc::SmartDashboard::PutBoolean("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
-  frc::SmartDashboard::PutBoolean("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
-  frc::SmartDashboard::PutBoolean("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
-  frc::SmartDashboard::PutBoolean("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+  frc::SmartDashboard::PutNumber("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
+  frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
+  frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
+  frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+
+  
 }
 
 void Robot::TestPeriodic() {}

@@ -17,12 +17,12 @@ void CmdDriverFeedbackDefault::Initialize()
 
 void CmdDriverFeedbackDefault::Execute() 
 {
-  double HoodAngle         = m_shooter->GetHoodAngle();
-  double TurretAngle       = m_shooter->GetTurretAngle();
+  double HoodAngle         = m_shooter->GetCurrentHoodAngle();
+  double TurretAngle       = m_shooter->GetCurrentTurretAngle();
   double WantedHoodAngle   = m_shooter->GetWantedHoodAngle();
   double WantedTurretAngle = m_shooter->GetWantedTurretAngle();
   double WantedShooterRPM  = m_shooter->GetWantedShooterRPM();
-  double ShooterRPM        = m_shooter->GetShooterRPM();
+  double ShooterRPM        = m_shooter->GetCurrentShooterRPM();
   double LimeLightAngle    = m_shooter->GetLimelightHAngle();
 
   if((HoodAngle      < (WantedHoodAngle   + m_shooter->HOOD_TOLERANCE))        && (HoodAngle      > (WantedHoodAngle   - m_shooter->HOOD_TOLERANCE)) && 
