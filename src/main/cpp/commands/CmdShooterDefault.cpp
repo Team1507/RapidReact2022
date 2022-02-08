@@ -156,12 +156,12 @@ void CmdShooterDefault::Execute()
     double curr_velocity = m_shooter->GetShooterVelocity();
     double curr_power = m_shooter->GetShooterPower();
 
-    double v_error = m_shooter->GetShooterRPM()*1000 - curr_velocity;
+    double v_error = RPM2Velocity(m_shooter->GetShooterRPM()) - curr_velocity;
     frc::SmartDashboard::PutNumber("v error", v_error);
     if( v_error > MAX_POS_ERROR)    v_error = MAX_POS_ERROR;
     if( v_error < MAX_NEG_ERROR)    v_error = MAX_NEG_ERROR;
 
-    double shoot_power = (m_shooter->GetShooterRPM() * SHOOTER_kF_CONSTANT) + (v_error * SHOOTER_kP_CONSTANT);
+    double shoot_power = (m_shooter->GetShooterRPM() * SHOOTER_kF_CONSTANT) + (v_error * SHOOTER_kP_CONSTANT); // kP/kF made for Dot, will have to recalc once build team gives us the bot
     frc::SmartDashboard::PutNumber("shoot_power", shoot_power);
 
     if( shoot_power < curr_power ) shoot_power-= 0.01;    //Ramp down slowly to prevent belt slip

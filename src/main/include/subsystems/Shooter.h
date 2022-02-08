@@ -6,6 +6,9 @@
 #include <frc/DigitalInput.h>
 #include <ctre/phoenix.h>
 
+#define RPM2Velocity(rpm)      ((rpm * 2048)/(60 * 10))
+#define Velocity2RPM(velocity) ((600 * velocity) / (2048))
+
 class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();

@@ -1,7 +1,10 @@
 #include "subsystems/Shooter.h"
 #define PI 3.1415
+
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
+
+
 Shooter::Shooter()
 {
     double m_shooterRPM  = 0;
