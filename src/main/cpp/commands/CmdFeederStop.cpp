@@ -1,6 +1,6 @@
 #include "commands/CmdFeederStop.h"
 
-CmdFeederStop::CmdFeederStop(Feeder *feeder, Level level) 
+CmdFeederStop::CmdFeederStop(Feeder *feeder, Feeder::Level level) 
 {
   m_level = level;
   m_feeder = feeder;
@@ -8,11 +8,11 @@ CmdFeederStop::CmdFeederStop(Feeder *feeder, Level level)
 
 void CmdFeederStop::Initialize() 
 {
-  if(m_level == Top)
+  if(m_level == Feeder::Level::Top)
   {
     m_feeder->SetTopFeederPower(0.0);
   }
-  else if(m_level == Bottom) 
+  else if(m_level == Feeder::Level::Bottom) 
   {
     m_feeder->SetBottomFeederPower(0.0);
   }
