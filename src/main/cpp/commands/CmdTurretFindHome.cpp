@@ -27,7 +27,6 @@ void CmdTurretFindHome::End(bool interrupted)
 {
  m_shooter->SetTurretPower(0.0);
  m_shooter->ResetTurretEncoder();
- m_shooter->SetTurretAngle(0.0);
 }
 
 

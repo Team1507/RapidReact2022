@@ -1,11 +1,12 @@
 #include "commands/CmdShooterDefault.h"
+#include <math.h>
 
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
 
 #define TURRET_DEADBAND_CONSTANT 0.05
 
-#define TURRET_kF_CONSTANT 0.058
+#define HOOD_kP_CONSTANT   0.058
 #define TURRET_kP_CONSTANT 0.067
 
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
@@ -183,20 +184,67 @@ void CmdShooterDefault::Execute()
   //*****************************************************
   //*********************TURRET ERROR********************
   const double TURRET_TOLERANCE = 1;
+  const double TURRET_MIN_POWER = 0.07;
+    
+  const int MAX_POS_TURRET_POWER = 0.7;
+  const int MAX_NEG_TURRET_POWER = -0.7;
 
-  
-  const int MAX_POS_ERROR_TURRET = 0.7;
-  const int MAX_NEG_ERROR_TURRET = -0.7;
   double turretangle = m_shooter->GetCurrentTurretAngle();
   double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
-  
+    
   double turret_error = turretangle - wantedTurretAngle;
+  double turret_power = (turret_error * TURRET_kP_CONSTANT);
 
-  double turret_power = (turretangle * TURRET_kF_CONSTANT) + (turret_error * TURRET_kP_CONSTANT);
-  m_shooter->SetTurretPower(turret_power);        
-    if( turret_power > 1.0 ) turret_power = 1.0;
-    if( turret_power < -1.0 ) turret_power = 0.0;
-  
+        
+  if( turret_power > MAX_POS_TURRET_POWER ) turret_power = MAX_POS_TURRET_POWER;
+  if( turret_power < MAX_NEG_TURRET_POWER ) turret_power = MAX_NEG_TURRET_POWER;
+  if( abs(turret_error) > TURRET_TOLERANCE)
+  {
+    if(turret_power < 0)
+    {
+      m_shooter->SetTurretPower(turret_power -TURRET_MIN_POWER); 
+    }
+    else if(turret_power > 0)
+    {
+      m_shooter->SetTurretPower(turret_power +TURRET_MIN_POWER); 
+    }
+  }
+  else
+  {
+    m_shooter->SetTurretPower(0.0);
+  }
+  //******************************************************
+  //*********************HOOD ERROR***********************
+  const double HOOD_TOLERANCE = 1;
+  const double HOOD_MIN_POWER = 0.07;
+    
+  const int MAX_POS_HOOD_POWER = 0.7;
+  const int MAX_NEG_HOOD_POWER = -0.7;
+
+  double hoodangle = m_shooter->GetCurrentHoodAngle();
+  double wantedHoodAngle = m_shooter->GetWantedHoodAngle();
+    
+  double hood_error = hoodangle - wantedHoodAngle;
+  double hood_power = (hood_error * HOOD_kP_CONSTANT);
+
+        
+  if( hood_power > MAX_POS_HOOD_POWER ) hood_power = MAX_POS_HOOD_POWER;
+  if( hood_power < MAX_NEG_HOOD_POWER ) hood_power = MAX_NEG_HOOD_POWER;
+  if( abs(hood_error) > HOOD_TOLERANCE)
+  {
+    if(hood_power < 0)
+    {
+      m_shooter->SetHoodPower(hood_power -HOOD_MIN_POWER); 
+    }
+    else if(hood_power > 0)
+    {
+      m_shooter->SetHoodPower(hood_power +HOOD_MIN_POWER); 
+    }
+  }
+  else
+  {
+    m_shooter->SetHoodPower(0.0);
+  }
   
 }
 
