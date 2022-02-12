@@ -48,14 +48,14 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		frc2::WaitCommand(1.0_s),
 
 		//Turn/Move to Ball 3
-		CmdDriveTurn2Angle(drivetrain, 0.4, 126.5), //Point turn, measurement rough calulation from Jack, dont trust immediatly
+		CmdDriveTurn2Angle(drivetrain, 0.4, 126.5), 
 		CmdDriveRevGyroV2(drivetrain, 0.7, 126.5, 117.23, true, true, 0.0),
 		CmdDriveTurn2Angle(drivetrain, 0.4, -99.88),
 
 		//Pre-Shoot for Balls 2/3
 		CmdCalculateAllV2(shooter, 0.0),
 		CmdIntakeRetract(rearintake),
-		CmdIntakeSetPower(rearintake, 0),
+		CmdIntakeSetPower(rearintake, 0.0),
 
 		//Shoot Balls 2/3
 		CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
@@ -70,7 +70,7 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		//Backup to Balls 4/5
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
-		CmdDriveRevGyroV2(drivetrain, 0.7, 26.62, 146.56, true, true, 0.0), // Doubting that the heading is correct -Jack
+		CmdDriveRevGyroV2(drivetrain, 0.7, 26.62, 146.56, true, true, 0.0), 
 		frc2::WaitCommand(2.5_s),
 
 		//Back to Shooting Location for Balls 4/5
