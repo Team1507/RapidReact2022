@@ -2,15 +2,15 @@
 
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/SequentialCommandGroup.h>
+//************SUBSYSTEMS**************
 #include "subsystems/Shooter.h"
-#include "subsystems/Drivetrain.h"
 #include "subsystems/Intake.h"
+#include "subsystems/Drivetrain.h"
 #include "subsystems/Feeder.h"
 
-
-class AutoTwoBall
+class AutoFiveBallBlitz
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
-                                 AutoTwoBall> {
+                                 AutoFiveBallBlitz> {
  public:
-  AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feeder, Intake *rearintake);
+  AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake, Shooter *shooter, Feeder *feeder);
 };

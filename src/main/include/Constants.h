@@ -56,6 +56,9 @@
 #define HOOD_BOTTOM_LIMIT_SWITCH   7
 #define HOOD_TOP_LIMIT_SWITCH      8
 
+#define SHOOTER_IDLE_VELOCITY      11
+#define SHOOTER_CLOSE_VELOCITY    16 //TBD
+
 // #define SHOOTER_HOOD_PORT       0
 
 //**********PCM CONSTANTS********** 

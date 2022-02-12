@@ -20,10 +20,12 @@ Intake::Intake(Intake::Type type)
 void Intake::Deploy(void)
 {
     m_doubleSolinoid->Set(frc::DoubleSolenoid::kForward);
+    m_isIntaking = true;
 }
 void Intake::Retract(void)
 {
     m_doubleSolinoid->Set(frc::DoubleSolenoid::kReverse);
+    m_isIntaking = false;
 }
 
 void Intake::SetPower(double power)
@@ -35,6 +37,12 @@ double Intake::GetPower(void)
 {
     return m_intakeSpark->Get();
 }
+
+bool Intake::GetIsIntaking(void)
+{
+    return m_isIntaking;
+}
+
 void Intake::Periodic() 
 {
 

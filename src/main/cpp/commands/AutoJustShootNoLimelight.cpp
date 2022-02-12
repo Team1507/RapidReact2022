@@ -39,8 +39,8 @@ AutoJustShootNoLimelight::AutoJustShootNoLimelight(Shooter *shooter, Drivetrain 
 
 
     //Shoot 
-    CmdFeederSetPower(feeder,CmdFeederSetPower::Level::Top,frc::SmartDashboard::GetNumber("Top Feeder Shooting Power", 0.0)),
-    CmdFeederSetPower(feeder,CmdFeederSetPower::Level::Bottom,frc::SmartDashboard::GetNumber("Bot Feeder Shooting Power", 0.0)),
+    CmdFeederSetPower(feeder,Feeder::Level::Top,frc::SmartDashboard::GetNumber("Top Feeder Shooting Power", 0.0)),
+    CmdFeederSetPower(feeder,Feeder::Level::Bottom,frc::SmartDashboard::GetNumber("Bot Feeder Shooting Power", 0.0)),
 
     frc2::WaitCommand(2.0_s),
 
@@ -48,8 +48,8 @@ AutoJustShootNoLimelight::AutoJustShootNoLimelight(Shooter *shooter, Drivetrain 
     //Stop Everything
     CmdShooterStop(shooter),
     CmdTurretSetHome(shooter),
-    CmdFeederStop(feeder, CmdFeederStop::Top),
-    CmdFeederStop(feeder, CmdFeederStop::Bottom),
+    CmdFeederStop(feeder, Feeder::Top),
+    CmdFeederStop(feeder, Feeder::Bottom),
 
     //Done
     CmdPrintAutoText("Just Shot Done")

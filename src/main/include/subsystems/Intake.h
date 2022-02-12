@@ -18,13 +18,14 @@ class Intake : public frc2::SubsystemBase
     double GetPower(void);
     Type GetType(void);
     double Test(void);
-
+    bool GetIsIntaking(void);
     void Periodic() override;
 
  private:
   Type m_type;
   frc::Spark *m_intakeSpark;
   frc::DoubleSolenoid *m_doubleSolinoid;
+  bool m_isIntaking;
   
  
 
