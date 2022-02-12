@@ -1,9 +1,11 @@
 #include "subsystems/Shooter.h"
-#define PI 3.1415
-
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include <iostream>
+
+#define PI 3.1415
+#define HOOD_TICK2ANGLE 1 //change later
+#define TURRET_TICK2ANGLE 1 //change later
 
 Shooter::Shooter()
 {
@@ -105,7 +107,7 @@ double Shooter::GetWantedHoodAngle()
 }
 double Shooter::GetCurrentHoodAngle()
 {
-    return 0;
+    return m_hoodMotor.GetSelectedSensorPosition() * HOOD_TICK2ANGLE;
 }
 double Shooter::GetTempatureHoodMotor()
 {
@@ -123,6 +125,7 @@ void Shooter::ResetHoodEncoder(void)
 {
     //Jack Waz Here
     m_hoodMotor.SetSelectedSensorPosition(0);
+    m_wantedHoodAngle = 0;
 }
 
 //**********************TURRET**********************
@@ -145,7 +148,7 @@ double Shooter::GetWantedTurretAngle()
 }
 double Shooter::GetCurrentTurretAngle()
 {
-    return 0;
+    return m_turretMotor.GetSelectedSensorPosition()*TURRET_TICK2ANGLE;
 }
 double Shooter::GetTempatureTurretMotor()
 {
@@ -166,6 +169,7 @@ bool Shooter::GetTurretHomeSW(void)
 void Shooter::ResetTurretEncoder(void)
 {
     m_turretMotor.SetSelectedSensorPosition(0);
+    m_wantedTurretAngle = 0;
 }
 
 //*********************LIMELIGHT*********************
