@@ -60,7 +60,7 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain, Intake *rearintake, Shooter *
 		//Back Up to Balls 3/4	
 		CmdIntakeSetPower(rearintake, 0.6),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 0, 134.56, true, true, 0.0),
-		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 0.0), // 146.56 total 
+		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 2.0), // 146.56 total 
 		frc2::WaitCommand(2.5_s),
 
 		//Pre Shoot for Balls 3/4

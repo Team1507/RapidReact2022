@@ -60,4 +60,15 @@ class RobotContainer
 
   void ConfigureButtonBindings();
   frc2::JoystickButton m_btn_driver_A{&m_bot_driver, GAMEPADMAP_BUTTON_A};
+  frc2::JoystickButton m_btn_driver_LB{&m_bot_driver, GAMEPADMAP_BUTTON_LBUMP};
+
+  frc2::JoystickButton m_top_driver_A{&m_top_driver, GAMEPADMAP_BUTTON_A};
+  frc2::JoystickButton m_top_driver_B{&m_top_driver, GAMEPADMAP_BUTTON_B};
+  frc2::JoystickButton m_top_driver_X{&m_top_driver, GAMEPADMAP_BUTTON_X};
+  frc2::JoystickButton m_top_driver_Y{&m_top_driver, GAMEPADMAP_BUTTON_Y};
+  frc2::JoystickButton m_top_driver_RB{&m_top_driver, GAMEPADMAP_BUTTON_RBUMP};
+  frc2::JoystickButton m_top_driver_LB{&m_top_driver, GAMEPADMAP_BUTTON_LBUMP};
+  frc2::JoystickButton m_top_driver_START{&m_top_driver, GAMEPADMAP_BUTTON_START};
+  frc2::JoystickButton m_top_driver_BACK{&m_top_driver, GAMEPADMAP_BUTTON_BACK};
+
 };

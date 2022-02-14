@@ -45,7 +45,7 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 0, 28.44, true, true, 0.0),
-		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 0.0), // 40.44
+		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 2.0), // 40.44
 		frc2::WaitCommand(1.0_s),
 
 		//Turn/Move to Ball 3
@@ -72,7 +72,7 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 26.62, 134.56, true, true, 0.0), 
-		CmdDriveRevGyroV2(drivetrain, 0.3, 26.62, 12.00, true, true, 0.0),  // 146.56 total
+		CmdDriveRevGyroV2(drivetrain, 0.3, 26.62, 12.00, true, true, 2.0),  // 146.56 total
 		frc2::WaitCommand(2.5_s),
 
 		//Back to Shooting Location for Balls 4/5

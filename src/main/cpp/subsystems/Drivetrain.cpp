@@ -118,7 +118,7 @@ int Drivetrain::GetLeftEncoder2(void)
 
 int Drivetrain::GetLeftEncoder3(void)
 {
-    return (m_leftEncoder3.Get() - m_l3_enc_zero);
+    return (m_leftEncoder3.Get());
 }
 
 int Drivetrain::GetRightEncoder(void)
@@ -133,7 +133,7 @@ int Drivetrain::GetRightEncoder2(void)
 
 int Drivetrain::GetRightEncoder3(void)
 {
-    return (m_rightEncoder3.Get() - m_r3_enc_zero);
+    return (m_rightEncoder3.Get());
 }
 
 void Drivetrain::HardResetEncoders(void)
@@ -154,10 +154,9 @@ void Drivetrain::HardResetEncoders(void)
     //
     m_l1_enc_zero = 0;
     m_l2_enc_zero = 0;
-    m_l3_enc_zero = 0;
     m_r1_enc_zero = 0;
     m_r2_enc_zero = 0;
-    m_r3_enc_zero = 0;
+
 }
 
 
@@ -168,10 +167,10 @@ void Drivetrain::ResetEncoders(void)
 
     m_l1_enc_zero = m_leftMotorFront.GetSelectedSensorPosition(0);
     m_l2_enc_zero = m_leftMotorBack.GetSelectedSensorPosition(0);
-    m_l3_enc_zero = m_leftEncoder3.Get();
+    m_leftEncoder3.Reset();
     m_r1_enc_zero = m_rightMotorFront.GetSelectedSensorPosition(0);
     m_r2_enc_zero = m_rightMotorBack.GetSelectedSensorPosition(0);
-    m_r3_enc_zero = m_rightEncoder3.Get();
+    m_rightEncoder3.Reset();
 
 }
 
