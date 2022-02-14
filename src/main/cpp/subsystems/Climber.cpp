@@ -7,6 +7,12 @@ Climber::Climber()
     // m_climbBrake = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM);
 }
 
+void Climber::ClimberInit()
+{
+    SetMidBarPower(0);
+    SetHighBarPower(0);    
+}
+
 void Climber::SetMidBarPower(double power)
 {
     m_lowClimbLeftMotor.Set(power);
@@ -52,7 +58,7 @@ bool Climber::IsClimbActivated(void)
     return m_isClimbActivated;
 }
 
-void Climber::InitTalons(void)
+void Climber::TalonsInit(void)
 {
     m_lowClimbLeftMotor.ConfigFactoryDefault();
     m_lowClimbRightMotor.ConfigFactoryDefault();

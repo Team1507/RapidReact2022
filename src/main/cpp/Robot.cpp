@@ -16,9 +16,17 @@ void Robot::RobotInit()
     m_container.m_drivetrain.HardResetEncoders();
     m_container.m_drivetrain.ZeroGyro(); 
     m_container.m_drivetrain.ResetOdometry();
-    m_container.m_shooter.InitFalcons();
-    m_container.m_climber.InitTalons();
-    
+    m_container.m_shooter.FalconsInit();
+    m_container.m_climber.TalonsInit();
+    m_container.m_rearIntake.Retract();
+    m_container.m_frontIntake.Retract();
+    m_container.m_frontIntake.SetPower(0);
+    m_container.m_rearIntake.SetPower(0);
+    m_container.m_feeder.SetTopFeederPower(0);
+    m_container.m_feeder.SetBottomFeederPower(0);
+    m_container.m_shooter.ShooterInit();
+    m_container.m_climber.ClimberInit();
+  
 }
 
 

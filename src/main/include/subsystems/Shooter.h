@@ -15,6 +15,7 @@
 class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();
+  void ShooterInit(void);
   void Periodic() override;
 
 //*********************SHOOTER********************
@@ -29,7 +30,7 @@ class Shooter : public frc2::SubsystemBase {
   double GetTempatureLeftShooter(void);
   double GetTempatureRightShooter(void);
 
-  void   InitFalcons(void);
+  void   FalconsInit(void);
 
   const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
 

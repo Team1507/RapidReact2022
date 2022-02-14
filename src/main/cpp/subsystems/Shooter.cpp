@@ -16,12 +16,21 @@ Shooter::Shooter()
     double m_turretYaw         = 0;
 }
 
+void Shooter::ShooterInit(void)
+{
+    SetShooterPower(0);
+    SetHoodPower(0);
+    SetTurretPower(0);
+    
+}
+
 void Shooter::Periodic() 
 {
     
 }
 
 //*********************SHOOTER********************
+
 
 void Shooter::SetShooterPower(double power)
 {
@@ -55,7 +64,7 @@ double Shooter::GetTempatureRightShooter()
 {
     return m_rightShooter.GetTemperature();
 }
-void Shooter::InitFalcons()
+void Shooter::FalconsInit()
 {
     std::cout<<"Shooter: Falcon Init"<<std::endl;
 

@@ -21,6 +21,8 @@ class Intake : public frc2::SubsystemBase
     bool GetIsIntaking(void);
     void Periodic() override;
 
+    
+
  private:
   Type m_type;
   frc::Spark *m_intakeSpark;
