@@ -21,7 +21,7 @@ class Drivetrain : public frc2::SubsystemBase {
   const static double RAMP_FACTOR;
 
   //Support Functions
-  void InitFalcons(void);
+  void FalconsInit(void);
   void Drive( double left, double right );
   void ArcadeDrive( double speed, double rotation );
   void Stop(void);

@@ -11,21 +11,22 @@ void Robot::RobotInit()
     std::cout<<"          ~~~ Deus ~~~"<<std::endl;
     std::cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<std::endl<<std::endl; 
 
-    m_container.m_drivetrain.InitFalcons();
+    m_container.m_drivetrain.FalconsInit();
     m_container.m_drivetrain.Stop();
     m_container.m_drivetrain.HardResetEncoders();
     m_container.m_drivetrain.ZeroGyro(); 
     m_container.m_drivetrain.ResetOdometry();
     m_container.m_shooter.FalconsInit();
     m_container.m_climber.TalonsInit();
+    m_container.m_shooter.ShooterInit();
+    m_container.m_climber.ClimberInit();
     m_container.m_rearIntake.Retract();
     m_container.m_frontIntake.Retract();
     m_container.m_frontIntake.SetPower(0);
     m_container.m_rearIntake.SetPower(0);
     m_container.m_feeder.SetTopFeederPower(0);
     m_container.m_feeder.SetBottomFeederPower(0);
-    m_container.m_shooter.ShooterInit();
-    m_container.m_climber.ClimberInit();
+    
   
 }
 

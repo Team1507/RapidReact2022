@@ -27,7 +27,7 @@ void Drivetrain::Periodic()
 
 
 //******************************************
-void Drivetrain::InitFalcons(void)
+void Drivetrain::FalconsInit(void)
 {
     std::cout<<"Drivetrain: Falcon Init"<<std::endl;
 
