@@ -24,6 +24,7 @@
 #include "commands/AutoJustShootNoLimelight.h"
 #include "commands/AutoTwoBall.h"
 #include "commands/AutoFourBall.h"
+#include "commands/AutoFiveBallBlitz.h"
 
 
 class RobotContainer 
@@ -48,6 +49,7 @@ class RobotContainer
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_feeder, &m_rearIntake};
   AutoFourBall m_autoFourBall {&m_drivetrain, &m_rearIntake, &m_shooter, &m_feeder};
+  AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_rearIntake, &m_shooter, &m_feeder};
 
   frc2::Command* GetAutonomousCommand();
   
