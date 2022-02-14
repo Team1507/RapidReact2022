@@ -17,6 +17,7 @@ void Robot::RobotInit()
     m_container.m_drivetrain.ZeroGyro(); 
     m_container.m_drivetrain.ResetOdometry();
     m_container.m_shooter.InitFalcons();
+    m_container.m_climber.InitTalons();
     
 }
 
@@ -24,6 +25,7 @@ void Robot::RobotInit()
 void Robot::RobotPeriodic() 
 {
   frc2::CommandScheduler::GetInstance().Run();
+  WriteToSmartDashboard();
 }
 
 
@@ -77,7 +79,7 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
   frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
   frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
-
+  m_container.m_drivetrain.WriteFalconTemps();
   
 }
 
