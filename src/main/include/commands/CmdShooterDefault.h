@@ -32,8 +32,8 @@ class CmdShooterDefault
   Shooter *m_shooter;
   frc::XboxController *m_topDriver;
   bool isRTriggerPressed;
-  double m_topFeederPower;
-  double m_bottomFeederPower;
+//  double m_topFeederPower;
+//  double m_bottomFeederPower;
   
 
 };

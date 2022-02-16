@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <frc2/command/CommandBase.h>
@@ -6,12 +5,12 @@
 #include "subsystems/Intake.h"
 #include <frc/XboxController.h>
 #include "subsystems/Shooter.h"
-
+#include "subsystems/Feeder.h"
 
 class CmdIntakeDefault
     : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeDefault> {
  public:
-  CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter);
+  CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter, Feeder *feeder);
 
   void Initialize() override;
 
@@ -25,4 +24,5 @@ class CmdIntakeDefault
   Intake *m_intake;
   frc::XboxController *m_topDriver;
   Shooter *m_shooter;
+  Feeder *m_feeder;
 };

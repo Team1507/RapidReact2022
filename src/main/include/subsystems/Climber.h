@@ -25,6 +25,9 @@ class Climber : public frc2::SubsystemBase {
 
 	bool IsClimbActivated(void);
 
+	void TalonsInit(void);
+
+	void ClimberInit(void);
 
   	void Periodic() override;
 

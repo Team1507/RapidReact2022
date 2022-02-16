@@ -7,6 +7,12 @@ Climber::Climber()
     // m_climbBrake = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM);
 }
 
+void Climber::ClimberInit()
+{
+    SetMidBarPower(0);
+    SetHighBarPower(0);    
+}
+
 void Climber::SetMidBarPower(double power)
 {
     m_lowClimbLeftMotor.Set(power);
@@ -50,6 +56,36 @@ bool Climber::GetMidHallEffect(void)
 bool Climber::IsClimbActivated(void)
 {
     return m_isClimbActivated;
+}
+
+void Climber::TalonsInit(void)
+{
+    m_lowClimbLeftMotor.ConfigFactoryDefault();
+    m_lowClimbRightMotor.ConfigFactoryDefault();
+    m_highClimbLeftMotor.ConfigFactoryDefault();
+    m_highClimbLeftMotor.ConfigFactoryDefault();
+
+    //Setting left to follow right motor
+    m_lowClimbLeftMotor.Follow(m_lowClimbRightMotor);
+    m_highClimbLeftMotor.Follow(m_highClimbRightMotor);
+
+    //Set Inverted
+    m_lowClimbLeftMotor.SetInverted(false);
+    m_lowClimbRightMotor.SetInverted(false);
+    m_highClimbLeftMotor.SetInverted(false);
+    m_highClimbRightMotor.SetInverted(false);
+
+    //Set Coast Mode
+    m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
+    m_lowClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
+    m_highClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
+    m_highClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
+
+    //Setup Encoders
+    m_lowClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+    m_lowClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+    m_highClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
+    m_highClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
 }
 
 

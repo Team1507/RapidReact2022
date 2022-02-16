@@ -21,16 +21,17 @@ void CmdCalculateAllV2::Execute()
   m_limeLightDistance = m_shooter->GetLimelightDistance();
   //getting limelight and aim and speed
   
-  //if(m_shooter->GetLimelightTargetValid() == true) 
+  if(m_shooter->GetLimelightTargetValid() == true) 
   {
-    //m_shooter->SetTurretAngle(m_shooter->GetTurretAngle() + m_shooter->GetLimelightAngle());
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
     m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
-    //m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
+    m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
   }
-  //else 
+  else 
   {
     std::cout<<"Target not found"<<std::endl;
-  }}
+  }
+}
 
 void CmdCalculateAllV2::End(bool interrupted) {}
 
@@ -39,7 +40,7 @@ bool CmdCalculateAllV2::IsFinished()
   double wantedShooterPower = m_limeLightDistance * SHOOTER_POWER_RATIO;
   double wantedHoodAngle = m_limeLightDistance * SHOOTER_HOOD_RATIO;
   double shooterPower = m_shooter->GetShooterPower();
-  double hoodEncoder = m_shooter->GetHoodAngle();
+  double hoodEncoder = m_shooter->GetCurrentHoodAngle();
 
   if ((units::time::second_t) m_timeout > m_timer.Get()) 
   {

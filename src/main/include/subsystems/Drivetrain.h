@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
@@ -22,7 +21,7 @@ class Drivetrain : public frc2::SubsystemBase {
   const static double RAMP_FACTOR;
 
   //Support Functions
-  void InitFalcons(void);
+  void FalconsInit(void);
   void Drive( double left, double right );
   void ArcadeDrive( double speed, double rotation );
   void Stop(void);
@@ -79,11 +78,9 @@ class Drivetrain : public frc2::SubsystemBase {
     //Encoder Zeros
     int m_l1_enc_zero;
     int m_l2_enc_zero;
-    int m_l3_enc_zero;
     int m_r1_enc_zero;
     int m_r2_enc_zero;
-    int m_r3_enc_zero;
-
+  
 
     //Odometry
     void   OdometryPeriodic(void);
