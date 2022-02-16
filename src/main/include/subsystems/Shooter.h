@@ -5,7 +5,6 @@
 #include <Constants.h>
 #include <frc/DigitalInput.h>
 #include <ctre/phoenix.h>
-
 class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();

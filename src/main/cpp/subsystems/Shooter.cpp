@@ -1,5 +1,14 @@
 #include "subsystems/Shooter.h"
 
+typedef struct 
+{
+    float distance;
+    float rpm;
+    float hoodAngle;
+} shooterInterpolation_t;
+
+
+
 Shooter::Shooter()
 {
     double m_shooterRPM  = 0;
@@ -8,7 +17,11 @@ Shooter::Shooter()
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
     
-    
+    shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood Angle
+                                            {1.0, 1.0, 1.0},
+                                            {2.0, 2.0, 2.0},
+                                            {3.0, 3.0, 3.0},
+                                            {4.0, 4.0, 4.0}};
     
 
 }
