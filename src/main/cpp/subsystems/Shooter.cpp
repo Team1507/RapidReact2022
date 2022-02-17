@@ -14,6 +14,16 @@ typedef struct
     float hoodAngle;
 } shooterInterpolation_t;
 
+shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood Angle
+                                        {1.0, 1.0, 1.0},
+                                        {2.0, 2.0, 2.0},
+                                        {3.0, 3.0, 3.0},
+                                        {4.0, 4.0, 4.0}};
+
+
+#define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo)/ shooterInterpolation_t)
+
+
 
 
 Shooter::Shooter()
@@ -24,15 +34,9 @@ Shooter::Shooter()
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
     
-    shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood Angle
-                                            {1.0, 1.0, 1.0},
-                                            {2.0, 2.0, 2.0},
-                                            {3.0, 3.0, 3.0},
-                                            {4.0, 4.0, 4.0}};
+   
     
 
-    double m_hoodEncoder       = 0;
-    double m_turretYaw         = 0;
 }
 
 void Shooter::ShooterInit(void)
@@ -46,6 +50,11 @@ void Shooter::ShooterInit(void)
 void Shooter::Periodic() 
 {
     
+}
+
+bool Shooter::ShooterInterpolation(float distance)
+{
+    int i = 0;
 }
 
 //*********************SHOOTER********************
