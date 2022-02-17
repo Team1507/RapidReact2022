@@ -16,6 +16,7 @@ class Shooter : public frc2::SubsystemBase {
  public:
   Shooter();
   void ShooterInit(void);
+  bool ShooterInterpolation(float distance);
   void Periodic() override;
 
 //*********************SHOOTER********************
