@@ -21,7 +21,7 @@ shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood A
                                         {4.0, 4.0, 4.0}};
 
 
-#define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo)/ shooterInterpolation_t)
+#define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo) / sizeof(shooterInterpolation_t))
 
 
 
@@ -34,7 +34,7 @@ Shooter::Shooter()
     double m_hoodEncoder = 0;
     double m_turretYaw   = 0;
     
-   
+
     
 
 }
@@ -54,7 +54,37 @@ void Shooter::Periodic()
 
 bool Shooter::ShooterInterpolation(float distance)
 {
-    int i = 0;
+    if((distance > shooterInfo[-1].distance) || (distance < shooterInfo[0].distance))
+    {
+        return false;
+    }
+    else
+    {
+
+    
+        for(int i = 0; i < SHOOTER_LIST_LENGTH; i++)
+        { 
+            if((distance > shooterInfo[i].distance) && (distance < shooterInfo[i+1].distance))
+            {
+                double x2 = shooterInfo[i+1].distance;
+                double x1 = shooterInfo[i].distance;
+                double y2 = shooterInfo[i+1].rpm;
+                double y1 = shooterInfo[i].rpm;
+
+                double RPM = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
+                m_shooterRPM = RPM;
+
+                y2 = shooterInfo[i+1].hoodAngle;
+                y1 = shooterInfo[i].hoodAngle;
+
+                double HOOD = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
+                m_hoodAngle = HOOD;
+
+                return true;
+            }
+           
+        }
+    }
 }
 
 //*********************SHOOTER********************
