@@ -2,10 +2,18 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include <iostream>
+#define SHOOTER_PID
 
 #define PI 3.1415
 #define HOOD_TICK2ANGLE 1 //change later
 #define TURRET_TICK2ANGLE 1 //change later
+
+#ifdef SHOOTER_PID
+#define SHOOTER_PID_SLOT 0
+#define SHOOTER_kF_CONSTANT 0.0501          //Slightly highter than calculated 0.0467    
+#define SHOOTER_kP_CONSTANT 0.5
+#define SHOOTER_RAMP_TIME 0.5
+#endif
 
 typedef struct 
 {
@@ -13,6 +21,7 @@ typedef struct
     float rpm;
     float hoodAngle;
 } shooterInterpolation_t;
+
 
 shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood Angle
                                         {1.0, 1.0, 1.0},
@@ -32,11 +41,7 @@ Shooter::Shooter()
     double m_topFeederPower    = 0;
     double m_bottomFeederPower = 0;
     double m_hoodEncoder = 0;
-    double m_turretYaw   = 0;
-    
-
-    
-
+    double m_turretYaw   = 0;   
 }
 
 void Shooter::ShooterInit(void)
@@ -44,7 +49,6 @@ void Shooter::ShooterInit(void)
     SetShooterPower(0);
     SetHoodPower(0);
     SetTurretPower(0);
-    
 }
 
 void Shooter::Periodic() 
@@ -60,8 +64,6 @@ bool Shooter::ShooterInterpolation(float distance)
     }
     else
     {
-
-    
         for(int i = 0; i < SHOOTER_LIST_LENGTH; i++)
         { 
             if((distance > shooterInfo[i].distance) && (distance < shooterInfo[i+1].distance))
@@ -96,6 +98,9 @@ void Shooter::SetShooterPower(double power)
 }
 void Shooter::SetShooterRPM(double rpm)
 {
+    #ifdef SHOOTER_PID
+    m_leftShooter.Set(ControlMode::Velocity, RPM2Velocity(rpm));
+    #endif
     m_wantedShooterRPM = rpm;
 }
 double Shooter::GetShooterPower(void)
@@ -141,6 +146,14 @@ void Shooter::FalconsInit()
     m_turretMotor.SetInverted(false);
     m_hoodMotor.SetInverted(false);
 
+    //Set PID 
+    #ifdef SHOOTER_PID
+    m_rightShooter.ConfigClosedloopRamp(SHOOTER_RAMP_TIME,10);
+    m_rightShooter.ConfigNeutralDeadband(0.001);
+    m_rightShooter.Config_kF(SHOOTER_PID_SLOT,SHOOTER_kF_CONSTANT,10);
+    m_rightShooter.Config_kP(SHOOTER_PID_SLOT,SHOOTER_kP_CONSTANT,10);
+    #endif
+
     //Set Coast Mode
     m_leftShooter.SetNeutralMode(NeutralMode::Coast);
     m_rightShooter.SetNeutralMode(NeutralMode::Coast);
@@ -152,6 +165,14 @@ void Shooter::FalconsInit()
     m_rightShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
     m_hoodMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
     m_turretMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
+
+    //Power Limits
+    m_rightShooter.ConfigPeakOutputForward(PEAK_FALCON_POWER,10);
+    m_leftShooter.ConfigPeakOutputForward(PEAK_FALCON_POWER,10);
+    m_rightShooter.ConfigPeakOutputReverse(0,10);
+    m_leftShooter.ConfigPeakOutputReverse(0,10);
+
+
 }
 
 //**********************HOOD**********************

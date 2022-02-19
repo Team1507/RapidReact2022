@@ -62,6 +62,17 @@ void Drivetrain::FalconsInit(void)
 
     m_leftMotorFront.SetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,2,10 );
     m_rightMotorFront.SetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,2,10);
+    
+    //Limit Power
+    m_leftMotorBack.ConfigPeakOutputReverse(0.9,10);
+    m_leftMotorFront.ConfigPeakOutputReverse(0.9,10);
+    m_rightMotorBack.ConfigPeakOutputReverse(0.9,10);
+    m_rightMotorFront.ConfigPeakOutputReverse(0.9,10);
+    
+    m_leftMotorBack.ConfigPeakOutputForward(0.9,10);
+    m_leftMotorFront.ConfigPeakOutputForward(0.9,10);
+    m_rightMotorBack.ConfigPeakOutputForward(0.9,10);
+    m_rightMotorFront.ConfigPeakOutputForward(0.9,10);
     // std::cout << "LeftStatusPeriod = " << m_leftMotorFront.GetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,10 ) << std::endl;
     // std::cout << "RightStatusPeriod = " << m_rightMotorFront.GetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,10) << std::endl;
 

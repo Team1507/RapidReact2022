@@ -141,12 +141,9 @@ void CmdShooterDefault::Execute()
 
 
   
-
-
-
+#ifndef SHOOTER_PID
 
   //Calcualate
-
 
 //***************************SHOOTER ERROR****************************
   if(m_shooter->GetCurrentShooterRPM() > 0.0)
@@ -180,6 +177,7 @@ void CmdShooterDefault::Execute()
     frc::SmartDashboard::PutNumber("Curr Velocity", curr_velocity);
 
   }
+#endif 
 
   //*****************************************************
   //*********************TURRET ERROR********************
@@ -213,6 +211,8 @@ void CmdShooterDefault::Execute()
   {
     m_shooter->SetTurretPower(0.0);
   }
+
+
   //******************************************************
   //*********************HOOD ERROR***********************
   const double HOOD_TOLERANCE = 1;

@@ -1,5 +1,7 @@
 #pragma once
 
+#define PEAK_FALCON_POWER            0.9
+
 //********** DRIVETRAIN CONSTANTS **********
 #define LEFTDRIVE_FRONT_CAN_ID       0
 #define LEFTDRIVE_BACK_CAN_ID        1
