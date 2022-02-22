@@ -10,7 +10,7 @@
 class CmdIntakeDefault
     : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeDefault> {
  public:
-  CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter, Feeder *feeder);
+  CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, frc::XboxController *botDriver, Shooter *shooter, Feeder *feeder);
 
   void Initialize() override;
 
@@ -23,6 +23,7 @@ class CmdIntakeDefault
   private:
   Intake *m_intake;
   frc::XboxController *m_topDriver;
+  frc::XboxController *m_botDriver;
   Shooter *m_shooter;
   Feeder *m_feeder;
 };
