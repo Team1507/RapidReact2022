@@ -33,6 +33,8 @@ class Shooter : public frc2::SubsystemBase {
 
   void   FalconsInit(void);
 
+  double GetShooterEncoder(void);
+
   const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
 
 //**********************HOOD**********************
@@ -48,6 +50,8 @@ class Shooter : public frc2::SubsystemBase {
   bool   GetBotHoodLimitSW(void);
 
   void   ResetHoodEncoder(void);
+
+  double GetHoodEncoder(void);
 
   const double HOOD_TOLERANCE = 0; //CHANGE LATER
 
@@ -65,6 +69,8 @@ class Shooter : public frc2::SubsystemBase {
   bool   GetTurretHomeSW(void);
 
   void   ResetTurretEncoder(void);
+
+  double GetTurretEncoder(void);
 
   const double TURRET_TOLERANCE = 0; //CHANGE LATER
 

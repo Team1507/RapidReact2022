@@ -219,6 +219,10 @@ void Shooter::ResetHoodEncoder(void)
     m_hoodMotor.SetSelectedSensorPosition(0);
     m_wantedHoodAngle = 0;
 }
+double Shooter::GetHoodEncoder(void) 
+{
+    return m_hoodMotor.GetSelectedSensorPosition(0);
+}
 
 //**********************TURRET**********************
 
@@ -262,6 +266,10 @@ void Shooter::ResetTurretEncoder(void)
 {
     m_turretMotor.SetSelectedSensorPosition(0);
     m_wantedTurretAngle = 0;
+}
+double Shooter::GetTurretEncoder(void) 
+{
+    return m_turretMotor.GetSelectedSensorPosition(0);
 }
 
 //*********************LIMELIGHT*********************

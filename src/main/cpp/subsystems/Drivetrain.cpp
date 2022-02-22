@@ -60,6 +60,16 @@ void Drivetrain::FalconsInit(void)
     m_rightMotorBack.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,10);
 
 
+    //limit speed
+    m_leftMotorBack.ConfigPeakOutputForward(PEAK_FALCON_POWER, 10);
+    m_leftMotorFront.ConfigPeakOutputForward(PEAK_FALCON_POWER, 10);
+    m_rightMotorBack.ConfigPeakOutputForward(PEAK_FALCON_POWER, 10);
+    m_rightMotorFront.ConfigPeakOutputForward(PEAK_FALCON_POWER, 10);
+    m_leftMotorBack.ConfigPeakOutputReverse(PEAK_FALCON_POWER, 10);
+    m_leftMotorFront.ConfigPeakOutputReverse(PEAK_FALCON_POWER, 10);
+    m_rightMotorBack.ConfigPeakOutputReverse(PEAK_FALCON_POWER, 10);
+    m_rightMotorFront.ConfigPeakOutputReverse(PEAK_FALCON_POWER, 10);
+    
     //m_leftMotorFront.SetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,2,10 );
     //m_rightMotorFront.SetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,2,10);
     // std::cout << "LeftStatusPeriod = " << m_leftMotorFront.GetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,10 ) << std::endl;
