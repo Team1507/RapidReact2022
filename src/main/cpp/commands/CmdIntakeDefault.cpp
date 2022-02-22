@@ -1,5 +1,6 @@
 #include "commands/CmdIntakeDefault.h"
 #include <iostream>
+#include "frc/smartdashboard/SmartDashboard.h"
 
 CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter, Feeder *feeder) 
 {
@@ -21,8 +22,9 @@ void CmdIntakeDefault::Execute()
 	{
 		if(m_topDriver->GetRightBumper())
 		{
+			double frontIntakePower = frc::SmartDashboard::GetNumber("FRONT_INTAKE_POWER", 0);
 			m_intake->Deploy();
-			m_intake->SetPower(FRONT_INTAKE_POWER);
+			m_intake->SetPower(frontIntakePower);
 			m_feeder->SetFeederOn(true);
 
 		}
@@ -38,8 +40,9 @@ void CmdIntakeDefault::Execute()
 	{
 		if(m_topDriver->GetLeftBumper())
 		{
+			double rearIntakePower = frc::SmartDashboard::GetNumber("REAR_INTAKE_POWER", 0);
 			m_intake->Deploy();
-			m_intake->SetPower(REAR_INTAKE_POWER);
+			m_intake->SetPower(rearIntakePower);
 			m_feeder->SetFeederOn(true);
 		}
 		else
