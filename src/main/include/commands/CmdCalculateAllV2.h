@@ -25,6 +25,9 @@ class CmdCalculateAllV2
   double m_timeout;
   double m_limeLightAngle;
   double m_limeLightDistance;
+
+  bool m_shooterInterpolationCalculation = false;
+
   const double SHOOTER_ANGLE_TOLERANCE = 1; //Change later
   const double SHOOTER_POWER_TOLERANCE = 1; //Change later
   const double SHOOTER_HOOD_TOLERANCE  = 1; //Change later
