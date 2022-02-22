@@ -96,7 +96,14 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
   frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder3());
   frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder3());
-  frc::SmartDashboard::GetNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
+  frc::SmartDashboard::PutNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
+  frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
+  frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightDistance());
+  frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightVAngle());
+  frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightHAngle());
+  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());
+  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentTurretAngle());
+  frc::SmartDashboard::PutBoolean("LimeLight Target Valid", m_container.m_shooter.GetLimelightTargetValid());
   m_container.m_drivetrain.WriteFalconTemps();
   
 }

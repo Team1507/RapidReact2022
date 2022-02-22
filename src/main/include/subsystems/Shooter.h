@@ -33,8 +33,6 @@ class Shooter : public frc2::SubsystemBase {
 
   void   FalconsInit(void);
 
-  double GetShooterEncoder(void);
-
   const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
 
 //**********************HOOD**********************
@@ -81,6 +79,8 @@ class Shooter : public frc2::SubsystemBase {
   bool   GetLimelightTargetValid(void);
   
   void   LimeLight3xMode(bool is3XMode);
+
+  
 
   const double LIMELIGHT_ANGLE_TOLERANCE = 0; //CHANGE LATER
 
