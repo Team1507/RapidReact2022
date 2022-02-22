@@ -19,13 +19,15 @@ void CmdCalculateAllV2::Execute()
 {
   m_limeLightAngle = m_shooter->GetLimelightHAngle();
   m_limeLightDistance = m_shooter->GetLimelightDistance();
+
   //getting limelight and aim and speed
   
   if(m_shooter->GetLimelightTargetValid() == true) 
   {
     m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
-    m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
-    m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
+    m_shooterInterpolationCalculation = m_shooter->ShooterInterpolation(m_limeLightDistance);
+    //m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
+    //m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
   }
   else 
   {
@@ -47,9 +49,10 @@ bool CmdCalculateAllV2::IsFinished()
     return true;
   }
   else if (
-    (m_limeLightAngle > -SHOOTER_ANGLE_TOLERANCE)                     && (m_limeLightAngle < SHOOTER_ANGLE_TOLERANCE) && 
+    (m_limeLightAngle > -SHOOTER_ANGLE_TOLERANCE)                       && (m_limeLightAngle < SHOOTER_ANGLE_TOLERANCE) && 
     (shooterPower     > (wantedShooterPower - SHOOTER_ANGLE_TOLERANCE)) && (shooterPower     < (wantedShooterPower + SHOOTER_ANGLE_TOLERANCE))&&
-    (hoodEncoder      > (wantedHoodAngle    - SHOOTER_ANGLE_TOLERANCE)) && (hoodEncoder      < (wantedHoodAngle    + SHOOTER_ANGLE_TOLERANCE))) 
+    (hoodEncoder      > (wantedHoodAngle    - SHOOTER_ANGLE_TOLERANCE)) && (hoodEncoder      < (wantedHoodAngle    + SHOOTER_ANGLE_TOLERANCE))&& 
+     m_shooterInterpolationCalculation) 
   {
     return true;
   }
