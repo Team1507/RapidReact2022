@@ -1,5 +1,6 @@
 #include "commands/CmdFeederDefault.h"
 #include <iostream>
+#include "frc/smartdashboard/SmartDashboard.h"
 CmdFeederDefault::CmdFeederDefault(Feeder *feeder, frc::XboxController *topDriver) 
 {
 
@@ -17,8 +18,10 @@ void CmdFeederDefault::Execute()
   //rt = shoot
   if(ShootPressed == 1) // pressed
   {
-    m_feeder->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
-    m_feeder->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
+    double topFeederPower = frc::SmartDashboard::GetNumber("FEEDER_TOP_SHOOT_POWER", 0);
+    double bottomFeederPower = frc::SmartDashboard::GetNumber("FEEDER_BOTTOM_SHOOT_POWER", 0);
+    m_feeder->SetTopFeederPower(topFeederPower);
+    m_feeder->SetBottomFeederPower(bottomFeederPower);
     m_feeder->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
 
 }
@@ -48,7 +51,8 @@ void CmdFeederDefault::Execute()
   //Feeder State Machine
   if(m_feeder->GetFeederOn() && !m_feeder->GetTopFeederPhotoeye())
   {
-    m_feeder->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
+    double topFeederIntakePower = frc::SmartDashboard::GetNumber("TOP_FEEDER_INTAKE_POWER", 0);
+    m_feeder->SetTopFeederPower(topFeederIntakePower);   
   }
   else if(m_feeder->GetFeederOn() && m_feeder->GetTopFeederPhotoeye())
   {
@@ -56,7 +60,8 @@ void CmdFeederDefault::Execute()
   }
   if(m_feeder->GetFeederOn() && !m_feeder->GetBotFeederPhotoeye())
   {
-    m_feeder->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
+    double bottomFeederIntakePower = frc::SmartDashboard::GetNumber("BOTTOM_FEEDER_INTAKE_POWER", 0);
+    m_feeder->SetBottomFeederPower(bottomFeederIntakePower);
   }
   else if(m_feeder->GetFeederOn() && m_feeder->GetBotFeederPhotoeye() && m_feeder->GetTopFeederPhotoeye())
   {
