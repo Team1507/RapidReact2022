@@ -2,6 +2,7 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include <iostream>
+#include "frc/smartdashboard/SmartDashboard.h"
 #define SHOOTER_PID
 
 #define PI 3.1415
@@ -58,7 +59,7 @@ void Shooter::Periodic()
 
 bool Shooter::ShooterInterpolation(float distance)
 {
-    if((distance > shooterInfo[-1].distance) || (distance < shooterInfo[0].distance))
+    if((distance > shooterInfo[SHOOTER_LIST_LENGTH-1].distance) || (distance < shooterInfo[0].distance))
     {
         return false;
     }
@@ -74,12 +75,15 @@ bool Shooter::ShooterInterpolation(float distance)
                 double y1 = shooterInfo[i].rpm;
 
                 double RPM = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
+                std::cout<<"Interpolation RPM ="<< RPM<<std::endl;
                 m_shooterRPM = RPM;
+
 
                 y2 = shooterInfo[i+1].hoodAngle;
                 y1 = shooterInfo[i].hoodAngle;
 
                 double HOOD = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
+                std::cout<<"Interpolation Hood Angle ="<< HOOD<<std::endl;
                 m_hoodAngle = HOOD;
 
                 return true;
