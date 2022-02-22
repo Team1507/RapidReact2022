@@ -1,4 +1,5 @@
 #include "subsystems/Intake.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 Intake::Intake(Intake::Type type)
 {
@@ -15,6 +16,12 @@ Intake::Intake(Intake::Type type)
     }
     m_doubleSolinoid->Set(frc::DoubleSolenoid::kReverse);
     m_intakeSpark->Set(0);
+}
+
+void Intake::IntakeInit(void)
+{
+    frc::SmartDashboard::PutNumber("FRONT_INTAKE_POWER", 0.6);
+    frc::SmartDashboard::PutNumber("REAR_INTAKE_POWER", 0.6);
 }
 
 void Intake::Deploy(void)

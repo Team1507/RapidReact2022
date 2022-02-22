@@ -11,6 +11,7 @@ class Intake : public frc2::SubsystemBase
  public:
    enum Type {FRONT, REAR};
     Intake(Type type);
+    void IntakeInit(void);
     void Deploy(void);
     void Retract(void);
     void SetPower(double power);
