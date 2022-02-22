@@ -88,6 +88,9 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
   frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
   frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+  frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder3());
+  frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder3());
+  frc::SmartDashboard::GetNumber("Shooter Encoder", m_container.m_shooter.E)
   m_container.m_drivetrain.WriteFalconTemps();
   
 }
