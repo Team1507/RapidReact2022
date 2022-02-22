@@ -9,7 +9,7 @@ class Feeder : public frc2::SubsystemBase {
  public:
   enum Level{Top,Bottom};
   Feeder();
-
+  void FeederInit(void);
   void SetTopFeederPower(double power);
   void SetBottomFeederPower(double power);
 
