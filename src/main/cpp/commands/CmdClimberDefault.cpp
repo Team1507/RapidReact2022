@@ -13,6 +13,7 @@ CmdClimberDefault::CmdClimberDefault(Climber *climber, frc::XboxController *topD
 	m_climber = climber;
 	m_topDriver = topDriver;
 	m_bottomDriver = bottomDriver;
+	m_isClimbBrakeEngaged = false;
 	AddRequirements(m_climber);
 }
 
@@ -54,6 +55,20 @@ void CmdClimberDefault::Execute()
 	{
 		m_climber->SetHighBarPower(0);
 		m_climber->SetMidBarPower(0);
+	}
+	//*****************************************
+	if(m_topDriver->GetBButton())
+	{
+		if(m_isClimbBrakeEngaged == false)
+		{
+			m_climber->ClimbBrakeExtend();
+			m_isClimbBrakeEngaged = true;
+		}
+		else if(m_isClimbBrakeEngaged == true)
+		{
+			m_climber->ClimbBrakeRetract();
+			m_isClimbBrakeEngaged = false;
+		}
 	}
 }
 
