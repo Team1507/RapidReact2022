@@ -4,7 +4,9 @@
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
 
-#define TURRET_DEADBAND_CONSTANT 0.05
+#define TURRET_DEADBAND_CONSTANT 0.15
+
+#define HOOD_DEADBAND_CONSTANT 0.5 // purposfully high
 
 #define HOOD_kP_CONSTANT   0.058
 #define TURRET_kP_CONSTANT 0.067
@@ -26,7 +28,6 @@ void CmdShooterDefault::Execute()
   bool ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
   bool TopFeederActivate = m_topDriver->GetYButton();
   bool BottomFeederActivate = m_topDriver->GetAButton();
-  bool HoodControlActivate = m_topDriver->GetBButton();
   double LJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
   double RJXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
@@ -48,6 +49,11 @@ void CmdShooterDefault::Execute()
   {
     double power = RJXAxis;
     m_shooter->SetTurretPower(power);
+  }
+
+  if((RJXAxis > HOOD_DEADBAND_CONSTANT) || (RJXAxis < -HOOD_DEADBAND_CONSTANT))
+  {
+    m_shooter->SetHoodPower(HOOD_SLOW_POWER);
   }
 
   //*******************************************************
