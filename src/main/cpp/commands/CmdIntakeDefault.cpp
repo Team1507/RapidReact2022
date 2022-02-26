@@ -2,13 +2,17 @@
 #include <iostream>
 #include "frc/smartdashboard/SmartDashboard.h"
 
-CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, Shooter *shooter, Feeder *feeder) 
+CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, frc::XboxController *botDriver, Shooter *shooter, Feeder *feeder) 
 {
 	m_intake = intake;
 	m_topDriver = topDriver;
 	m_shooter = shooter;
+<<<<<<< HEAD
 	m_isFrontActive = false;
 	m_isRearActive = false;
+=======
+	m_botDriver = botDriver;
+>>>>>>> 8df50a7e1c81eaf9a2ab4b2da99e5e220380dfbc
 	AddRequirements(m_intake);
 }
 
@@ -38,7 +42,19 @@ void CmdIntakeDefault::Execute()
 			m_intake->SetPower(0);
 			m_intake->Retract();
 		}
+<<<<<<< HEAD
 		m_isFrontActive = false;
+=======
+
+		if(m_topDriver->GetBackButton() && m_botDriver->GetLeftBumper()) //if we go to climb, front intake needs to be deployed in order for a 10 point climb to happen
+		{
+			m_intake->Deploy();
+		}
+		else
+		{
+			m_intake->Retract();
+		}
+>>>>>>> 8df50a7e1c81eaf9a2ab4b2da99e5e220380dfbc
 	}
 
 	// if( m_intake->GetType() == Intake::Type::FRONT)
@@ -82,6 +98,7 @@ void CmdIntakeDefault::Execute()
 		}
 		m_isRearActive = false;
 	}
+<<<<<<< HEAD
 
 	// if( m_intake->GetType() == Intake::Type::REAR)
 	// {
@@ -100,6 +117,10 @@ void CmdIntakeDefault::Execute()
 	// 		m_isRearActive = false;
 	// 	}
 	// }
+=======
+//****************************************************************
+
+>>>>>>> 8df50a7e1c81eaf9a2ab4b2da99e5e220380dfbc
 }
 
 
