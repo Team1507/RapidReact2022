@@ -38,22 +38,22 @@ void CmdClimberDefault::Execute()
 		{
 			m_climber->SetMidBarPower(0);
 		}
-		if(topLXAxis<-LXAXIS_DEADBAND)
-		{
-			m_climber->HighBarExtend(); //Raise/Lower Winch for High
-		}
-		if(topLXAxis>LXAXIS_DEADBAND)
-		{
-			m_climber->SetHighBarPower(-topLXAxis);
-		}
-		else
-		{
-			m_climber->SetHighBarPower(0);
-		}
+		// if(topLXAxis<-LXAXIS_DEADBAND)
+		// {
+		// 	m_climber->HighBarExtend(); //Raise/Lower Winch for High
+		// }
+		// if(topLXAxis>LXAXIS_DEADBAND)
+		// {
+		// 	m_climber->SetHighBarPower(-topLXAxis);
+		// }
+		// else
+		// {
+		// 	m_climber->SetHighBarPower(0);
+		// }
 	}
 	else
 	{
-		m_climber->SetHighBarPower(0);
+		//m_climber->SetHighBarPower(0);
 		m_climber->SetMidBarPower(0);
 	}
 	//*****************************************

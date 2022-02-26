@@ -26,4 +26,6 @@ class CmdIntakeDefault
   frc::XboxController *m_botDriver;
   Shooter *m_shooter;
   Feeder *m_feeder;
+  bool m_isFrontActive;
+  bool m_isRearActive;
 };
