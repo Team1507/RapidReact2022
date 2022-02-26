@@ -1,11 +1,12 @@
 #include "commands/CmdDriverFeedbackDefault.h"
 #include <frc2/command/WaitCommand.h>
-CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Intake *intake) 
+CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Intake *intake, Climber *climber) 
 {
   m_topDriver = topDriver;
 	m_driverFeedback = driverfeedback;
   m_shooter = shooter;
   m_intake = intake;
+  m_climber = climber;
 	AddRequirements(m_driverFeedback);
 }
 
@@ -28,10 +29,14 @@ void CmdDriverFeedbackDefault::Execute()
 
   if(m_intake->GetIsIntaking())
   {
-      m_driverFeedback->UpdateLEDs(255,0,0);
+      m_driverFeedback->UpdateLEDs(255,0,0);//red
       frc2::WaitCommand(0.3_s);
       m_driverFeedback->UpdateLEDs(0,0,0);
       frc2::WaitCommand(0.3_s);
+  }
+  else if(m_climber->IsClimbBrakeActivated())
+  {
+    m_driverFeedback->UpdateLEDs(128,0,128);// purple
   }
   else if(m_topDriver->GetRightTriggerAxis() > 0.7)  
   {
@@ -45,12 +50,12 @@ void CmdDriverFeedbackDefault::Execute()
      (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE) && m_shooter->GetLimelightTargetValid())
   {
     m_driverFeedback->RumbleOn();
-    m_driverFeedback->UpdateLEDs(0,255,0);
+    m_driverFeedback->UpdateLEDs(0,255,0);//green
   }
 
   else if(ShooterRPM < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE) && (ShooterRPM > (WantedShooterRPM - m_shooter->SHOOTER_RPM_TOLERANCE))) // if we need to shoot from up close and are not using the limelight
   {
-    m_driverFeedback->UpdateLEDs(0,0,255);
+    m_driverFeedback->UpdateLEDs(0,0,255); //blue
   }
 
   else if(m_shooter->GetLimelightTargetValid())

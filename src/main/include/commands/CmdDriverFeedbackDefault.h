@@ -6,12 +6,13 @@
 #include "subsystems/DriverFeedback.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/Intake.h"
+#include "subsystems/Climber.h"
 
 
 class CmdDriverFeedbackDefault
     : public frc2::CommandHelper<frc2::CommandBase, CmdDriverFeedbackDefault> {
  public:
-  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Intake *intake);
+  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Intake *intake, Climber *climber);
 
   void Initialize() override;
 
@@ -27,4 +28,5 @@ class CmdDriverFeedbackDefault
   DriverFeedback *m_driverFeedback;
   Shooter *m_shooter;
   Intake *m_intake;
+  Climber *m_climber;
 };
