@@ -26,4 +26,5 @@ class CmdClimberDefault
   frc::XboxController *m_topDriver;
   frc::XboxController *m_bottomDriver;
   
+  bool m_isClimbBrakeEngaged;
 };
