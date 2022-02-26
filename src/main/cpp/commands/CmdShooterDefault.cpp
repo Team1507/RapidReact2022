@@ -149,71 +149,86 @@ void CmdShooterDefault::Execute()
 
   //*****************************************************
   //*********************TURRET ERROR********************
-  const double TURRET_TOLERANCE = 1;
-  const double TURRET_MIN_POWER = 0.07;
+  if(!((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT)))
+  {
+    const double TURRET_TOLERANCE = 1;
+    const double TURRET_MIN_POWER = 0.07;
     
-  const int MAX_POS_TURRET_POWER = 0.7;
-  const int MAX_NEG_TURRET_POWER = -0.7;
+    const int MAX_POS_TURRET_POWER = 0.7;
+    const int MAX_NEG_TURRET_POWER = -0.7;
 
-  double turretangle = m_shooter->GetCurrentTurretAngle();
-  double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
+    double turretangle = m_shooter->GetCurrentTurretAngle();
+    double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
     
-  double turret_error = turretangle - wantedTurretAngle;
-  double turret_power = (turret_error * TURRET_kP_CONSTANT);
+    double turret_error = turretangle - wantedTurretAngle;
+    double turret_power = (turret_error * TURRET_kP_CONSTANT);
 
         
-  if( turret_power > MAX_POS_TURRET_POWER ) turret_power = MAX_POS_TURRET_POWER;
-  if( turret_power < MAX_NEG_TURRET_POWER ) turret_power = MAX_NEG_TURRET_POWER;
-  if( abs(turret_error) > TURRET_TOLERANCE)
-  {
-    if(turret_power < 0)
+    if( turret_power > MAX_POS_TURRET_POWER ) turret_power = MAX_POS_TURRET_POWER;
+    if( turret_power < MAX_NEG_TURRET_POWER ) turret_power = MAX_NEG_TURRET_POWER;
+    if( abs(turret_error) > TURRET_TOLERANCE)
     {
-      m_shooter->SetTurretPower(turret_power -TURRET_MIN_POWER); 
+      if(turret_power < 0)
+      {
+        m_shooter->SetTurretPower(turret_power -TURRET_MIN_POWER); 
+      }
+      else if(turret_power > 0)
+      {
+        m_shooter->SetTurretPower(turret_power +TURRET_MIN_POWER); 
+      }
     }
-    else if(turret_power > 0)
+    else
     {
-      m_shooter->SetTurretPower(turret_power +TURRET_MIN_POWER); 
+      m_shooter->SetTurretPower(0.0);
     }
   }
   else
   {
-    m_shooter->SetTurretPower(0.0);
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
   }
+  
 
 
   //******************************************************
   //*********************HOOD ERROR***********************
-  const double HOOD_TOLERANCE = 1;
-  const double HOOD_MIN_POWER = 0.07;
+  if(!((RJXAxis > HOOD_DEADBAND_CONSTANT) || (RJXAxis < -HOOD_DEADBAND_CONSTANT)))
+  {
+    const double HOOD_TOLERANCE = 1;
+    const double HOOD_MIN_POWER = 0.07;
     
-  const int MAX_POS_HOOD_POWER = 0.7;
-  const int MAX_NEG_HOOD_POWER = -0.7;
+    const int MAX_POS_HOOD_POWER = 0.7;
+    const int MAX_NEG_HOOD_POWER = -0.7;
 
-  double hoodangle = m_shooter->GetCurrentHoodAngle();
-  double wantedHoodAngle = m_shooter->GetWantedHoodAngle();
+    double hoodangle = m_shooter->GetCurrentHoodAngle();
+    double wantedHoodAngle = m_shooter->GetWantedHoodAngle();
     
-  double hood_error = hoodangle - wantedHoodAngle;
-  double hood_power = (hood_error * HOOD_kP_CONSTANT);
+    double hood_error = hoodangle - wantedHoodAngle;
+    double hood_power = (hood_error * HOOD_kP_CONSTANT);
 
         
-  if( hood_power > MAX_POS_HOOD_POWER ) hood_power = MAX_POS_HOOD_POWER;
-  if( hood_power < MAX_NEG_HOOD_POWER ) hood_power = MAX_NEG_HOOD_POWER;
-  if( abs(hood_error) > HOOD_TOLERANCE)
-  {
-    if(hood_power < 0)
+    if( hood_power > MAX_POS_HOOD_POWER ) hood_power = MAX_POS_HOOD_POWER;
+    if( hood_power < MAX_NEG_HOOD_POWER ) hood_power = MAX_NEG_HOOD_POWER;
+    if( abs(hood_error) > HOOD_TOLERANCE)
     {
-      m_shooter->SetHoodPower(hood_power -HOOD_MIN_POWER); 
+      if(hood_power < 0)
+      {
+        m_shooter->SetHoodPower(hood_power -HOOD_MIN_POWER); 
+      }
+      else if(hood_power > 0)
+      {
+        m_shooter->SetHoodPower(hood_power +HOOD_MIN_POWER); 
+      }
     }
-    else if(hood_power > 0)
+    else
     {
-      m_shooter->SetHoodPower(hood_power +HOOD_MIN_POWER); 
+      m_shooter->SetHoodPower(0.0);
     }
   }
   else
   {
-    m_shooter->SetHoodPower(0.0);
+    m_shooter->SetHoodAngle(m_shooter->GetCurrentHoodAngle());
   }
-  
+
 }
 
 void CmdShooterDefault::End(bool interrupted) {}
