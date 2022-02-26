@@ -1,4 +1,5 @@
 #include "commands/CmdShooterDefault.h"
+#include "commands/CmdCalculateAllV2.h"
 #include <math.h>
 
 #define SHOOTER_kF_CONSTANT 0.0470          
@@ -41,7 +42,7 @@ void CmdShooterDefault::Execute()
   //Lt = caculate all
   if(CalculateAllPressed)
   {
-    
+    CmdCalculateAllV2(m_shooter,3);
   }
   //*******************************************************
   //RJX = Manual Turret Control 
@@ -70,45 +71,6 @@ void CmdShooterDefault::Execute()
  //   m_shooter->SetTopFeederPower(0);
  //   m_shooter->SetBottomFeederPower(0);
  }
-  
-  //*******************************************************
-  //Y + LJ = Top Feeder Manual
-  // if(TopFeederActivate) 
-  // {
-  //   m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-  //   m_shooter->SetTopFeederPower(m_topFeederPower);
-  // }
-  // else 
-  
-  // //*******************************************************
-  // //A + LJ = Bottom Feeder Manual
-  // if(BottomFeederActivate) 
-  // {
-  //   m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-  //   m_shooter->SetBottomFeederPower(m_bottomFeederPower);
-  // }
-  // else
-  // //*************************************************
-  // //Feeder State Machine
-  // if(m_shooter->GetFeederOn() && !m_shooter->GetTopFeederPhotoeye())
-  // {
-  //   m_shooter->SetTopFeederPower(TOP_FEEDER_INTAKE_POWER);   
-  // }
-  // else if(m_shooter->GetFeederOn() && m_shooter->GetTopFeederPhotoeye())
-  // {
-  //   m_shooter->SetTopFeederPower(0);
-  // }
-  // if(m_shooter->GetFeederOn() && !m_shooter->GetBotFeederPhotoeye())
-  // {
-  //   m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_INTAKE_POWER);
-  // }
-  // else if(m_shooter->GetFeederOn() && m_shooter->GetBotFeederPhotoeye() && m_shooter->GetTopFeederPhotoeye())
-  // {
-  //   m_shooter->SetBottomFeederPower(0);
-  //   m_shooter->SetTopFeederPower(0); //fail safe just in case
-  //   m_shooter->SetFeederOn(false);
-  // }
-  //*************************************************
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
   static bool isDpadCenter = false;
