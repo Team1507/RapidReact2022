@@ -27,9 +27,7 @@ void CmdShooterDefault::Execute()
   bool TurretHomePressed = m_topDriver->GetXButton();
   bool CalculateAllPressed = m_topDriver->GetLeftTriggerAxis();
   bool ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
-  bool TopFeederActivate = m_topDriver->GetYButton();
-  bool BottomFeederActivate = m_topDriver->GetAButton();
-  double LJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+  double RJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
   double RJXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
   //x = return to home
@@ -52,7 +50,7 @@ void CmdShooterDefault::Execute()
     m_shooter->SetTurretPower(power);
   }
 
-  if((RJXAxis > HOOD_DEADBAND_CONSTANT) || (RJXAxis < -HOOD_DEADBAND_CONSTANT))
+  if((RJYAxis > HOOD_DEADBAND_CONSTANT) || (RJYAxis < -HOOD_DEADBAND_CONSTANT))
   {
     m_shooter->SetHoodPower(HOOD_SLOW_POWER);
   }
@@ -118,10 +116,7 @@ void CmdShooterDefault::Execute()
   {
     const int MAX_POS_ERROR = 1500;
     const int MAX_NEG_ERROR = -100;
-    
-    const double HOOD_TOLERANCE = 2;
-    const double SHOOTER_RPM = 3;
-
+  
     double curr_velocity = m_shooter->GetShooterVelocity();
     double curr_power = m_shooter->GetShooterPower();
 

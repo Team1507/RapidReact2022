@@ -41,8 +41,11 @@ Shooter::Shooter()
     double m_shooterRPM        = 0;
     double m_topFeederPower    = 0;
     double m_bottomFeederPower = 0;
-    double m_hoodEncoder = 0;
-    double m_turretYaw   = 0;   
+    double m_hoodEncoder       = 0;
+    double m_turretYaw         = 0;   
+    double m_wantedTurretAngle = 0;
+    double m_wantedHoodAngle   = 0;
+    double m_wantedShooterRPM  = 0;
 }
 
 void Shooter::ShooterInit(void)

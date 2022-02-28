@@ -19,7 +19,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   m_frontIntake.SetDefaultCommand(CmdIntakeDefault( &m_frontIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
   m_climber.SetDefaultCommand(CmdClimberDefault( &m_climber, &m_top_driver, &m_bot_driver));
   m_shooter.SetDefaultCommand(CmdShooterDefault( &m_shooter, &m_top_driver));
-  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_shooter, &m_rearIntake));
+  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_shooter, &m_rearIntake, &m_climber));
   m_feeder.SetDefaultCommand(CmdFeederDefault(&m_feeder, &m_top_driver));
 
   //*************************************Auto**********************************************

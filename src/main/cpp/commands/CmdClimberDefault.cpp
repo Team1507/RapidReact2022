@@ -26,7 +26,7 @@ void CmdClimberDefault::Initialize()
 void CmdClimberDefault::Execute() 
 {
 	double topLYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-	double topLXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_X);
+	//double topLXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_X);
 
 	if(m_topDriver->GetBackButton() && m_bottomDriver->GetLeftBumper())
 	{

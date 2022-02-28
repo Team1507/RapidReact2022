@@ -59,15 +59,11 @@
 #define HOOD_TOP_LIMIT_SWITCH      8
 
 #define SHOOTER_IDLE_VELOCITY      11
-#define SHOOTER_CLOSE_VELOCITY    16 //TBD
+#define SHOOTER_CLOSE_VELOCITY     16 //TBD
 
 // #define SHOOTER_HOOD_PORT       0
 
 //**********PCM CONSTANTS********** 
- #define PCM_CAN_ID              13
+ #define PCM_CAN_ID                13
 // #define PCM_RAMP_ID             0
 
-//**********CLIMBER CONSTANTS**********
-// #define LEFT_WINCH_CAN_ID       10
-// #define RIGHT_WINCH_CAN_ID      11
-// #define LIGHTSABER_CAN_ID       12  //lightsaber is the climber lift thing to raise the hook up

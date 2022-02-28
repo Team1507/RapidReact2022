@@ -44,6 +44,6 @@ class Climber : public frc2::SubsystemBase {
     frc::DoubleSolenoid m_climbBrake {PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM};
 	//frc::DoubleSolenoid *m_highBarControl;
 	//frc::DoubleSolenoid *m_climbBrake;
-	frc::DigitalInput m_highBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
+	//frc::DigitalInput m_highBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
 	frc::DigitalInput m_midBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
 };

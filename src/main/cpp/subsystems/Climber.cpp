@@ -48,7 +48,8 @@ void Climber::ClimbBrakeRetract()
 
 bool Climber::GetHighHallEffect(void)
 {
-    return m_highBarHallEffectSensor.Get();
+    //return m_highBarHallEffectSensor.Get();
+    return true;
 }
 
 bool Climber::GetMidHallEffect(void)

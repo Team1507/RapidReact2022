@@ -82,30 +82,44 @@ void Robot::TeleopPeriodic() {}
 
 void Robot::WriteToSmartDashboard(void)
 {
+  //Shooter
+  frc::SmartDashboard::PutNumber("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
+  frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
+
+  //Hood
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());
   frc::SmartDashboard::PutBoolean("Bottom Hood Limit Switch", m_container.m_shooter.GetBotHoodLimitSW());
+  frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
+  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());
+  //Turret
   frc::SmartDashboard::PutBoolean("Left Turret Limit Switch", m_container.m_shooter.GetLeftTurretLimitSW());
   frc::SmartDashboard::PutBoolean("Right Turret Limit Switch", m_container.m_shooter.GetRightTurretLimitSW());
   frc::SmartDashboard::PutBoolean("Turret Home Limit Switch", m_container.m_shooter.GetTurretHomeSW());
+  frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+  frc::SmartDashboard::PutNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
+  frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
+  frc::SmartDashboard::PutNumber("Turret Angle", m_container.m_shooter.GetCurrentTurretAngle());
+  
+  //Climber
   frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetMidHallEffect());
-  frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
+  //frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
+  
+  //Feeder
   frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_feeder.GetTopFeederPhotoeye());
   frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_feeder.GetBotFeederPhotoeye());
 
-  frc::SmartDashboard::PutNumber("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
-  frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
-  frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
-  frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+  //DriveTrain
   frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder3());
   frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder3());
-  frc::SmartDashboard::PutNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
-  frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
+  
+  //LimeLight
   frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightDistance());
   frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightVAngle());
   frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightHAngle());
-  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());
-  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentTurretAngle());
   frc::SmartDashboard::PutBoolean("LimeLight Target Valid", m_container.m_shooter.GetLimelightTargetValid());
+  
+  
+  
   m_container.m_drivetrain.WriteFalconTemps();
   
 }
