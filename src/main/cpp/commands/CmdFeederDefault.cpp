@@ -69,10 +69,16 @@ void CmdFeederDefault::Execute()
     m_feeder->SetTopFeederPower(0); //fail safe just in case
     m_feeder->SetFeederOn(false);
   }
+
+  if(m_topDriver->GetStartButton()) //a way to turn the feeder off cause rn we dont have a way unless we shoot or recieve 2 balls
+  {
+    m_feeder->SetBottomFeederPower(0.0);
+    m_feeder->SetTopFeederPower(0.0);
+  }
 }
 void CmdFeederDefault::End(bool interrupted) 
 {
-    std::cout << "POOP!!!" << std::endl;
+    //std::cout << "POOP!!!" << std::endl;
 }
 
 
