@@ -23,9 +23,9 @@ void Robot::RobotInit()
     m_container.m_climber.TalonsInit();
     m_container.m_climber.ClimberInit();
 
-    m_container.m_rearIntake.IntakeInit();
-    m_container.m_rearIntake.Retract();
-    m_container.m_rearIntake.SetPower(0);
+    // m_container.m_rearIntake.IntakeInit();
+    // m_container.m_rearIntake.Retract();
+    // m_container.m_rearIntake.SetPower(0);
 
     m_container.m_frontIntake.IntakeInit();
     m_container.m_frontIntake.Retract();    

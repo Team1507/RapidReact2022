@@ -13,5 +13,5 @@ class AutoFourBall
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  AutoFourBall> {
  public:
-  AutoFourBall(Drivetrain *drivetrain, Intake *rearintake, Shooter *shooter, Feeder *feeder);
+  AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Feeder *feeder);//Intake *rearintake
 };

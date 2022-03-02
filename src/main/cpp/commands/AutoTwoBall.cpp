@@ -18,7 +18,7 @@
 #include "commands/CmdTurretSetHome.h"
 #include "commands/CmdHoodFindHome.h"
 
-AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feeder, Intake *rearintake) 
+AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feeder ) //Intake *rearintake
 {
     AddCommands
     (
@@ -42,15 +42,15 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feede
         CmdFeederStop(feeder, Feeder::Level::Top),
 
         //Backup for Ball 2
-        CmdIntakeDeploy(rearintake),
-        CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
+        //CmdIntakeDeploy(rearintake),
+        //CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
         CmdDriveRevGyroV2(drivetrain, 0.7, 0.0, 40.44, true, true, 0.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         frc2::WaitCommand(1.0_s),
 
         //Bring Everything back in
-        CmdIntakeSetPower(rearintake, 0.0),
-        CmdIntakeRetract(rearintake),
+        //CmdIntakeSetPower(rearintake, 0.0),
+        //CmdIntakeRetract(rearintake),
 
         //Pre-Shoot for Ball 2
         CmdDriveFwdGyroV2(drivetrain, 0.7, 0, 32.5, true, true, 0.0),
@@ -65,8 +65,8 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feede
         //Post-Shoot
         CmdFeederStop(feeder, Feeder::Level::Bottom),
         CmdFeederStop(feeder, Feeder::Level::Top),
-        CmdIntakeSetPower(rearintake, 0.0),
-        CmdIntakeRetract(rearintake),
+        //CmdIntakeSetPower(rearintake, 0.0),
+        //CmdIntakeRetract(rearintake),
         CmdTurretSetHome(shooter),
         CmdHoodFindHome(shooter),
         CmdShooterSetPower(shooter, SHOOTER_IDLE_VELOCITY),

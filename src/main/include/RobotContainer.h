@@ -35,7 +35,7 @@ class RobotContainer
   //****************Subsystems*******************
   Drivetrain          m_drivetrain;
   Intake              m_frontIntake{Intake::Type::FRONT};
-  Intake              m_rearIntake{Intake::Type::REAR};
+  //Intake              m_rearIntake{Intake::Type::REAR};
   Shooter             m_shooter;
   Climber             m_climber;
   frc::XboxController m_bot_driver{0};
@@ -47,9 +47,9 @@ class RobotContainer
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
   AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
-  AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_feeder, &m_rearIntake};
-  AutoFourBall m_autoFourBall {&m_drivetrain, &m_rearIntake, &m_shooter, &m_feeder};
-  AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_rearIntake, &m_shooter, &m_feeder};
+  AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_feeder};//&m_rearIntake
+  AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter, &m_feeder};// &m_rearIntake
+  AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter, &m_feeder};//&m_rearIntake
 
   frc2::Command* GetAutonomousCommand();
   

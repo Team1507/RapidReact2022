@@ -3,10 +3,10 @@
 #define PEAK_FALCON_POWER            0.9
 
 //********** DRIVETRAIN CONSTANTS **********
-#define LEFTDRIVE_FRONT_CAN_ID       0
-#define LEFTDRIVE_BACK_CAN_ID        1
-#define RIGHTDRIVE_FRONT_CAN_ID      2
-#define RIGHTDRIVE_BACK_CAN_ID       3
+#define LEFTDRIVE_FRONT_CAN_ID       1
+#define LEFTDRIVE_BACK_CAN_ID        2
+#define RIGHTDRIVE_FRONT_CAN_ID      3
+#define RIGHTDRIVE_BACK_CAN_ID       4
 
 #define LEFT_DRIVE_ENCODER_A         0
 #define RIGHT_DRIVE_ENCODER_A        2

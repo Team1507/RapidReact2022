@@ -3,7 +3,9 @@
 #include "frc/smartdashboard/SmartDashboard.h"
 CmdFeederDefault::CmdFeederDefault(Feeder *feeder, frc::XboxController *topDriver) 
 {
-
+  m_feeder = feeder;
+  m_topDriver = topDriver;
+  AddRequirements({m_feeder});
 }
 
 // Called when the command is initially scheduled.

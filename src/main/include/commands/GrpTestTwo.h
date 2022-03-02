@@ -18,5 +18,5 @@ class GrpTestTwo
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  GrpTestTwo> {
  public:
-  GrpTestTwo(Climber *climber, DriverFeedback *driverfeedback, Drivetrain *drivetrain, Intake *frontIntake, Intake *backIntake, Shooter *shooter, XboxController *topdriver, XboxController *botdriver, Feeder *feeder);
+  GrpTestTwo(Climber *climber, DriverFeedback *driverfeedback, Drivetrain *drivetrain, Intake *frontIntake,  Shooter *shooter, XboxController *topdriver, XboxController *botdriver, Feeder *feeder);//Intake *backIntake,
 };

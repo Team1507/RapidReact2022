@@ -1,13 +1,14 @@
 #include "commands/CmdDriverFeedbackDefault.h"
 #include <frc2/command/WaitCommand.h>
-CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Intake *intake, Climber *climber) 
+#include <iostream>
+CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Climber *climber) // Intake *intake
 {
   m_topDriver = topDriver;
 	m_driverFeedback = driverfeedback;
   m_shooter = shooter;
-  m_intake = intake;
+  //m_intake = intake;
   m_climber = climber;
-	AddRequirements(m_driverFeedback);
+	AddRequirements({m_driverFeedback});
 }
 
 
@@ -27,12 +28,16 @@ void CmdDriverFeedbackDefault::Execute()
   double ShooterRPM        = m_shooter->GetCurrentShooterRPM();
   double LimeLightAngle    = m_shooter->GetLimelightHAngle();
 
-  if(m_intake->GetIsIntaking())
+  // if(m_intake->GetIsIntaking())
+  // {
+  //     m_driverFeedback->UpdateLEDs(255,0,0);//red
+  //     frc2::WaitCommand(0.3_s);
+  //     m_driverFeedback->UpdateLEDs(0,0,0);
+  //     frc2::WaitCommand(0.3_s);
+  // }
+  if (1 == 2)
   {
-      m_driverFeedback->UpdateLEDs(255,0,0);//red
-      frc2::WaitCommand(0.3_s);
-      m_driverFeedback->UpdateLEDs(0,0,0);
-      frc2::WaitCommand(0.3_s);
+    std::cout<<"ahhhhh"<<std::endl;
   }
   else if(m_climber->IsClimbBrakeActivated())
   {

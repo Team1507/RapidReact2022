@@ -70,8 +70,8 @@ void Climber::TalonsInit(void)
 {
     m_lowClimbLeftMotor.ConfigFactoryDefault();
     m_lowClimbRightMotor.ConfigFactoryDefault();
-    m_highClimbLeftMotor.ConfigFactoryDefault();
-    m_highClimbLeftMotor.ConfigFactoryDefault();
+    // m_highClimbLeftMotor.ConfigFactoryDefault();
+    // m_highClimbRightMotor.ConfigFactoryDefault();
 
     //Setting left to follow right motor
     m_lowClimbLeftMotor.Follow(m_lowClimbRightMotor);
@@ -80,20 +80,20 @@ void Climber::TalonsInit(void)
     //Set Inverted
     m_lowClimbLeftMotor.SetInverted(false);
     m_lowClimbRightMotor.SetInverted(false);
-    m_highClimbLeftMotor.SetInverted(false);
-    m_highClimbRightMotor.SetInverted(false);
+    // m_highClimbLeftMotor.SetInverted(false);
+    // m_highClimbRightMotor.SetInverted(false);
 
     //Set Coast Mode
     m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
     m_lowClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
-    m_highClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
-    m_highClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
+    // m_highClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
+    // m_highClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
 
     //Setup Encoders
     m_lowClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
     m_lowClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
-    m_highClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
-    m_highClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
+    // m_highClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
+    // m_highClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
 }
 
 

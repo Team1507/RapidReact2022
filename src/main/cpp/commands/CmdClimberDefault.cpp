@@ -14,7 +14,7 @@ CmdClimberDefault::CmdClimberDefault(Climber *climber, frc::XboxController *topD
 	m_topDriver = topDriver;
 	m_bottomDriver = bottomDriver;
 	m_isClimbBrakeEngaged = false;
-	AddRequirements(m_climber);
+	AddRequirements({m_climber});
 }
 
 void CmdClimberDefault::Initialize() 

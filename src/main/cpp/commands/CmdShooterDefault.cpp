@@ -16,7 +16,7 @@ CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topD
 {
   m_shooter = shooter;
   m_topDriver = topDriver;
-  AddRequirements(m_shooter);
+  AddRequirements({m_shooter});
 
 }
 

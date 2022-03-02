@@ -9,7 +9,7 @@ CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDrive
 	m_shooter = shooter;
 	m_isFrontActive = false;
 	m_isRearActive = false;
-	AddRequirements(m_intake);
+	AddRequirements({m_intake});
 }
 
 void CmdIntakeDefault::Initialize() 

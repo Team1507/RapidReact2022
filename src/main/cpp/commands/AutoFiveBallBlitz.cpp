@@ -19,7 +19,7 @@
 #include "commands/CmdIntakeSetPower.h"
 
 
-AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake, Shooter *shooter, Feeder *feeder) 
+AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain,  Shooter *shooter, Feeder *feeder) //Intake *rearintake
 {
     AddCommands
     (
@@ -42,8 +42,8 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		CmdFeederStop(feeder, Feeder::Level::Top),
 
 		//Move to Ball 2
-		CmdIntakeDeploy(rearintake),
-		CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
+		//CmdIntakeDeploy(rearintake),
+		//CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 0, 28.44, true, true, 0.0),
 		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 2.0), // 40.44
 		frc2::WaitCommand(1.0_s),
@@ -55,8 +55,8 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 
 		//Pre-Shoot for Balls 2/3
 		CmdCalculateAllV2(shooter, 0.0),
-		CmdIntakeRetract(rearintake),
-		CmdIntakeSetPower(rearintake, 0.0),
+		//CmdIntakeRetract(rearintake),
+		//CmdIntakeSetPower(rearintake, 0.0),
 
 		//Shoot Balls 2/3
 		CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
@@ -69,15 +69,15 @@ AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain, Intake *rearintake,
 		CmdFeederStop(feeder, Feeder::Level::Top),
 
 		//Backup to Balls 4/5
-		CmdIntakeDeploy(rearintake),
-		CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
+		//CmdIntakeDeploy(rearintake),
+		//CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 26.62, 134.56, true, true, 0.0), 
 		CmdDriveRevGyroV2(drivetrain, 0.3, 26.62, 12.00, true, true, 2.0),  // 146.56 total
 		frc2::WaitCommand(2.5_s),
 
 		//Back to Shooting Location for Balls 4/5
-		CmdIntakeRetract(rearintake),
-		CmdIntakeSetPower(rearintake, 0),
+		//CmdIntakeRetract(rearintake),
+		//CmdIntakeSetPower(rearintake, 0),
 		CmdDriveFwdGyroV2(drivetrain, 0.7, 26.62, 146.56, true, true, 0.0),
 		CmdCalculateAllV2(shooter, 0.0),
 
