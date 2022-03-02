@@ -25,8 +25,8 @@ class Feeder : public frc2::SubsystemBase {
 
  private: 
 
-    frc::DigitalInput m_topFeederDetect{TOP_FEEDER_PWM_ID};
-    frc::DigitalInput m_botFeederDetect{BOTTOM_FEEDER_PWM_ID};
+    frc::DigitalInput m_topFeederDetect{UPPER_FEEDER_PHOTOEYE};
+    frc::DigitalInput m_botFeederDetect{LOWER_FEEDER_PHOTOEYE};
 
     frc::Spark m_topFeeder{TOP_FEEDER_PWM_ID};
     frc::Spark m_botFeeder{BOTTOM_FEEDER_PWM_ID};
