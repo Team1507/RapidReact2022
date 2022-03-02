@@ -85,8 +85,8 @@ class Shooter : public frc2::SubsystemBase {
   const double LIMELIGHT_ANGLE_TOLERANCE = 0; //CHANGE LATER
 
  private:
-    frc::DigitalInput m_topHoodLimitSwitch    {HOOD_TOP_LIMIT_SWITCH};
-    frc::DigitalInput m_botHoodLimtSwitch     {HOOD_BOTTOM_LIMIT_SWITCH};
+    // frc::DigitalInput m_topHoodLimitSwitch    {HOOD_TOP_LIMIT_SWITCH};
+    // frc::DigitalInput m_botHoodLimtSwitch     {HOOD_BOTTOM_LIMIT_SWITCH};
     frc::DigitalInput m_turretHomeHallEffect  {TURRET_HOME_HALL_EFFECT};
 
     TalonFX  m_leftShooter                    {LEFT_SHOOTER_CAN};

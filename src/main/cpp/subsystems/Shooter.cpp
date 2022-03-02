@@ -210,11 +210,11 @@ double Shooter::GetTempatureHoodMotor()
 }
 bool Shooter::GetTopHoodLimitSW(void)
 {
-    return m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 
+    return m_hoodMotor.GetSensorCollection().IsFwdLimitSwitchClosed(); //m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 
 }
 bool Shooter::GetBotHoodLimitSW(void)
 {
-    return m_botHoodLimtSwitch.Get();
+    return m_hoodMotor.GetSensorCollection().IsRevLimitSwitchClosed();//m_botHoodLimtSwitch.Get();
 }
 void Shooter::ResetHoodEncoder(void)
 {
