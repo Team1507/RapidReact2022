@@ -44,19 +44,20 @@
 #define HI_CLIMB_RETURN_PCM         5
 #define CLIMB_BRAKE_ENGAGE_PCM      6
 #define CLIMB_BRAKE_DISENGAGE_PCM   7
-
+//here
 #define CLIMB_HI_DIO_HALLEFFECT     7
 #define CLIMB_MID_DIO_HALLEFFECT    8
 
 //**********SHOOTER CONSTANTS**********
 #define TURRET_TALON_CAN           5
 #define TURRET_HOME_HALL_EFFECT    6
-#define LEFT_SHOOTER_CAN           5
-#define RIGHT_SHOOTER_CAN          6
+#define TURRET_SLOW_POWER          0.4
+#define LEFT_SHOOTER_CAN           10
+#define RIGHT_SHOOTER_CAN          11
 #define HOOD_TALON_CAN             12
 #define HOOD_SLOW_POWER            0.3
-#define HOOD_BOTTOM_LIMIT_SWITCH   7
-#define HOOD_TOP_LIMIT_SWITCH      8
+// #define HOOD_BOTTOM_LIMIT_SWITCH   7
+// #define HOOD_TOP_LIMIT_SWITCH      8
 
 #define SHOOTER_IDLE_VELOCITY      11
 #define SHOOTER_CLOSE_VELOCITY     16 //TBD

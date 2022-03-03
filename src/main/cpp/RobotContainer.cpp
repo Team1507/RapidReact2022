@@ -9,13 +9,14 @@
 #include "commands/CmdFeederDefault.h"
 #include "commands/GrpTestOne.h"
 #include "commands/GrpTestTwo.h"
+#include "commands/CmdIntakeSetPower.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) 
 {
   // *********************************Defaults*********************************************
 
   m_drivetrain.SetDefaultCommand(CmdDriveWithGamepad( &m_drivetrain, &m_bot_driver ));
- // m_rearIntake.SetDefaultCommand(CmdIntakeDefault( &m_rearIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
+  m_rearIntake.SetDefaultCommand(CmdIntakeDefault( &m_rearIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
   m_frontIntake.SetDefaultCommand(CmdIntakeDefault( &m_frontIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
   m_climber.SetDefaultCommand(CmdClimberDefault( &m_climber, &m_top_driver, &m_bot_driver));
   m_shooter.SetDefaultCommand(CmdShooterDefault( &m_shooter, &m_top_driver));
@@ -45,6 +46,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
 void RobotContainer::ConfigureButtonBindings() 
 {
   m_btn_driver_A.WhenPressed(new CmdLimeLight3xMode(&m_shooter, true)).WhenReleased(new CmdLimeLight3xMode(&m_shooter, false));
+  m_top_driver_LB.WhenPressed(new CmdIntakeSetPower(&m_frontIntake, 0.5)).WhenReleased(new CmdIntakeSetPower(&m_frontIntake, 0.0));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() 

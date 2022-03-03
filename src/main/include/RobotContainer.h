@@ -35,7 +35,7 @@ class RobotContainer
   //****************Subsystems*******************
   Drivetrain          m_drivetrain;
   Intake              m_frontIntake{Intake::Type::FRONT};
-  //Intake              m_rearIntake{Intake::Type::REAR};
+  Intake              m_rearIntake{Intake::Type::REAR};
   Shooter             m_shooter;
   Climber             m_climber;
   frc::XboxController m_bot_driver{0};
