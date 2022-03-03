@@ -79,7 +79,7 @@ void Climber::TalonsInit(void)
 
     //Set Inverted
     m_lowClimbLeftMotor.SetInverted(false);
-    m_lowClimbRightMotor.SetInverted(false);
+    m_lowClimbRightMotor.SetInverted(true);
     // m_highClimbLeftMotor.SetInverted(false);
     // m_highClimbRightMotor.SetInverted(false);
 

@@ -3,7 +3,7 @@
 #include <networktables/NetworkTableInstance.h>
 #include <iostream>
 #include "frc/smartdashboard/SmartDashboard.h"
-#define SHOOTER_PID
+//#define SHOOTER_PID
 
 #define PI 3.1415
 #define HOOD_TICK2ANGLE 1 //change later
@@ -149,7 +149,7 @@ void Shooter::FalconsInit()
 
     //Set Inverted
     m_leftShooter.SetInverted(false);
-    m_rightShooter.SetInverted(false);
+    m_rightShooter.SetInverted(true);
     m_turretMotor.SetInverted(false);
     m_hoodMotor.SetInverted(false);
 
@@ -190,11 +190,11 @@ void Shooter::SetHoodAngle(double angle)
 }
 void Shooter::SetHoodPower(double power)
 {
-    m_hoodPower = power;
+    m_hoodMotor.Set(ControlMode::PercentOutput, power);
 }
 double Shooter::GetHoodPower(void)
 {
-    return m_hoodPower;
+    return m_hoodMotor.GetMotorOutputPercent();
 }
 double Shooter::GetWantedHoodAngle()
 {
@@ -235,11 +235,11 @@ void Shooter::SetTurretAngle(double angle)
 }
 void Shooter::SetTurretPower(double power)
 {
-    m_turretPower = power;
+    m_turretMotor.Set(ControlMode::PercentOutput, power);
 }
 double Shooter::GetTurretPower(void)
 {
-    return m_turretPower;
+    return m_turretMotor.GetMotorOutputPercent();
 }
 double Shooter::GetWantedTurretAngle()
 {

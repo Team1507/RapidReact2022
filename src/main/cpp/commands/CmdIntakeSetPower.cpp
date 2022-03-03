@@ -20,5 +20,5 @@ void CmdIntakeSetPower::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdIntakeSetPower::IsFinished() {
-  return false;
+  return true;
 }

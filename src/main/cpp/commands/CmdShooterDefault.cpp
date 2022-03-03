@@ -1,6 +1,7 @@
 #include "commands/CmdShooterDefault.h"
 #include "commands/CmdCalculateAllV2.h"
 #include <math.h>
+#include <iostream>
 
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
@@ -24,11 +25,11 @@ void CmdShooterDefault::Initialize() {}
 
 void CmdShooterDefault::Execute() 
 {
-  bool TurretHomePressed = m_topDriver->GetXButton();
+  bool TurretHomePressed   = m_topDriver->GetXButton();
   bool CalculateAllPressed = m_topDriver->GetLeftTriggerAxis();
-  bool ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
-  double RJYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
-  double RJXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
+  bool ShootPressed        = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
+  double RJYAxis           = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
+  double RJXAxis           = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
   //x = return to home
   if(TurretHomePressed)
@@ -44,31 +45,49 @@ void CmdShooterDefault::Execute()
   }
   //*******************************************************
   //RJX = Manual Turret Control 
-  if((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT))
+  if(RJXAxis > TURRET_DEADBAND_CONSTANT)
   {
-    double power = RJXAxis;
-    m_shooter->SetTurretPower(power);
+    m_shooter->SetTurretPower(TURRET_SLOW_POWER);
+  } 
+  else if(RJXAxis < -TURRET_DEADBAND_CONSTANT)
+  {
+    m_shooter->SetTurretPower(-TURRET_SLOW_POWER);
   }
-
-  if((RJYAxis > HOOD_DEADBAND_CONSTANT) || (RJYAxis < -HOOD_DEADBAND_CONSTANT))
+  else
+  {
+    m_shooter->SetTurretPower(0);
+  }
+  //******************************************************
+  //RJY = Manual Hood Control
+  if(RJYAxis > HOOD_DEADBAND_CONSTANT)
   {
     m_shooter->SetHoodPower(HOOD_SLOW_POWER);
+  }
+  else if(RJYAxis < -HOOD_DEADBAND_CONSTANT)
+  {
+    m_shooter->SetHoodPower(-HOOD_SLOW_POWER);
+  }
+  else
+  {
+    m_shooter->SetHoodPower(0);
   }
 
   //*******************************************************
   //rt = shoot
   if(ShootPressed == 1) // pressed
   {
+    m_shooter->SetShooterPower(0.2);
     //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
     //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
     //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
 
   }
- else if (ShootPressed == 0) // released 
- {
- //   m_shooter->SetTopFeederPower(0);
- //   m_shooter->SetBottomFeederPower(0);
- }
+  else if (ShootPressed == 0) // released 
+  {
+    m_shooter->SetShooterPower(0);
+  //   m_shooter->SetTopFeederPower(0);
+  //   m_shooter->SetBottomFeederPower(0);
+  }
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
   static bool isDpadCenter = false;
@@ -110,7 +129,7 @@ void CmdShooterDefault::Execute()
 #ifndef SHOOTER_PID
 
   //Calcualate
-
+/*
 //***************************SHOOTER ERROR****************************
   if(m_shooter->GetCurrentShooterRPM() > 0.0)
   {
@@ -140,8 +159,9 @@ void CmdShooterDefault::Execute()
     frc::SmartDashboard::PutNumber("Curr Velocity", curr_velocity);
 
   }
+*/
 #endif 
-
+/*
   //*****************************************************
   //*********************TURRET ERROR********************
   if(!((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT)))
@@ -223,7 +243,7 @@ void CmdShooterDefault::Execute()
   {
     m_shooter->SetHoodAngle(m_shooter->GetCurrentHoodAngle());
   }
-
+  */
 }
 
 void CmdShooterDefault::End(bool interrupted) {}
