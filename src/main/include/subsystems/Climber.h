@@ -21,7 +21,7 @@ class Climber : public frc2::SubsystemBase {
 	void ClimbBrakeRetract(void);
 
 	bool GetHighHallEffect(void);
-	bool GetMidHallEffect(void);
+	bool GetLowHallEffect(void);
 
 	bool IsClimbActivated(void);
 
@@ -45,5 +45,5 @@ class Climber : public frc2::SubsystemBase {
 	//frc::DoubleSolenoid *m_highBarControl;
 	//frc::DoubleSolenoid *m_climbBrake;
 	//frc::DigitalInput m_highBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
-	frc::DigitalInput m_midBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
+	//frc::DigitalInput m_midBarHallEffectSensor{CLIMB_HI_DIO_HALLEFFECT};
 };

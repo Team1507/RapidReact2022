@@ -103,7 +103,7 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Turret Power", m_container.m_shooter.GetTurretPower()  );
   
   //Climber
-  frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetMidHallEffect());
+  frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetLowHallEffect());
   //frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
   
   //Feeder

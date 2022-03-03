@@ -150,7 +150,7 @@ void Shooter::FalconsInit()
     //Set Inverted
     m_leftShooter.SetInverted(false);
     m_rightShooter.SetInverted(true);
-    m_turretMotor.SetInverted(false);
+    m_turretMotor.SetInverted(true);
     m_hoodMotor.SetInverted(false);
 
     //Set PID 
@@ -263,7 +263,7 @@ bool Shooter::GetRightTurretLimitSW(void)
 }
 bool Shooter::GetTurretHomeSW(void)
 {
-    return m_turretHomeHallEffect.Get();
+    return !m_turretHomeHallEffect.Get();
 }
 void Shooter::ResetTurretEncoder(void)
 {

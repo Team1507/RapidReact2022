@@ -20,7 +20,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   m_frontIntake.SetDefaultCommand(CmdIntakeDefault( &m_frontIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
   m_climber.SetDefaultCommand(CmdClimberDefault( &m_climber, &m_top_driver, &m_bot_driver));
   m_shooter.SetDefaultCommand(CmdShooterDefault( &m_shooter, &m_top_driver));
-  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_shooter, &m_climber));// &m_rearIntake
+  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_rearIntake, &m_shooter, &m_climber));
   m_feeder.SetDefaultCommand(CmdFeederDefault(&m_feeder, &m_top_driver));
 
   //*************************************Auto**********************************************
@@ -37,8 +37,8 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   frc::SmartDashboard::PutData( new AutoJustShootNoLimelight(&m_shooter,&m_drivetrain,&m_feeder));
   frc::SmartDashboard::PutData( new AutoJustShootLimelight(&m_shooter,&m_drivetrain,&m_feeder));
   
-  frc::SmartDashboard::PutData( new GrpTestOne(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//&m_rearIntake,
-  frc::SmartDashboard::PutData( new GrpTestTwo(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//&m_rearIntake,
+  frc::SmartDashboard::PutData( new GrpTestOne(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
+  frc::SmartDashboard::PutData( new GrpTestTwo(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake, &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
 
   ConfigureButtonBindings();
 }
@@ -46,7 +46,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
 void RobotContainer::ConfigureButtonBindings() 
 {
   m_btn_driver_A.WhenPressed(new CmdLimeLight3xMode(&m_shooter, true)).WhenReleased(new CmdLimeLight3xMode(&m_shooter, false));
-  m_top_driver_LB.WhenPressed(new CmdIntakeSetPower(&m_frontIntake, 0.5)).WhenReleased(new CmdIntakeSetPower(&m_frontIntake, 0.0));
+  //m_top_driver_LB.WhenPressed(new CmdIntakeSetPower(&m_frontIntake, 0.5)).WhenReleased(new CmdIntakeSetPower(&m_frontIntake, 0.0));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() 

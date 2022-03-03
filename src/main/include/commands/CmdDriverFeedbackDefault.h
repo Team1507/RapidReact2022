@@ -12,7 +12,7 @@
 class CmdDriverFeedbackDefault
     : public frc2::CommandHelper<frc2::CommandBase, CmdDriverFeedbackDefault> {
  public:
-  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Climber *climber);//Intake *intake
+  CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver,Intake *intake, Shooter *shooter, Climber *climber);
 
   void Initialize() override;
 

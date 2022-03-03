@@ -47,9 +47,9 @@ class RobotContainer
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
   AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
-  AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_feeder};//&m_rearIntake
-  AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter, &m_feeder};// &m_rearIntake
-  AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter, &m_feeder};//&m_rearIntake
+  AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};//
+  AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};// 
+  AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};
 
   frc2::Command* GetAutonomousCommand();
   

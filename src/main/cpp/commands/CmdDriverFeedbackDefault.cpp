@@ -1,12 +1,12 @@
 #include "commands/CmdDriverFeedbackDefault.h"
 #include <frc2/command/WaitCommand.h>
 #include <iostream>
-CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Climber *climber) // Intake *intake
+CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Intake *intake, Shooter *shooter, Climber *climber) // 
 {
   m_topDriver = topDriver;
 	m_driverFeedback = driverfeedback;
   m_shooter = shooter;
-  //m_intake = intake;
+  m_intake = intake;
   m_climber = climber;
 	AddRequirements({m_driverFeedback});
 }

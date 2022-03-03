@@ -12,5 +12,5 @@ class AutoTwoBall
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  AutoTwoBall> {
  public:
-  AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, Feeder *feeder );//Intake *rearintake
+  AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,Intake *rearintake, Feeder *feeder );
 };

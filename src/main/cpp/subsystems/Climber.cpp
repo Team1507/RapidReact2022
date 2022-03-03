@@ -48,13 +48,13 @@ void Climber::ClimbBrakeRetract()
 
 bool Climber::GetHighHallEffect(void)
 {
-    //return m_highBarHallEffectSensor.Get();
+    //return m_lowClimbRightMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
     return true;
 }
 
-bool Climber::GetMidHallEffect(void)
+bool Climber::GetLowHallEffect(void)
 {
-    return m_midBarHallEffectSensor.Get();
+    return m_lowClimbRightMotor.GetSensorCollection().IsRevLimitSwitchClosed();
 }
 
 bool Climber::IsClimbActivated(void)

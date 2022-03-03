@@ -17,7 +17,7 @@
 #include "commands/CmdIntakeRetract.h"
 #include "commands/CmdIntakeSetPower.h"
 
-AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Feeder *feeder) //Intake *rearintake
+AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Intake *rearintake, Feeder *feeder) //
 {
     AddCommands
     (
@@ -40,11 +40,11 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Feeder *fe
 		CmdFeederStop(feeder, Feeder::Level::Top),
 
 		//Move to Ball 2
-		//CmdIntakeDeploy(rearintake),
-		//CmdIntakeSetPower(rearintake, 0.6),
+		CmdIntakeDeploy(rearintake),
+		CmdIntakeSetPower(rearintake, 0.6),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 0, 40.44, true, true, 0.0),
 		frc2::WaitCommand(1.0_s),
-		//CmdIntakeSetPower(rearintake, 0.0), // Save some power for the shooter
+		CmdIntakeSetPower(rearintake, 0.0), // Save some power for the shooter
 
 		//Shoot Ball 2
 		CmdCalculateAllV2(shooter, 0.0),
@@ -58,14 +58,14 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Feeder *fe
 		CmdFeederStop(feeder, Feeder::Level::Top),
 
 		//Back Up to Balls 3/4	
-		//CmdIntakeSetPower(rearintake, 0.6),
+		CmdIntakeSetPower(rearintake, 0.6),
 		CmdDriveRevGyroV2(drivetrain, 0.7, 0, 134.56, true, true, 0.0),
 		CmdDriveRevGyroV2(drivetrain, 0.3, 0, 12.00, true, true, 2.0), // 146.56 total 
 		frc2::WaitCommand(2.5_s),
 
 		//Pre Shoot for Balls 3/4
-		//CmdIntakeSetPower(rearintake, 0.0),
-		//CmdIntakeRetract(rearintake),
+		CmdIntakeSetPower(rearintake, 0.0),
+		CmdIntakeRetract(rearintake),
 		CmdDriveFwdGyroV2(drivetrain, 0.7, 0.0, 146.56, true, true, 0.0),
 		
 		//Shoot Balls 3/4

@@ -76,7 +76,7 @@ void CmdShooterDefault::Execute()
   //rt = shoot
   if(ShootPressed == 1) // pressed
   {
-    m_shooter->SetShooterPower(0.2);
+    m_shooter->SetShooterPower(0.5);
     //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
     //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
     //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on

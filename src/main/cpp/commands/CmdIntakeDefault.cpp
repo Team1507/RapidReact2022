@@ -9,6 +9,7 @@ CmdIntakeDefault::CmdIntakeDefault(Intake *intake, frc::XboxController *topDrive
 	m_shooter = shooter;
 	m_isFrontActive = false;
 	m_isRearActive = false;
+	m_feeder = feeder;
 	AddRequirements({m_intake});
 }
 
@@ -20,7 +21,7 @@ void CmdIntakeDefault::Initialize()
 
 void CmdIntakeDefault::Execute() 
 {
-	if(m_topDriver->GetLeftBumper())// one intake down at a time   && !m_isRearActive
+	if(m_topDriver->GetLeftBumper() && !m_isRearActive)// one intake down at a time   && !m_isRearActive
 	{
 		if( m_intake->GetType() == Intake::Type::FRONT)
 		{
@@ -63,10 +64,10 @@ void CmdIntakeDefault::Execute()
 	
 //****************************************************************
 
-	if(m_topDriver->GetRightBumper()) // one intake down at a time    && !m_isFrontActive
+	if(m_topDriver->GetRightBumper()&& !m_isFrontActive) // one intake down at a time    && !m_isFrontActive
 	{
 		std::cout<<"RIGHT BUMPER PRESSED"<< m_intake->GetType()<<std::endl;
-		if(m_intake->GetType() == 0)//Intake::Type::REAR
+		if(m_intake->GetType() == Intake::Type::REAR)//
 		{
 			double frontIntakePower = frc::SmartDashboard::GetNumber("FRONT_INTAKE_POWER", 0);
 			std::cout<<frontIntakePower<<std::endl;

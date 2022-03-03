@@ -12,5 +12,5 @@ class AutoFiveBallBlitz
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  AutoFiveBallBlitz> {
  public:
-  AutoFiveBallBlitz(Drivetrain *drivetrain, Shooter *shooter, Feeder *feeder);//Intake *rearintake
+  AutoFiveBallBlitz(Drivetrain *drivetrain, Shooter *shooter, Intake *rearintake, Feeder *feeder);//
 };

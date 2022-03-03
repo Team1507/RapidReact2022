@@ -40,7 +40,7 @@ void CmdFeederDefault::Execute()
   //Y + LJ = Top Feeder Manual
   if(TopFeederActivate) 
   {
-    m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+    m_topFeederPower = -m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
     std::cout<<m_topFeederPower<<std::endl;
     m_feeder->SetTopFeederPower(m_topFeederPower);
     m_isManualOn = true;
@@ -73,6 +73,11 @@ void CmdFeederDefault::Execute()
     double bottomFeederIntakePower = frc::SmartDashboard::GetNumber("BOTTOM_FEEDER_INTAKE_POWER", 0);
     m_feeder->SetBottomFeederPower(bottomFeederIntakePower);
   }
+  else if(m_feeder->GetFeederOn() && m_feeder->GetBotFeederPhotoeye() && !m_feeder->GetTopFeederPhotoeye())
+  {
+    double bottomFeederIntakePower = frc::SmartDashboard::GetNumber("BOTTOM_FEEDER_INTAKE_POWER", 0);
+    m_feeder->SetBottomFeederPower(bottomFeederIntakePower);
+  }
   else if(m_feeder->GetFeederOn() && m_feeder->GetBotFeederPhotoeye() && m_feeder->GetTopFeederPhotoeye())
   {
     m_feeder->SetBottomFeederPower(0);
@@ -84,11 +89,12 @@ void CmdFeederDefault::Execute()
   {
     m_feeder->SetBottomFeederPower(0.0);
     m_feeder->SetTopFeederPower(0.0);
+    m_feeder->SetFeederOn(false);
   }
 }
 void CmdFeederDefault::End(bool interrupted) 
 {
-    //std::cout << "POOP!!!" << std::endl;
+  //std::cout << "POOP!!!" << std::endl;
 }
 
 
