@@ -20,11 +20,12 @@ void CmdIntakeDefault::Initialize()
 
 void CmdIntakeDefault::Execute() 
 {
-	if(m_topDriver->GetRightBumper() && !m_isRearActive)// one intake down at a time
+	if(m_topDriver->GetRightBumper())// one intake down at a time   && !m_isRearActive
 	{
 		if( m_intake->GetType() == Intake::Type::FRONT)
 		{
 			double frontIntakePower = frc::SmartDashboard::GetNumber("FRONT_INTAKE_POWER", 0);
+			std::cout<<"INTAKE RUNNING"<<std::endl;
 			m_intake->Deploy();
 			m_intake->SetPower(frontIntakePower);
 			m_feeder->SetFeederOn(true);
@@ -62,13 +63,16 @@ void CmdIntakeDefault::Execute()
 	
 //****************************************************************
 
-	if(m_topDriver->GetLeftBumper() && !m_isFrontActive) // one intake down at a time
+	if(m_topDriver->GetLeftBumper()) // one intake down at a time    && !m_isFrontActive
 	{
-		if(m_intake->GetType() == Intake::Type::REAR)
+		std::cout<<"LEFT BUMPER PRESSED"<< m_intake->GetType()<<std::endl;
+		if(m_intake->GetType() == 0)//Intake::Type::REAR
 		{
 			double rearIntakePower = frc::SmartDashboard::GetNumber("REAR_INTAKE_POWER", 0);
-			m_intake->Deploy();
+			std::cout<<rearIntakePower<<std::endl;
+			std::cout<<"INTAKE RUNNING"<<std::endl;
 			m_intake->SetPower(rearIntakePower);
+			m_intake->Deploy();
 			m_feeder->SetFeederOn(true);
 		}
 		m_isRearActive = true;

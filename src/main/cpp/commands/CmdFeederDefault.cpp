@@ -5,6 +5,7 @@ CmdFeederDefault::CmdFeederDefault(Feeder *feeder, frc::XboxController *topDrive
 {
   m_feeder = feeder;
   m_topDriver = topDriver;
+  m_isManualOn = false;
   AddRequirements({m_feeder});
 }
 
@@ -24,20 +25,26 @@ void CmdFeederDefault::Execute()
     double bottomFeederPower = frc::SmartDashboard::GetNumber("FEEDER_BOTTOM_SHOOT_POWER", 0);
     m_feeder->SetTopFeederPower(topFeederPower);
     m_feeder->SetBottomFeederPower(bottomFeederPower);
-    m_feeder->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
+    m_feeder->SetFeederOn(false); 
+    m_isManualOn = true;
+    //This is here to allow shooting and intake, ignore intake if shooter is on
 
 }
-  else if (ShootPressed == 0) // released 
+  else if ((ShootPressed == 0) && (m_isManualOn == false)) // released 
   {
     m_feeder->SetTopFeederPower(0);
     m_feeder->SetBottomFeederPower(0);
+    //std::cout<<"Feeder Stopped after shot"<<std::endl;
   }
 //*******************************************************
   //Y + LJ = Top Feeder Manual
   if(TopFeederActivate) 
   {
     m_topFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
+    std::cout<<m_topFeederPower<<std::endl;
     m_feeder->SetTopFeederPower(m_topFeederPower);
+    m_isManualOn = true;
+    std::cout<<"Top Feeder Manual"<<std::endl;
   }
   else 
   
@@ -47,6 +54,7 @@ void CmdFeederDefault::Execute()
   {
     m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
     m_feeder->SetBottomFeederPower(m_bottomFeederPower);
+    m_isManualOn = true;
   }
   else
   //*************************************************

@@ -14,10 +14,12 @@ void Feeder::FeederInit(void)
 void Feeder::SetTopFeederPower(double power)
 {
   m_topFeederPower = power;
+  m_topFeeder.Set(m_topFeederPower);
 }
 void Feeder::SetBottomFeederPower(double power)
 {
   m_bottomFeederPower = power;
+  m_botFeeder.Set(m_bottomFeederPower);
 }
 //Zach wuz here B)
 void Feeder::SetFeederOn(bool status)

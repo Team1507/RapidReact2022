@@ -27,5 +27,7 @@ class CmdFeederDefault
   double m_topFeederPower;
   double m_bottomFeederPower;
 
+  bool m_isManualOn;
+
   frc::XboxController *m_topDriver;
 };
