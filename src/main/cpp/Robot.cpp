@@ -23,9 +23,9 @@ void Robot::RobotInit()
     m_container.m_climber.TalonsInit();
     m_container.m_climber.ClimberInit();
 
-    // m_container.m_rearIntake.IntakeInit();
-    // m_container.m_rearIntake.Retract();
-    // m_container.m_rearIntake.SetPower(0);
+    m_container.m_rearIntake.IntakeInit();
+    m_container.m_rearIntake.Retract();
+    m_container.m_rearIntake.SetPower(0);
 
     m_container.m_frontIntake.IntakeInit();
     m_container.m_frontIntake.Retract();    
@@ -49,6 +49,15 @@ void Robot::RobotPeriodic()
 void Robot::DisabledInit() 
 {
     std::cout<<"Disabled Init"<<std::endl;
+
+
+  //Turn off Feeder
+  m_container.m_feeder.SetBottomFeederPower(0.0);
+  m_container.m_feeder.SetTopFeederPower(0.0);
+  m_container.m_feeder.SetFeederOn(false);
+
+
+
 }
 
 void Robot::DisabledPeriodic() 
@@ -122,6 +131,11 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("L_Motor",  m_container.m_drivetrain.GetLeftMotor()  );
   frc::SmartDashboard::PutNumber("R_Motor",  m_container.m_drivetrain.GetRightMotor()  );
 
+
+  //Nax-X
+  frc::SmartDashboard::PutBoolean("navx_IsConn", m_container.m_drivetrain.IsGyroConnected() );
+  frc::SmartDashboard::PutNumber("navx_Yaw",     m_container.m_drivetrain.GetGyroYaw()      );
+  frc::SmartDashboard::PutNumber("navx_Angle",   m_container.m_drivetrain.GetGyroAngle()    );
 
   //LimeLight
   frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightDistance());

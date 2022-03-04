@@ -3,8 +3,8 @@
 #include <iostream>
 
 //Drive limiter
-const double MAX_DRIVE_POWER = 0.85;
-const double MAX_TURN_POWER  = 0.65;
+const double MAX_DRIVE_POWER = 1.0;
+const double MAX_TURN_POWER  = 0.9;
 
 CmdDriveWithGamepad::CmdDriveWithGamepad(Drivetrain *drivetrain, frc::XboxController *driver_xbox )
 {

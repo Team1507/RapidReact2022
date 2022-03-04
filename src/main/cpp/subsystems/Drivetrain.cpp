@@ -22,7 +22,7 @@ Drivetrain::Drivetrain()
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() 
 {
-    OdometryPeriodic();
+    //OdometryPeriodic();
 }
 
 
@@ -86,7 +86,7 @@ void Drivetrain::Drive( double left, double right )
 
 void Drivetrain::ArcadeDrive( double speed, double rotation )
 {
-    m_differentialDrive.ArcadeDrive(speed,rotation,true);
+    m_differentialDrive.ArcadeDrive(speed,rotation,false);
 }
 
 
@@ -128,7 +128,7 @@ int Drivetrain::GetLeftEncoder2(void)
 
 int Drivetrain::GetLeftEncoder3(void)
 {
-    return (m_leftEncoder3.Get());
+    return (m_leftEncoder3.GetRaw());
 }
 
 int Drivetrain::GetRightEncoder(void)
@@ -143,7 +143,7 @@ int Drivetrain::GetRightEncoder2(void)
 
 int Drivetrain::GetRightEncoder3(void)
 {
-    return (m_rightEncoder3.Get());
+    return (m_rightEncoder3.GetRaw());
 }
 
 void Drivetrain::HardResetEncoders(void)

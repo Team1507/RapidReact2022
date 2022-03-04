@@ -6,9 +6,8 @@
 #define SHOOTER_kF_CONSTANT 0.0470          
 #define SHOOTER_kP_CONSTANT 0.00035
 
-#define TURRET_DEADBAND_CONSTANT 0.15
-
-#define HOOD_DEADBAND_CONSTANT 0.5 // purposfully high
+#define TURRET_DEADBAND_CONSTANT    0.5    // purposfully high
+#define HOOD_DEADBAND_CONSTANT      0.5    // purposfully high
 
 #define HOOD_kP_CONSTANT   0.058
 #define TURRET_kP_CONSTANT 0.067
@@ -57,6 +56,7 @@ void CmdShooterDefault::Execute()
   {
     m_shooter->SetTurretPower(0);
   }
+  
   //******************************************************
   //RJY = Manual Hood Control
   if(RJYAxis > HOOD_DEADBAND_CONSTANT)
@@ -72,11 +72,23 @@ void CmdShooterDefault::Execute()
     m_shooter->SetHoodPower(0);
   }
 
+  //Check for Turret/Hood Limit Switch
+  if(m_shooter->GetLeftTurretLimitSW() )
+  {
+    m_shooter->ResetTurretEncoder();
+  }
+  if(m_shooter->GetBotHoodLimitSW() )
+  {
+    m_shooter->ResetHoodEncoder();
+  }
+
+
+
   //*******************************************************
   //rt = shoot
   if(ShootPressed == 1) // pressed
   {
-    m_shooter->SetShooterPower(0.5);
+    m_shooter->SetShooterPower(0.3);
     //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
     //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
     //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
@@ -88,6 +100,10 @@ void CmdShooterDefault::Execute()
   //   m_shooter->SetTopFeederPower(0);
   //   m_shooter->SetBottomFeederPower(0);
   }
+
+
+
+
   //Dpad = set shooting velocities
   int DpadState = m_topDriver->GetPOV(0);
   static bool isDpadCenter = false;

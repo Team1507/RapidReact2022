@@ -16,6 +16,15 @@
 #define SHOOTER_RAMP_TIME 0.5
 #endif
 
+
+//Turret contants
+#define TURRET_MAX_LEFT_ANGLE   -40.0
+#define TURRET_MAX_RIGHT_ANGLE  40.0
+#define TURRET_ENCODER_SPAN     8030
+
+
+
+
 typedef struct 
 {
     float distance;
@@ -207,11 +216,11 @@ double Shooter::GetCurrentHoodAngle()
 }
 bool Shooter::GetTopHoodLimitSW(void)
 {
-    return m_hoodMotor.GetSensorCollection().IsFwdLimitSwitchClosed(); //m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 
+    return m_hoodMotor.GetSensorCollection().IsRevLimitSwitchClosed(); 
 }
 bool Shooter::GetBotHoodLimitSW(void)
 {
-    return m_hoodMotor.GetSensorCollection().IsRevLimitSwitchClosed();//m_botHoodLimtSwitch.Get();
+    return m_hoodMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
 }
 void Shooter::ResetHoodEncoder(void)
 {
@@ -221,8 +230,8 @@ void Shooter::ResetHoodEncoder(void)
 }
 int Shooter::GetHoodEncoder(void) 
 {
-    //return m_hoodMotor.GetSelectedSensorPosition(0);
-    return m_hoodMotor.GetSensorCollection().GetQuadraturePosition();
+    return m_hoodMotor.GetSelectedSensorPosition(0);
+    //return m_hoodMotor.GetSensorCollection().GetQuadraturePosition();
 }
 
 //**********************TURRET**********************
@@ -245,15 +254,18 @@ double Shooter::GetWantedTurretAngle()
 }
 double Shooter::GetCurrentTurretAngle()
 {
-    return m_turretMotor.GetSelectedSensorPosition()*TURRET_TICK2ANGLE;
+
+    int curr_encoder = GetTurretEncoder();
+
+    return TURRET_MAX_LEFT_ANGLE + ((TURRET_MAX_RIGHT_ANGLE - TURRET_MAX_LEFT_ANGLE) * curr_encoder) / TURRET_ENCODER_SPAN;
 }
 bool Shooter::GetLeftTurretLimitSW(void)
 {
-    return m_turretMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
+    return m_turretMotor.GetSensorCollection().IsRevLimitSwitchClosed();
 }
 bool Shooter::GetRightTurretLimitSW(void)
 {
-    return m_turretMotor.GetSensorCollection().IsRevLimitSwitchClosed();
+    return m_turretMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
 }
 bool Shooter::GetTurretHomeSW(void)
 {
@@ -266,8 +278,8 @@ void Shooter::ResetTurretEncoder(void)
 }
 int Shooter::GetTurretEncoder(void) 
 {
-    //return m_turretMotor.GetSelectedSensorPosition(0);
-    return m_turretMotor.GetSensorCollection().GetQuadraturePosition();
+    return -m_turretMotor.GetSelectedSensorPosition(0);
+    //return m_turretMotor.GetSensorCollection().GetQuadraturePosition();
 }
 
 //*********************LIMELIGHT*********************

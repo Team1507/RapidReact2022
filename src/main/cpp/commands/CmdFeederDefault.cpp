@@ -29,22 +29,25 @@ void CmdFeederDefault::Execute()
     m_isManualOn = true;
     //This is here to allow shooting and intake, ignore intake if shooter is on
 
-}
+  }
   else if ((ShootPressed == 0) && (m_isManualOn == false)) // released 
   {
     m_feeder->SetTopFeederPower(0);
     m_feeder->SetBottomFeederPower(0);
     //std::cout<<"Feeder Stopped after shot"<<std::endl;
   }
+
+
+  
 //*******************************************************
   //Y + LJ = Top Feeder Manual
   if(TopFeederActivate) 
   {
     m_topFeederPower = -m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-    std::cout<<m_topFeederPower<<std::endl;
+  
     m_feeder->SetTopFeederPower(m_topFeederPower);
     m_isManualOn = true;
-    std::cout<<"Top Feeder Manual"<<std::endl;
+ 
   }
   else 
   
@@ -53,7 +56,7 @@ void CmdFeederDefault::Execute()
   if(BottomFeederActivate) 
   {
     m_bottomFeederPower = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-    m_feeder->SetBottomFeederPower(m_bottomFeederPower);
+    m_feeder->SetBottomFeederPower(-m_bottomFeederPower);
     m_isManualOn = true;
   }
   else
