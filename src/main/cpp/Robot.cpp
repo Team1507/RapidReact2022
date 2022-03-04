@@ -102,7 +102,8 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());
   frc::SmartDashboard::PutBoolean("Bottom Hood Limit Switch", m_container.m_shooter.GetBotHoodLimitSW());
 
-  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());
+  frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());  
+  frc::SmartDashboard::PutNumber("Hood Wanted Angle", m_container.m_shooter.GetWantedHoodAngle());
   frc::SmartDashboard::PutNumber("Hood Power",m_container.m_shooter.GetHoodPower());
   frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
 

@@ -9,7 +9,7 @@
 #define TURRET_DEADBAND_CONSTANT    0.5    // purposfully high
 #define HOOD_DEADBAND_CONSTANT      0.5    // purposfully high
 
-#define HOOD_kP_CONSTANT   0.058
+#define HOOD_kP_CONSTANT   0.00058
 #define TURRET_kP_CONSTANT 0.03
 
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
@@ -45,21 +45,6 @@ void CmdShooterDefault::Execute()
     CmdCalculateAllV2(m_shooter,3);
   }
 
-
-  //******************************************************
-  //RJY = Manual Hood Control
-  if(RJYAxis > HOOD_DEADBAND_CONSTANT)
-  {
-    m_shooter->SetHoodPower(HOOD_SLOW_POWER);
-  }
-  else if(RJYAxis < -HOOD_DEADBAND_CONSTANT)
-  {
-    m_shooter->SetHoodPower(-HOOD_SLOW_POWER);
-  }
-  else
-  {
-    m_shooter->SetHoodPower(0);
-  }
 
   //Check for Turret/Hood Limit Switch
   if(m_shooter->GetLeftTurretLimitSW() )
@@ -108,22 +93,22 @@ void CmdShooterDefault::Execute()
       case 0:
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(0);//make a state
+        //m_shooter->SetTurretAngle(0);//make a state
         break;
       case 90:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(25);//make a state
+        m_shooter->SetHoodAngle(5000);//make a state
+        //m_shooter->SetTurretAngle(25);//make a state
         break;
       case 180:
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(0);//make a state
+        //m_shooter->SetTurretAngle(0);//make a state
         break;
       case 270:
         m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(-25);//make a state
+        m_shooter->SetHoodAngle(9000);//make a state
+        //m_shooter->SetTurretAngle(-25);//make a state
         break;
     }
   }
@@ -170,7 +155,6 @@ void CmdShooterDefault::Execute()
   //*******************************************************
   //*********************TURRET CONTROL********************
 
-
   //RJX = Manual Turret Control 
   if(RJXAxis > TURRET_DEADBAND_CONSTANT)
   {
@@ -183,14 +167,8 @@ void CmdShooterDefault::Execute()
      m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
   }
   else
-  // {
-  //   m_shooter->SetTurretPower(0);
-  // }
-  //if(!((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT)))
-
-
   {
-    const double TURRET_TOLERANCE = 2;
+    const double TURRET_TOLERANCE = 2.0;
     const double TURRET_MIN_POWER = 0.07;
     
     const double MAX_POS_TURRET_POWER = 0.3;
@@ -223,22 +201,33 @@ void CmdShooterDefault::Execute()
   }
 
 
-  // else
-  // {
-  //   m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
-  // }
   
 
-/*
+
   //******************************************************
-  //*********************HOOD ERROR***********************
-  if(!((RJXAxis > HOOD_DEADBAND_CONSTANT) || (RJXAxis < -HOOD_DEADBAND_CONSTANT)))
+  //*********************HOOD Control ***********************
+
+
+  //******************************************************
+  //RJY = Manual Hood Control
+  if(RJYAxis > HOOD_DEADBAND_CONSTANT)
   {
-    const double HOOD_TOLERANCE = 1;
+    m_shooter->SetHoodPower(HOOD_SLOW_POWER);
+    m_shooter->SetHoodAngle(m_shooter->GetCurrentHoodAngle());
+  }
+  else if(RJYAxis < -HOOD_DEADBAND_CONSTANT)
+  {
+    m_shooter->SetHoodPower(-HOOD_SLOW_POWER);
+    m_shooter->SetHoodAngle(m_shooter->GetCurrentHoodAngle());
+  }
+  else
+  {
+    //Values in encoder ticks
+    const double HOOD_TOLERANCE = 200;
     const double HOOD_MIN_POWER = 0.07;
     
-    const int MAX_POS_HOOD_POWER = 0.7;
-    const int MAX_NEG_HOOD_POWER = -0.7;
+    const double MAX_POS_HOOD_POWER = 0.5;
+    const double MAX_NEG_HOOD_POWER = -0.5;
 
     double hoodangle = m_shooter->GetCurrentHoodAngle();
     double wantedHoodAngle = m_shooter->GetWantedHoodAngle();
@@ -265,11 +254,10 @@ void CmdShooterDefault::Execute()
       m_shooter->SetHoodPower(0.0);
     }
   }
-  else
-  {
-    m_shooter->SetHoodAngle(m_shooter->GetCurrentHoodAngle());
-  }
-  */
+
+
+
+//END of Execute()
 }
 
 void CmdShooterDefault::End(bool interrupted) {}
