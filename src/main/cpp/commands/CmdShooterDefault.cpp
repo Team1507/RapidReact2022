@@ -62,7 +62,7 @@ void CmdShooterDefault::Execute()
   //rt = shoot
   if( ShootPressed ) // pressed
   {
-    m_shooter->SetShooterPower(0.15);
+    m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Trigger Power",0.3));
     //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
     //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
     //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on

@@ -101,7 +101,8 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Shooter Curr RPM", m_container.m_shooter.GetCurrentShooterRPM());  
   frc::SmartDashboard::PutNumber("Shooter Wanted RPM", m_container.m_shooter.GetWantedShooterRPM());  
   frc::SmartDashboard::PutNumber("Shooter L Power", m_container.m_shooter.GetLeftShooterPower());  
-    frc::SmartDashboard::PutNumber("Shooter R Power", m_container.m_shooter.GetRightShooterPower());  
+  frc::SmartDashboard::PutNumber("Shooter R Power", m_container.m_shooter.GetRightShooterPower());  
+  frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.3);
 
   //Hood
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());
@@ -125,6 +126,7 @@ void Robot::WriteToSmartDashboard(void)
   //Climber
   frc::SmartDashboard::PutBoolean("Climber Lower HE", m_container.m_climber.GetLowHallEffect());
   frc::SmartDashboard::PutBoolean("Climber Upper HE", m_container.m_climber.GetHighHallEffect());
+  frc::SmartDashboard::PutBoolean("Climber Brake",m_container.m_climber.IsClimbBrakeActivated());
   
   //Feeder
   frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_feeder.GetTopFeederPhotoeye());
