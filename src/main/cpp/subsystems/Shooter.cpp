@@ -18,10 +18,11 @@
 
 
 //Turret contants
-#define TURRET_MAX_LEFT_ANGLE   -40.0
-#define TURRET_MAX_RIGHT_ANGLE  40.0
-#define TURRET_ENCODER_SPAN     8030
-
+#define TURRET_MAX_LEFT_ANGLE               -40.0
+#define TURRET_MAX_RIGHT_ANGLE               40.0
+#define TURRET_ENCODER_AT_LEFT              -4015
+#define TURRET_ENCODER_AT_RIGHT              4015
+#define TURRET_ENCODER_TICKS_PER_ANGLE       100
 
 
 
@@ -62,6 +63,9 @@ void Shooter::ShooterInit(void)
     SetShooterPower(0);
     SetHoodPower(0);
     SetTurretPower(0);
+
+    ResetTurretEncoder();
+    ResetHoodEncoder();
 }
 
 void Shooter::Periodic() 
@@ -106,44 +110,10 @@ bool Shooter::ShooterInterpolation(float distance)
     return false;
 }
 
-//*********************SHOOTER********************
 
 
-void Shooter::SetShooterPower(double power)
-{
-    m_leftShooter.Set(ControlMode::PercentOutput, power);
-}
-void Shooter::SetShooterRPM(double rpm)
-{
-    #ifdef SHOOTER_PID
-    m_leftShooter.Set(ControlMode::Velocity, RPM2Velocity(rpm));
-    #endif
-    m_wantedShooterRPM = rpm;
-}
-double Shooter::GetShooterPower(void)
-{
-    return m_rightShooter.GetMotorOutputPercent();
-}
-double Shooter::GetShooterVelocity(void)
-{
-    return m_rightShooter.GetSelectedSensorVelocity();
-}
-double Shooter::GetWantedShooterRPM()
-{
-    return m_wantedShooterRPM;
-}
-double Shooter::GetCurrentShooterRPM()
-{
-    return Velocity2RPM(m_rightShooter.GetSelectedSensorVelocity());
-}
-double Shooter::GetTempatureLeftShooter()
-{
-    return m_leftShooter.GetTemperature();
-}
-double Shooter::GetTempatureRightShooter()
-{
-    return m_rightShooter.GetTemperature();
-}
+
+
 void Shooter::FalconsInit()
 {
     std::cout<<"Shooter: Falcon Init"<<std::endl;
@@ -191,6 +161,51 @@ void Shooter::FalconsInit()
 
 
 }
+
+
+
+
+//*********************SHOOTER********************
+
+
+void Shooter::SetShooterPower(double power)
+{
+    m_leftShooter.Set(ControlMode::PercentOutput, power);
+}
+void Shooter::SetShooterRPM(double rpm)
+{
+    #ifdef SHOOTER_PID
+    m_leftShooter.Set(ControlMode::Velocity, RPM2Velocity(rpm));
+    #endif
+    m_wantedShooterRPM = rpm;
+}
+double Shooter::GetShooterPower(void)
+{
+    return m_rightShooter.GetMotorOutputPercent();
+}
+double Shooter::GetShooterVelocity(void)
+{
+    return m_rightShooter.GetSelectedSensorVelocity();
+}
+double Shooter::GetWantedShooterRPM()
+{
+    return m_wantedShooterRPM;
+}
+double Shooter::GetCurrentShooterRPM()
+{
+    return Velocity2RPM(m_rightShooter.GetSelectedSensorVelocity());
+}
+double Shooter::GetTempatureLeftShooter()
+{
+    return m_leftShooter.GetTemperature();
+}
+double Shooter::GetTempatureRightShooter()
+{
+    return m_rightShooter.GetTemperature();
+}
+
+
+
 
 //**********************HOOD**********************
 
@@ -254,10 +269,7 @@ double Shooter::GetWantedTurretAngle()
 }
 double Shooter::GetCurrentTurretAngle()
 {
-
-    int curr_encoder = GetTurretEncoder();
-
-    return TURRET_MAX_LEFT_ANGLE + ((TURRET_MAX_RIGHT_ANGLE - TURRET_MAX_LEFT_ANGLE) * curr_encoder) / TURRET_ENCODER_SPAN;
+    return GetTurretEncoder() / TURRET_ENCODER_TICKS_PER_ANGLE;
 }
 bool Shooter::GetLeftTurretLimitSW(void)
 {
@@ -276,6 +288,20 @@ void Shooter::ResetTurretEncoder(void)
     m_turretMotor.SetSelectedSensorPosition(0,0,0);
     m_wantedTurretAngle = 0;
 }
+
+void Shooter::SetTurretEncoderAtLeft(void)
+{
+    m_turretMotor.SetSelectedSensorPosition(-TURRET_ENCODER_AT_LEFT,0,0);
+    m_wantedTurretAngle = TURRET_MAX_LEFT_ANGLE;
+}
+void Shooter::SetTurretEncoderAtRight(void)
+{
+    m_turretMotor.SetSelectedSensorPosition(-TURRET_ENCODER_AT_RIGHT,0,0);
+    m_wantedTurretAngle = TURRET_MAX_RIGHT_ANGLE;
+}
+
+
+
 int Shooter::GetTurretEncoder(void) 
 {
     return -m_turretMotor.GetSelectedSensorPosition(0);

@@ -65,6 +65,8 @@ class Shooter : public frc2::SubsystemBase {
   bool   GetTurretHomeSW(void);
 
   void   ResetTurretEncoder(void);
+  void   SetTurretEncoderAtLeft(void);
+  void   SetTurretEncoderAtRight(void);
 
   int    GetTurretEncoder(void);
 

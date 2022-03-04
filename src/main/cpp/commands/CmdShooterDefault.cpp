@@ -10,7 +10,7 @@
 #define HOOD_DEADBAND_CONSTANT      0.5    // purposfully high
 
 #define HOOD_kP_CONSTANT   0.058
-#define TURRET_kP_CONSTANT 0.067
+#define TURRET_kP_CONSTANT 0.03
 
 CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topDriver) 
 {
@@ -20,7 +20,9 @@ CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topD
 
 }
 
-void CmdShooterDefault::Initialize() {}
+void CmdShooterDefault::Initialize() 
+{
+}
 
 void CmdShooterDefault::Execute() 
 {
@@ -42,21 +44,8 @@ void CmdShooterDefault::Execute()
   {
     CmdCalculateAllV2(m_shooter,3);
   }
-  //*******************************************************
-  //RJX = Manual Turret Control 
-  if(RJXAxis > TURRET_DEADBAND_CONSTANT)
-  {
-    m_shooter->SetTurretPower(TURRET_SLOW_POWER);
-  } 
-  else if(RJXAxis < -TURRET_DEADBAND_CONSTANT)
-  {
-    m_shooter->SetTurretPower(-TURRET_SLOW_POWER);
-  }
-  else
-  {
-    m_shooter->SetTurretPower(0);
-  }
-  
+
+
   //******************************************************
   //RJY = Manual Hood Control
   if(RJYAxis > HOOD_DEADBAND_CONSTANT)
@@ -75,7 +64,7 @@ void CmdShooterDefault::Execute()
   //Check for Turret/Hood Limit Switch
   if(m_shooter->GetLeftTurretLimitSW() )
   {
-    m_shooter->ResetTurretEncoder();
+    m_shooter->SetTurretEncoderAtLeft();
   }
   if(m_shooter->GetBotHoodLimitSW() )
   {
@@ -124,7 +113,7 @@ void CmdShooterDefault::Execute()
       case 90:
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(0);//make a state
+        m_shooter->SetTurretAngle(25);//make a state
         break;
       case 180:
         m_shooter->SetShooterRPM(0);//make a state
@@ -134,7 +123,7 @@ void CmdShooterDefault::Execute()
       case 270:
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
-        m_shooter->SetTurretAngle(0);//make a state
+        m_shooter->SetTurretAngle(-25);//make a state
         break;
     }
   }
@@ -177,21 +166,40 @@ void CmdShooterDefault::Execute()
   }
 */
 #endif 
-/*
-  //*****************************************************
-  //*********************TURRET ERROR********************
-  if(!((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT)))
+
+  //*******************************************************
+  //*********************TURRET CONTROL********************
+
+
+  //RJX = Manual Turret Control 
+  if(RJXAxis > TURRET_DEADBAND_CONSTANT)
   {
-    const double TURRET_TOLERANCE = 1;
+    m_shooter->SetTurretPower(TURRET_SLOW_POWER);
+     m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
+  } 
+  else if(RJXAxis < -TURRET_DEADBAND_CONSTANT)
+  {
+    m_shooter->SetTurretPower(-TURRET_SLOW_POWER);
+     m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
+  }
+  else
+  // {
+  //   m_shooter->SetTurretPower(0);
+  // }
+  //if(!((RJXAxis > TURRET_DEADBAND_CONSTANT) || (RJXAxis < -TURRET_DEADBAND_CONSTANT)))
+
+
+  {
+    const double TURRET_TOLERANCE = 2;
     const double TURRET_MIN_POWER = 0.07;
     
-    const int MAX_POS_TURRET_POWER = 0.7;
-    const int MAX_NEG_TURRET_POWER = -0.7;
+    const double MAX_POS_TURRET_POWER = 0.3;
+    const double MAX_NEG_TURRET_POWER = -0.3;
 
     double turretangle = m_shooter->GetCurrentTurretAngle();
     double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
     
-    double turret_error = turretangle - wantedTurretAngle;
+    double turret_error = wantedTurretAngle - turretangle;
     double turret_power = (turret_error * TURRET_kP_CONSTANT);
 
         
@@ -213,13 +221,15 @@ void CmdShooterDefault::Execute()
       m_shooter->SetTurretPower(0.0);
     }
   }
-  else
-  {
-    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
-  }
+
+
+  // else
+  // {
+  //   m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle());
+  // }
   
 
-
+/*
   //******************************************************
   //*********************HOOD ERROR***********************
   if(!((RJXAxis > HOOD_DEADBAND_CONSTANT) || (RJXAxis < -HOOD_DEADBAND_CONSTANT)))

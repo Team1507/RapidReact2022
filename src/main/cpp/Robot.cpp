@@ -113,6 +113,7 @@ void Robot::WriteToSmartDashboard(void)
 
   frc::SmartDashboard::PutNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
   frc::SmartDashboard::PutNumber("Turret Angle", m_container.m_shooter.GetCurrentTurretAngle());
+  frc::SmartDashboard::PutNumber("Turret Wanted Angle", m_container.m_shooter.GetWantedTurretAngle());
   frc::SmartDashboard::PutNumber("Turret Power", m_container.m_shooter.GetTurretPower()  );
   
   //Climber
