@@ -28,7 +28,7 @@ void CmdShooterDefault::Execute()
 {
   bool TurretHomePressed   = m_topDriver->GetXButton();
   bool CalculateAllPressed = m_topDriver->GetLeftTriggerAxis();
-  bool ShootPressed        = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
+  bool ShootPressed        = ( m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG) > 0.9);
   double RJYAxis           = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_Y);
   double RJXAxis           = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_X);
   //*******************************************************
@@ -60,15 +60,15 @@ void CmdShooterDefault::Execute()
 
   //*******************************************************
   //rt = shoot
-  if(ShootPressed == 1) // pressed
+  if( ShootPressed ) // pressed
   {
-    m_shooter->SetShooterPower(0.3);
+    m_shooter->SetShooterPower(0.15);
     //m_shooter->SetTopFeederPower(TOP_FEEDER_SHOOTING_POWER);
     //m_shooter->SetBottomFeederPower(BOTTOM_FEEDER_SHOOTING_POWER);
     //m_shooter->SetFeederOn(false);    //This is here to allow shooting and intake, ignore intake if shooter is on
 
   }
-  else if (ShootPressed == 0) // released 
+  else  // released 
   {
     m_shooter->SetShooterPower(0);
   //   m_shooter->SetTopFeederPower(0);

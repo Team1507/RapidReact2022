@@ -97,6 +97,11 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Driver LeftYAxis",   (double)m_container.m_bot_driver.GetRawAxis( GAMEPADMAP_AXIS_L_Y ) ); 
   frc::SmartDashboard::PutNumber("Driver RightXAxis",  (double)m_container.m_bot_driver.GetRawAxis( GAMEPADMAP_AXIS_R_X ) ); 
 
+  //Shooter
+  frc::SmartDashboard::PutNumber("Shooter Curr RPM", m_container.m_shooter.GetCurrentShooterRPM());  
+  frc::SmartDashboard::PutNumber("Shooter Wanted RPM", m_container.m_shooter.GetWantedShooterRPM());  
+  frc::SmartDashboard::PutNumber("Shooter L Power", m_container.m_shooter.GetLeftShooterPower());  
+    frc::SmartDashboard::PutNumber("Shooter R Power", m_container.m_shooter.GetRightShooterPower());  
 
   //Hood
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());

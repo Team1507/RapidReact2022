@@ -6,8 +6,7 @@
 //#define SHOOTER_PID
 
 #define PI 3.1415
-#define HOOD_TICK2ANGLE 1 //change later
-#define TURRET_TICK2ANGLE 1 //change later
+
 
 #ifdef SHOOTER_PID
 #define SHOOTER_PID_SLOT 0
@@ -153,11 +152,14 @@ void Shooter::FalconsInit()
     m_hoodMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
     m_turretMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
 
-    //Power Limits
-    m_rightShooter.ConfigPeakOutputForward(PEAK_FALCON_POWER,10);
-    m_leftShooter.ConfigPeakOutputForward(PEAK_FALCON_POWER,10);
-    m_rightShooter.ConfigPeakOutputReverse(0,10);
-    m_leftShooter.ConfigPeakOutputReverse(0,10);
+    // //Power Limits
+    //  PeakOutput is not a limiter, its a multiplier
+    //    So, motor output is set power * PeakOutputSetting
+    //    It also seems to have memory that ConfigFactoryDefault() does not clear.
+    m_rightShooter.ConfigPeakOutputForward(1.0,10);
+    m_leftShooter.ConfigPeakOutputForward(1.0,10);
+    m_rightShooter.ConfigPeakOutputReverse(-1.0,10);
+    m_leftShooter.ConfigPeakOutputReverse(-1.0,10);
 
 
 }
@@ -170,7 +172,7 @@ void Shooter::FalconsInit()
 
 void Shooter::SetShooterPower(double power)
 {
-    m_leftShooter.Set(ControlMode::PercentOutput, power);
+    m_rightShooter.Set(ControlMode::PercentOutput, power);
 }
 void Shooter::SetShooterRPM(double rpm)
 {
@@ -183,6 +185,19 @@ double Shooter::GetShooterPower(void)
 {
     return m_rightShooter.GetMotorOutputPercent();
 }
+
+double Shooter::GetRightShooterPower(void)
+{
+    return m_rightShooter.GetMotorOutputPercent();
+}
+double Shooter::GetLeftShooterPower(void)
+{
+    return m_leftShooter.GetMotorOutputPercent();
+}
+
+
+
+
 double Shooter::GetShooterVelocity(void)
 {
     return m_rightShooter.GetSelectedSensorVelocity();
@@ -227,7 +242,7 @@ double Shooter::GetWantedHoodAngle()
 }
 double Shooter::GetCurrentHoodAngle()
 {
-    return m_hoodMotor.GetSelectedSensorPosition() * HOOD_TICK2ANGLE;
+    return m_hoodMotor.GetSelectedSensorPosition();
 }
 bool Shooter::GetTopHoodLimitSW(void)
 {
