@@ -68,7 +68,7 @@ bool Shooter::ShooterInterpolation(float distance)
     }
     else
     {
-        for(int i = 0; i < SHOOTER_LIST_LENGTH; i++)
+        for(unsigned int i = 0; i < SHOOTER_LIST_LENGTH; i++)
         { 
             if((distance > shooterInfo[i].distance) && (distance < shooterInfo[i+1].distance))
             {
@@ -94,6 +94,7 @@ bool Shooter::ShooterInterpolation(float distance)
            
         }
     }
+    return false;
 }
 
 //*********************SHOOTER********************
@@ -170,8 +171,8 @@ void Shooter::FalconsInit()
     //Setup Encoders
     m_leftShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
     m_rightShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
-    m_hoodMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
-    m_turretMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
+    m_hoodMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
+    m_turretMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
 
     //Power Limits
     m_rightShooter.ConfigPeakOutputForward(PEAK_FALCON_POWER,10);
@@ -204,10 +205,6 @@ double Shooter::GetCurrentHoodAngle()
 {
     return m_hoodMotor.GetSelectedSensorPosition() * HOOD_TICK2ANGLE;
 }
-double Shooter::GetTempatureHoodMotor()
-{
-    return m_hoodMotor.GetTemperature();
-}
 bool Shooter::GetTopHoodLimitSW(void)
 {
     return m_hoodMotor.GetSensorCollection().IsFwdLimitSwitchClosed(); //m_topHoodLimitSwitch.Get(); // return limit switch objects here once i create it 
@@ -219,12 +216,13 @@ bool Shooter::GetBotHoodLimitSW(void)
 void Shooter::ResetHoodEncoder(void)
 {
     //Jack Waz Here
-    m_hoodMotor.SetSelectedSensorPosition(0);
+    m_hoodMotor.SetSelectedSensorPosition(0,0,0);
     m_wantedHoodAngle = 0;
 }
-double Shooter::GetHoodEncoder(void) 
+int Shooter::GetHoodEncoder(void) 
 {
-    return m_hoodMotor.GetSelectedSensorPosition(0);
+    //return m_hoodMotor.GetSelectedSensorPosition(0);
+    return m_hoodMotor.GetSensorCollection().GetQuadraturePosition();
 }
 
 //**********************TURRET**********************
@@ -249,10 +247,6 @@ double Shooter::GetCurrentTurretAngle()
 {
     return m_turretMotor.GetSelectedSensorPosition()*TURRET_TICK2ANGLE;
 }
-double Shooter::GetTempatureTurretMotor()
-{
-    return m_turretMotor.GetTemperature();
-}
 bool Shooter::GetLeftTurretLimitSW(void)
 {
     return m_turretMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
@@ -267,12 +261,13 @@ bool Shooter::GetTurretHomeSW(void)
 }
 void Shooter::ResetTurretEncoder(void)
 {
-    m_turretMotor.SetSelectedSensorPosition(0);
+    m_turretMotor.SetSelectedSensorPosition(0,0,0);
     m_wantedTurretAngle = 0;
 }
-double Shooter::GetTurretEncoder(void) 
+int Shooter::GetTurretEncoder(void) 
 {
-    return m_turretMotor.GetSelectedSensorPosition(0);
+    //return m_turretMotor.GetSelectedSensorPosition(0);
+    return m_turretMotor.GetSensorCollection().GetQuadraturePosition();
 }
 
 //*********************LIMELIGHT*********************
@@ -300,15 +295,17 @@ bool Shooter::GetLimelightTargetValid(void)
 {
     return (bool)nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv", 0);
 }
-void Shooter::LimeLight3xMode(bool is3xMode)
-{
-    if(is3xMode)
-    {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 1);
-    }
-    else
-    {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 0);
-    }
-}
+
+
+// void Shooter::LimeLight3xMode(bool is3xMode)
+// {
+//     if(is3xMode)
+//     {
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 1);
+//     }
+//     else
+//     {
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline", 0);
+//     }
+// }
 

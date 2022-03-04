@@ -42,14 +42,13 @@ class Shooter : public frc2::SubsystemBase {
   double GetHoodPower(void);
   double GetWantedHoodAngle(void);
   double GetCurrentHoodAngle(void);
-  double GetTempatureHoodMotor(void);
 
   bool   GetTopHoodLimitSW(void);
   bool   GetBotHoodLimitSW(void);
 
   void   ResetHoodEncoder(void);
 
-  double GetHoodEncoder(void);
+  int    GetHoodEncoder(void);
 
   const double HOOD_TOLERANCE = 0; //CHANGE LATER
 
@@ -60,7 +59,6 @@ class Shooter : public frc2::SubsystemBase {
   double GetTurretPower(void);
   double GetWantedTurretAngle(void);
   double GetCurrentTurretAngle(void);
-  double GetTempatureTurretMotor(void);
 
   bool   GetLeftTurretLimitSW(void); 
   bool   GetRightTurretLimitSW(void);
@@ -68,7 +66,7 @@ class Shooter : public frc2::SubsystemBase {
 
   void   ResetTurretEncoder(void);
 
-  double GetTurretEncoder(void);
+  int    GetTurretEncoder(void);
 
   const double TURRET_TOLERANCE = 0; //CHANGE LATER
 
@@ -78,7 +76,7 @@ class Shooter : public frc2::SubsystemBase {
   double GetLimelightDistance(void);
   bool   GetLimelightTargetValid(void);
   
-  void   LimeLight3xMode(bool is3XMode);
+  //void   LimeLight3xMode(bool is3XMode);
 
   
 

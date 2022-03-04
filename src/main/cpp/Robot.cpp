@@ -82,29 +82,33 @@ void Robot::TeleopPeriodic() {}
 
 void Robot::WriteToSmartDashboard(void)
 {
-  //Shooter
-  frc::SmartDashboard::PutNumber("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
-  frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
+
+
+  //XBox Controllers
+  frc::SmartDashboard::PutNumber("Driver LeftYAxis",   (double)m_container.m_bot_driver.GetRawAxis( GAMEPADMAP_AXIS_L_Y ) ); 
+  frc::SmartDashboard::PutNumber("Driver RightXAxis",  (double)m_container.m_bot_driver.GetRawAxis( GAMEPADMAP_AXIS_R_X ) ); 
+
 
   //Hood
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());
   frc::SmartDashboard::PutBoolean("Bottom Hood Limit Switch", m_container.m_shooter.GetBotHoodLimitSW());
-  frc::SmartDashboard::PutNumber("Hood Motor Temp", m_container.m_shooter.GetTempatureHoodMotor());
+
   frc::SmartDashboard::PutNumber("Hood Angle", m_container.m_shooter.GetCurrentHoodAngle());
   frc::SmartDashboard::PutNumber("Hood Power",m_container.m_shooter.GetHoodPower());
+  frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
+
   //Turret
   frc::SmartDashboard::PutBoolean("Left Turret Limit Switch", m_container.m_shooter.GetLeftTurretLimitSW());
   frc::SmartDashboard::PutBoolean("Right Turret Limit Switch", m_container.m_shooter.GetRightTurretLimitSW());
   frc::SmartDashboard::PutBoolean("Turret Home Limit Switch", m_container.m_shooter.GetTurretHomeSW());
-  frc::SmartDashboard::PutNumber("Turret Temp", m_container.m_shooter.GetTempatureTurretMotor());
+
   frc::SmartDashboard::PutNumber("Turret Encoder", m_container.m_shooter.GetTurretEncoder());
-  frc::SmartDashboard::PutNumber("Hood Encoder", m_container.m_shooter.GetHoodEncoder());
   frc::SmartDashboard::PutNumber("Turret Angle", m_container.m_shooter.GetCurrentTurretAngle());
   frc::SmartDashboard::PutNumber("Turret Power", m_container.m_shooter.GetTurretPower()  );
   
   //Climber
-  frc::SmartDashboard::PutBoolean("Mid Climber Hall Effect", m_container.m_climber.GetLowHallEffect());
-  //frc::SmartDashboard::PutBoolean("High Climb Hall Effect", m_container.m_climber.GetHighHallEffect());
+  frc::SmartDashboard::PutBoolean("Climber Lower HE", m_container.m_climber.GetLowHallEffect());
+  frc::SmartDashboard::PutBoolean("Climber Upper HE", m_container.m_climber.GetHighHallEffect());
   
   //Feeder
   frc::SmartDashboard::PutBoolean("Top Feeder PhotoEye", m_container.m_feeder.GetTopFeederPhotoeye());
@@ -114,13 +118,21 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder3());
   frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder3());
   
+  //Motors
+  frc::SmartDashboard::PutNumber("L_Motor",  m_container.m_drivetrain.GetLeftMotor()  );
+  frc::SmartDashboard::PutNumber("R_Motor",  m_container.m_drivetrain.GetRightMotor()  );
+
+
   //LimeLight
   frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightDistance());
-  frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightVAngle());
-  frc::SmartDashboard::PutNumber("LimeLight Distance", m_container.m_shooter.GetLimelightHAngle());
+  frc::SmartDashboard::PutNumber("LimeLight VAngle", m_container.m_shooter.GetLimelightVAngle());
+  frc::SmartDashboard::PutNumber("LimeLight HAngle", m_container.m_shooter.GetLimelightHAngle());
   frc::SmartDashboard::PutBoolean("LimeLight Target Valid", m_container.m_shooter.GetLimelightTargetValid());
   
   
+    //Shooter Temps
+  frc::SmartDashboard::PutNumber("Left Shooter Temp", m_container.m_shooter.GetTempatureLeftShooter());
+  frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
   
   m_container.m_drivetrain.WriteFalconTemps();
   

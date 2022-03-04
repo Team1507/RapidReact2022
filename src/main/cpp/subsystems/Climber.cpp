@@ -10,8 +10,7 @@ Climber::Climber()
 
 void Climber::ClimberInit()
 {
-    SetMidBarPower(0);
-    SetHighBarPower(0);    
+    SetMidBarPower(0); 
 }
 
 void Climber::SetMidBarPower(double power)
@@ -19,21 +18,7 @@ void Climber::SetMidBarPower(double power)
     m_lowClimbLeftMotor.Set(power);
     m_lowClimbRightMotor.Set(power);
 }
-void Climber::SetHighBarPower(double power)
-{
-    m_highClimbLeftMotor.Set(power);
-    m_highClimbRightMotor.Set(power);
-}
 
-void Climber::HighBarExtend()
-{
-    m_highBarControl.Set(frc::DoubleSolenoid::kForward);
-}
-
-void Climber::HighBarRetract()
-{
-    m_highBarControl.Set(frc::DoubleSolenoid::kReverse);
-}
 
 void Climber::ClimbBrakeExtend()
 {
@@ -48,8 +33,7 @@ void Climber::ClimbBrakeRetract()
 
 bool Climber::GetHighHallEffect(void)
 {
-    //return m_lowClimbRightMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
-    return true;
+    return m_lowClimbRightMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
 }
 
 bool Climber::GetLowHallEffect(void)
@@ -70,30 +54,21 @@ void Climber::TalonsInit(void)
 {
     m_lowClimbLeftMotor.ConfigFactoryDefault();
     m_lowClimbRightMotor.ConfigFactoryDefault();
-    // m_highClimbLeftMotor.ConfigFactoryDefault();
-    // m_highClimbRightMotor.ConfigFactoryDefault();
 
     //Setting left to follow right motor
     m_lowClimbLeftMotor.Follow(m_lowClimbRightMotor);
-    m_highClimbLeftMotor.Follow(m_highClimbRightMotor);
 
     //Set Inverted
     m_lowClimbLeftMotor.SetInverted(false);
     m_lowClimbRightMotor.SetInverted(true);
-    // m_highClimbLeftMotor.SetInverted(false);
-    // m_highClimbRightMotor.SetInverted(false);
 
     //Set Coast Mode
     m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
     m_lowClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
-    // m_highClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
-    // m_highClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
 
     //Setup Encoders
     m_lowClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
     m_lowClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
-    // m_highClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
-    // m_highClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0);
 }
 
 

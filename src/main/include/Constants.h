@@ -38,10 +38,10 @@
 //**********CLIMBER CONSTANTS**********
 #define LO_CLIMB_LEFT_FALCON_CAN    6
 #define LO_CLIMB_RIGHT_FALCON_CAN   7
-#define HI_CLIMB_LEFT_FALCON_CAN    8
-#define HI_CLIMB_RIGHT_FALCON_CAN   9
-#define HI_CLIMB_DEPLOY_PCM         4
-#define HI_CLIMB_RETURN_PCM         5
+// #define HI_CLIMB_LEFT_FALCON_CAN    8
+// #define HI_CLIMB_RIGHT_FALCON_CAN   9
+// #define HI_CLIMB_DEPLOY_PCM         4
+// #define HI_CLIMB_RETURN_PCM         5
 #define CLIMB_BRAKE_ENGAGE_PCM      6
 #define CLIMB_BRAKE_DISENGAGE_PCM   7
 
@@ -53,15 +53,13 @@
 #define RIGHT_SHOOTER_CAN          11
 #define HOOD_TALON_CAN             12
 #define HOOD_SLOW_POWER            0.3
-// #define HOOD_BOTTOM_LIMIT_SWITCH   7
-// #define HOOD_TOP_LIMIT_SWITCH      8
 
 #define SHOOTER_IDLE_VELOCITY      11
 #define SHOOTER_CLOSE_VELOCITY     16 //TBD
 
-// #define SHOOTER_HOOD_PORT       0
+
 
 //**********PCM CONSTANTS********** 
- #define PCM_CAN_ID                13
-// #define PCM_RAMP_ID             0
+ #define PCM_CAN_ID                13       //PCH
+
 

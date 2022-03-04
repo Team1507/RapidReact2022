@@ -10,5 +10,5 @@ CmdLimeLight3xMode::CmdLimeLight3xMode(Shooter *shooter, bool is3xMode)
 
 void CmdLimeLight3xMode::Initialize() 
 {
-    m_shooter->LimeLight3xMode(m_is3xOn);
+    //m_shooter->LimeLight3xMode(m_is3xOn);
 }

@@ -10,6 +10,7 @@
 #include "commands/GrpTestOne.h"
 #include "commands/GrpTestTwo.h"
 #include "commands/CmdIntakeSetPower.h"
+#include "commands/CmdDriveClearAll.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) 
 {
@@ -33,19 +34,20 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   frc::SmartDashboard::PutData(&m_chooser);
 
   //********************************Smart Dashboard Buttons**************************************
-   
-  frc::SmartDashboard::PutData( new AutoJustShootNoLimelight(&m_shooter,&m_drivetrain,&m_feeder));
-  frc::SmartDashboard::PutData( new AutoJustShootLimelight(&m_shooter,&m_drivetrain,&m_feeder));
+   frc::SmartDashboard::PutData("CmdDriveClearAll", new CmdDriveClearAll(&m_drivetrain)  );
+
+  frc::SmartDashboard::PutData( "JustShootNoLimelight", new AutoJustShootNoLimelight(&m_shooter,&m_drivetrain,&m_feeder));
+  frc::SmartDashboard::PutData( "JustShootWithLimelight", new AutoJustShootLimelight(&m_shooter,&m_drivetrain,&m_feeder));
   
-  frc::SmartDashboard::PutData( new GrpTestOne(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
-  frc::SmartDashboard::PutData( new GrpTestTwo(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake, &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
+  frc::SmartDashboard::PutData( "GrpTestOne", new GrpTestOne(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
+  frc::SmartDashboard::PutData( "GrpTestTwo", new GrpTestTwo(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake, &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
 
   ConfigureButtonBindings();
 }
 
 void RobotContainer::ConfigureButtonBindings() 
 {
-  m_btn_driver_A.WhenPressed(new CmdLimeLight3xMode(&m_shooter, true)).WhenReleased(new CmdLimeLight3xMode(&m_shooter, false));
+  //m_btn_driver_A.WhenPressed(new CmdLimeLight3xMode(&m_shooter, true)).WhenReleased(new CmdLimeLight3xMode(&m_shooter, false));
   //m_top_driver_LB.WhenPressed(new CmdIntakeSetPower(&m_frontIntake, 0.5)).WhenReleased(new CmdIntakeSetPower(&m_frontIntake, 0.0));
 }
 
