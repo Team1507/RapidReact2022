@@ -69,9 +69,9 @@ void CmdIntakeDefault::Execute()
 
 		if(m_intake->GetType() == Intake::Type::REAR)//
 		{
-			double frontIntakePower = frc::SmartDashboard::GetNumber("FRONT_INTAKE_POWER", 0);
+			double rearIntakePower = frc::SmartDashboard::GetNumber("REAR_INTAKE_POWER", 0);
 
-			m_intake->SetPower(frontIntakePower);
+			m_intake->SetPower(rearIntakePower);
 			m_intake->Deploy();
 			m_feeder->SetFeederOn(true);
 		}
