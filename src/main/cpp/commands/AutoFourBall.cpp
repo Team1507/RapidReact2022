@@ -17,7 +17,7 @@
 #include "commands/CmdIntakeRetract.h"
 #include "commands/CmdIntakeSetPower.h"
 
-AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, Intake *rearintake, Feeder *feeder) //
+AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear *rearintake, Feeder *feeder) //
 {
     AddCommands
     (

@@ -1,6 +1,6 @@
 #include "commands/CmdIntakeDeploy.h"
 
-CmdIntakeDeploy::CmdIntakeDeploy(Intake *intake) 
+CmdIntakeDeploy::CmdIntakeDeploy(IntakeRear *intake) 
 { 
   m_intake = intake;
 }

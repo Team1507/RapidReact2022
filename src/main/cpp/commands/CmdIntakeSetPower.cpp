@@ -1,6 +1,6 @@
 #include "commands/CmdIntakeSetPower.h"
 
-CmdIntakeSetPower::CmdIntakeSetPower(Intake *intake, double power) 
+CmdIntakeSetPower::CmdIntakeSetPower(IntakeRear *intake, double power) 
 {
   m_intake = intake;
   m_power = power;

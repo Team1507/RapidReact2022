@@ -2,15 +2,15 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeFront.h"
 #include <frc/XboxController.h>
 #include "subsystems/Shooter.h"
 #include "subsystems/Feeder.h"
 
-class CmdIntakeDefault
-    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeDefault> {
+class CmdIntakeFrontDefault
+    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeFrontDefault> {
  public:
-  CmdIntakeDefault(Intake *intake, frc::XboxController *topDriver, frc::XboxController *botDriver, Shooter *shooter, Feeder *feeder);
+  CmdIntakeFrontDefault(IntakeFront *intake, frc::XboxController *topDriver, frc::XboxController *botDriver, Shooter *shooter, Feeder *feeder);
 
   void Initialize() override;
 
@@ -21,7 +21,7 @@ class CmdIntakeDefault
   bool IsFinished() override;
 
   private:
-  Intake *m_intake;
+  IntakeFront         *m_intake;
   frc::XboxController *m_topDriver;
   frc::XboxController *m_botDriver;
   Shooter *m_shooter;

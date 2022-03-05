@@ -4,7 +4,7 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include "subsystems/Shooter.h"
 #include "subsystems/Drivetrain.h"
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeRear.h"
 #include "subsystems/Feeder.h"
 
 
@@ -12,5 +12,5 @@ class AutoTwoBall
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  AutoTwoBall> {
  public:
-  AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,Intake *rearintake, Feeder *feeder );
+  AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain, IntakeRear *rearintake, Feeder *feeder );
 };

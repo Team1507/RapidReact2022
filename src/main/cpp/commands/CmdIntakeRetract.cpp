@@ -1,6 +1,6 @@
 #include "commands/CmdIntakeRetract.h"
 
-CmdIntakeRetract::CmdIntakeRetract(Intake *intake) 
+CmdIntakeRetract::CmdIntakeRetract(IntakeRear *intake) 
 {
   m_intake = intake;
 }

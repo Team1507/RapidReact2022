@@ -19,7 +19,7 @@
 #include "commands/CmdIntakeSetPower.h"
 
 
-AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain,  Shooter *shooter,Intake *rearintake, Feeder *feeder) //
+AutoFiveBallBlitz::AutoFiveBallBlitz(Drivetrain *drivetrain,  Shooter *shooter,IntakeRear *rearintake, Feeder *feeder) //
 {
     AddCommands
     (

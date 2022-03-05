@@ -2,7 +2,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeRear.h"
 
 
 
@@ -10,7 +10,7 @@
 class CmdIntakeDeploy
     : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeDeploy> {
  public:
-  CmdIntakeDeploy(Intake *intake);
+  CmdIntakeDeploy(IntakeRear *intake);
 
   void Initialize() override;
 
@@ -21,6 +21,6 @@ class CmdIntakeDeploy
   bool IsFinished() override;
 
   private:
-    Intake *m_intake;
+    IntakeRear *m_intake;
     double m_power;
 };
