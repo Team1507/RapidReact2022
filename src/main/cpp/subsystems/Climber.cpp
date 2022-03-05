@@ -11,6 +11,7 @@ Climber::Climber()
 void Climber::ClimberInit()
 {
     SetMidBarPower(0); 
+    m_climbBrake.Set(frc::DoubleSolenoid::kReverse);
 }
 
 void Climber::SetMidBarPower(double power)

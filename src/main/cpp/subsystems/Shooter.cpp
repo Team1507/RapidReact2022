@@ -65,6 +65,7 @@ void Shooter::ShooterInit(void)
 
     ResetTurretEncoder();
     ResetHoodEncoder();
+    frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.3);
 }
 
 void Shooter::Periodic() 
@@ -336,8 +337,8 @@ double Shooter::GetLimelightVAngle(void)
 }
 double Shooter::GetLimelightDistance(void)
 {
-    const double a1 = 19.3;//angle of limelight
-    const double h1 = 24;//height of limelight from ground
+    const double a1 = 32;//angle of limelight 32 off of vertical
+    const double h1 = 35.5;//height of limelight from ground
     const double h2 = 103.50;//height of target
 
     double a2 = nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0);

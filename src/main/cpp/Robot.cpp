@@ -102,7 +102,6 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Shooter Wanted RPM", m_container.m_shooter.GetWantedShooterRPM());  
   frc::SmartDashboard::PutNumber("Shooter L Power", m_container.m_shooter.GetLeftShooterPower());  
   frc::SmartDashboard::PutNumber("Shooter R Power", m_container.m_shooter.GetRightShooterPower());  
-  frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.3);
 
   //Hood
   frc::SmartDashboard::PutBoolean("Top Hood Limit Switch", m_container.m_shooter.GetTopHoodLimitSW());

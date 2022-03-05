@@ -90,22 +90,22 @@ void CmdShooterDefault::Execute()
   {
     switch(DpadState)
     {
-      case 0:
+      case 0: //Fender Shot
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
         //m_shooter->SetTurretAngle(0);//make a state
         break;
-      case 90:
+      case 90: // Idle 
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(5000);//make a state
         //m_shooter->SetTurretAngle(25);//make a state
         break;
-      case 180:
+      case 180: //Launch Pad Shot
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(0);//make a state
         //m_shooter->SetTurretAngle(0);//make a state
         break;
-      case 270:
+      case 270: //Tarmac Line Shot
         m_shooter->SetShooterRPM(0);//make a state
         m_shooter->SetHoodAngle(9000);//make a state
         //m_shooter->SetTurretAngle(-25);//make a state
