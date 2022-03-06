@@ -76,6 +76,9 @@ void Drivetrain::FalconsInit(void)
     // std::cout << "RightStatusPeriod = " << m_rightMotorFront.GetStatusFramePeriod(StatusFrame::Status_2_Feedback0_,10) << std::endl;
 
 
+    //Disable stupid warnings during autonomous
+    m_differentialDrive.SetSafetyEnabled(false);
+
 }
 
 

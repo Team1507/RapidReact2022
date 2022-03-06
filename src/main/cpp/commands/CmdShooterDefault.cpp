@@ -22,6 +22,7 @@ CmdShooterDefault::CmdShooterDefault(Shooter *shooter, frc::XboxController *topD
 
 void CmdShooterDefault::Initialize() 
 {
+    std::cout << "    CmdShootDefault Started!" << std::endl;
 }
 
 void CmdShooterDefault::Execute() 
@@ -278,7 +279,7 @@ void CmdShooterDefault::Execute()
 
 void CmdShooterDefault::End(bool interrupted) 
 {
-  std::cout << "***ERROR:  CmdShootDefault Exited!" << std::endl;
+  std::cout << "    CmdShootDefault Exited!" << std::endl;
 }
 
 bool CmdShooterDefault::IsFinished() {

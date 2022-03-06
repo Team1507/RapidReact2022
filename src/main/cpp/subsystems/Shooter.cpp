@@ -160,8 +160,8 @@ void Shooter::FalconsInit()
     //    It also seems to have memory that ConfigFactoryDefault() does not clear.
     m_rightShooter.ConfigPeakOutputForward(1.0,10);
     m_leftShooter.ConfigPeakOutputForward(1.0,10);
-    m_rightShooter.ConfigPeakOutputReverse(-1.0,10);
-    m_leftShooter.ConfigPeakOutputReverse(-1.0,10);
+    m_rightShooter.ConfigPeakOutputReverse(-0.0,10);
+    m_leftShooter.ConfigPeakOutputReverse(0.0,10);
 
 
 }

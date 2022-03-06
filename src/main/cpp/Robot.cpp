@@ -68,7 +68,7 @@ void Robot::DisabledPeriodic()
 
 
 void Robot::AutonomousInit() {
-  std::cout<<"Auto Init"<<std::endl;
+  std::cout<<" **** Auto Init ******"<<std::endl;
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand != nullptr) {

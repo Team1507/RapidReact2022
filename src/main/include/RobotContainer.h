@@ -23,6 +23,7 @@
 #include "commands/AutoDoNothing.h"
 #include "commands/AutoJustShootLimelight.h"
 #include "commands/AutoJustShootNoLimelight.h"
+#include "commands/AutoOneBall.h"
 #include "commands/AutoTwoBall.h"
 #include "commands/AutoFourBall.h"
 #include "commands/AutoFiveBallBlitz.h"
@@ -48,6 +49,7 @@ class RobotContainer
   AutoDoNothing m_autoDoNothing {&m_drivetrain};
   AutoJustShootLimelight m_autoJustShootLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
+  AutoOneBall m_autoOneBall {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};//
   AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};//
   AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};// 
   AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};
