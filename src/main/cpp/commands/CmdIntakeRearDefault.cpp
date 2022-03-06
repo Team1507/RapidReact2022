@@ -10,6 +10,7 @@ CmdIntakeRearDefault::CmdIntakeRearDefault(IntakeRear *intake, frc::XboxControll
 	m_isFrontActive = false;
 	m_isRearActive = false;
 	m_feeder = feeder;
+	m_offDelayCount = 0;
 	AddRequirements({m_intake});
 }
 
@@ -31,6 +32,18 @@ void CmdIntakeRearDefault::Execute()
 		m_feeder->SetFeederOn(true);
 
 		m_isRearActive = true;
+		m_offDelayCount = 50;				//1sec = 50 counts @20ms
+
+	}
+	else
+	if( !m_topDriver->GetRightBumper() && m_isRearActive && (m_offDelayCount >0))// one intake down at a time   && !m_isRearActive
+	{
+		//Active, but now released  Delay turning off intake roller when arms on the way up
+		//Retract but do not turn off feeder
+
+		m_intake->Retract();
+		m_offDelayCount--;
+
 	}
 	else
 	{

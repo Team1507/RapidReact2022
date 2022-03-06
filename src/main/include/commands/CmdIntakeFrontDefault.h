@@ -28,4 +28,5 @@ class CmdIntakeFrontDefault
   Feeder *m_feeder;
   bool m_isFrontActive;
   bool m_isRearActive;
+  int  m_offDelayCount;
 };
