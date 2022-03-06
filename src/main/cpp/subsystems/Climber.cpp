@@ -16,7 +16,6 @@ void Climber::ClimberInit()
 
 void Climber::SetMidBarPower(double power)
 {
-    m_lowClimbLeftMotor.Set(power);
     m_lowClimbRightMotor.Set(power);
 }
 
@@ -60,16 +59,13 @@ void Climber::TalonsInit(void)
     m_lowClimbLeftMotor.Follow(m_lowClimbRightMotor);
 
     //Set Inverted
-    m_lowClimbLeftMotor.SetInverted(false);
-    m_lowClimbRightMotor.SetInverted(true);
+    m_lowClimbLeftMotor.SetInverted(true);
+    m_lowClimbRightMotor.SetInverted(false);
 
     //Set Coast Mode
     m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
     m_lowClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
 
-    //Setup Encoders
-    m_lowClimbLeftMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
-    m_lowClimbRightMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
 }
 
 

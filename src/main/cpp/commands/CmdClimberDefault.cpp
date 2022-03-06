@@ -28,7 +28,9 @@ void CmdClimberDefault::Execute()
 	double topLYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
 	//double topLXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_X);
 
-	if(m_topDriver->GetBackButton() && m_bottomDriver->GetLeftBumper())
+	//*** IGNORE BOTTOM DRIVER FOR TESTING ONLY!!!!!
+
+	if(m_topDriver->GetBackButton() )   //&& m_bottomDriver->GetLeftBumper())	<<<<<   NEET TO PUT BACK IN
 	{
 		if(topLYAxis>LYAXIS_DEADBAND || topLYAxis<-LYAXIS_DEADBAND)
 		{
@@ -50,35 +52,39 @@ void CmdClimberDefault::Execute()
 		// {
 		// 	m_climber->SetHighBarPower(0);
 		// }
+
+		//*****************************************
+		if(m_topDriver->GetBButton())
+		{
+			if(m_isClimbBrakeEngaged == false)
+			{
+				m_climber->ClimbBrakeExtend();
+			}
+			else if(m_isClimbBrakeEngaged == true)
+			{
+				m_climber->ClimbBrakeRetract();
+			}
+		}
+		else if(m_topDriver->GetBButtonReleased())
+		{
+			if(m_isClimbBrakeEngaged == false)
+			{
+				m_isClimbBrakeEngaged = true;
+			}
+			else if(m_isClimbBrakeEngaged == true)
+			{
+				m_isClimbBrakeEngaged = false;
+			}
+		}
+
+
 	}
 	else
 	{
 		//m_climber->SetHighBarPower(0);
 		m_climber->SetMidBarPower(0);
 	}
-	//*****************************************
-	if(m_topDriver->GetBButton())
-	{
-		if(m_isClimbBrakeEngaged == false)
-		{
-			m_climber->ClimbBrakeExtend();
-		}
-		else if(m_isClimbBrakeEngaged == true)
-		{
-			m_climber->ClimbBrakeRetract();
-		}
-	}
-	else if(m_topDriver->GetBButtonReleased())
-	{
-		if(m_isClimbBrakeEngaged == false)
-		{
-			m_isClimbBrakeEngaged = true;
-		}
-		else if(m_isClimbBrakeEngaged == true)
-		{
-			m_isClimbBrakeEngaged = false;
-		}
-	}
+
 }
 
 
