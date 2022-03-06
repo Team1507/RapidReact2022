@@ -17,11 +17,12 @@
 
 
 //Turret contants
-#define TURRET_MAX_LEFT_ANGLE               -40.0
+//Calibrated 3/6/22
+#define TURRET_MAX_LEFT_ANGLE               -37.0
 #define TURRET_MAX_RIGHT_ANGLE               40.0
-#define TURRET_ENCODER_AT_LEFT              -4015
-#define TURRET_ENCODER_AT_RIGHT              4015
-#define TURRET_ENCODER_TICKS_PER_ANGLE       100
+#define TURRET_ENCODER_AT_LEFT              -3930
+#define TURRET_ENCODER_AT_RIGHT              4260
+#define TURRET_ENCODER_TICKS_PER_ANGLE       106.36
 
 
 

@@ -51,6 +51,10 @@ void CmdShooterDefault::Execute()
   {
     m_shooter->SetTurretEncoderAtLeft();
   }
+  if(m_shooter->GetRightTurretLimitSW() )
+  {
+    m_shooter->SetTurretEncoderAtRight();
+  }
   if(m_shooter->GetBotHoodLimitSW() )
   {
     m_shooter->ResetHoodEncoder();
@@ -91,24 +95,36 @@ void CmdShooterDefault::Execute()
     switch(DpadState)
     {
       case 0: //Fender Shot
-        m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(0);//make a state
-        //m_shooter->SetTurretAngle(0);//make a state
+        //m_shooter->SetShooterRPM(0);
+        m_shooter->SetHoodAngle(0);
+        m_shooter->SetTurretAngle(0);
+        frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.375);
+        std::cout << "DPAD: Fender Shot" << std::endl;
+        isDpadCenter = false;
         break;
       case 90: // Idle 
-        m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(5000);//make a state
-        //m_shooter->SetTurretAngle(25);//make a state
+        //m_shooter->SetShooterRPM(0);
+        m_shooter->SetHoodAngle(0);
+        m_shooter->SetTurretAngle(0);
+        frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.3);
+        std::cout << "DPAD: Idle" << std::endl;
+        isDpadCenter = false;
         break;
       case 180: //Launch Pad Shot
-        m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(0);//make a state
-        //m_shooter->SetTurretAngle(0);//make a state
+        //m_shooter->SetShooterRPM(0);
+        m_shooter->SetHoodAngle(16000);
+        m_shooter->SetTurretAngle(35.0);
+        frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.45);
+        std::cout << "DPAD: Launch Pad" << std::endl;
+        isDpadCenter = false;
         break;
       case 270: //Tarmac Line Shot
-        m_shooter->SetShooterRPM(0);//make a state
-        m_shooter->SetHoodAngle(9000);//make a state
-        //m_shooter->SetTurretAngle(-25);//make a state
+        //m_shooter->SetShooterRPM(0);
+        m_shooter->SetHoodAngle(12000);
+        m_shooter->SetTurretAngle(0);
+        frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.4);
+        std::cout << "DPAD: Tarmac" << std::endl;
+        isDpadCenter = false;
         break;
     }
   }
@@ -260,7 +276,10 @@ void CmdShooterDefault::Execute()
 //END of Execute()
 }
 
-void CmdShooterDefault::End(bool interrupted) {}
+void CmdShooterDefault::End(bool interrupted) 
+{
+  std::cout << "***ERROR:  CmdShootDefault Exited!" << std::endl;
+}
 
 bool CmdShooterDefault::IsFinished() {
   return false;
