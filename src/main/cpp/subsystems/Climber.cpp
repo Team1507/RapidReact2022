@@ -59,8 +59,8 @@ void Climber::TalonsInit(void)
     m_lowClimbLeftMotor.Follow(m_lowClimbRightMotor);
 
     //Set Inverted
-    m_lowClimbLeftMotor.SetInverted(true);
-    m_lowClimbRightMotor.SetInverted(false);
+    m_lowClimbLeftMotor.SetInverted(false);
+    m_lowClimbRightMotor.SetInverted(true);
 
     //Set Coast Mode
     m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
