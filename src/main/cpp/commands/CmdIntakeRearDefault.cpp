@@ -21,13 +21,13 @@ void CmdIntakeRearDefault::Initialize()
 
 void CmdIntakeRearDefault::Execute() 
 {
-	if(m_topDriver->GetRightBumper() && !m_isRearActive)// one intake down at a time   && !m_isRearActive
+	if(m_topDriver->GetRightBumper() && !m_isFrontActive)// one intake down at a time   && !m_isRearActive
 	{
 
-		double frontIntakePower = frc::SmartDashboard::GetNumber("FRONT_INTAKE_POWER", 0);
+		double rearIntakePower = frc::SmartDashboard::GetNumber("REAR_INTAKE_POWER", 0);
 
 		m_intake->Deploy();
-		m_intake->SetPower(frontIntakePower);
+		m_intake->SetPower(rearIntakePower);
 		m_feeder->SetFeederOn(true);
 
 		m_isRearActive = true;
@@ -44,7 +44,7 @@ void CmdIntakeRearDefault::Execute()
 	//************************************
 
 
-	if(m_topDriver->GetLeftBumper()&& !m_isFrontActive) // one intake down at a time    && !m_isFrontActive
+	if(m_topDriver->GetLeftBumper()&& !m_isRearActive) // one intake down at a time    && !m_isFrontActive
 	{
 		m_isFrontActive = true;
 	}
