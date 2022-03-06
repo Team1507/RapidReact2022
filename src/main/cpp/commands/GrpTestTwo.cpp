@@ -1,7 +1,7 @@
 #include "commands/GrpTestTwo.h"
 
 
-GrpTestTwo::GrpTestTwo(Climber *climber, DriverFeedback *driverfeedback, Drivetrain *drivetrain, Intake *frontIntake, Intake *backIntake,  Shooter *shooter, XboxController *topdriver, XboxController *botdriver, Feeder *feeder) //
+GrpTestTwo::GrpTestTwo(Climber *climber, DriverFeedback *driverfeedback, Drivetrain *drivetrain, IntakeFront *frontIntake, IntakeRear *rearIntake,  Shooter *shooter, XboxController *topdriver, XboxController *botdriver, Feeder *feeder) //
 {
  AddCommands
   (

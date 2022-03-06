@@ -11,7 +11,8 @@
 
 //*****************Subsystems*******************
 #include "subsystems/Drivetrain.h"
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeFront.h"
+#include "subsystems/IntakeRear.h"
 #include "subsystems/Shooter.h"
 #include "subsystems/Climber.h"
 #include "subsystems/DriverFeedback.h"
@@ -34,8 +35,8 @@ class RobotContainer
 
   //****************Subsystems*******************
   Drivetrain          m_drivetrain;
-  Intake              m_frontIntake{Intake::Type::FRONT};
-  Intake              m_rearIntake{Intake::Type::REAR};
+  IntakeFront         m_frontIntake;
+  IntakeRear          m_rearIntake;
   Shooter             m_shooter;
   Climber             m_climber;
   frc::XboxController m_bot_driver{0};

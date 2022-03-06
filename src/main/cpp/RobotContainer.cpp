@@ -1,7 +1,8 @@
 #include "RobotContainer.h"
 #include "commands/CmdDriveWithGamepad.h"
 #include "frc/smartdashboard/SmartDashboard.h"
-#include "commands/CmdIntakeDefault.h"
+#include "commands/CmdIntakeFrontDefault.h"
+#include "commands/CmdIntakeRearDefault.h"
 #include "commands/CmdClimberDefault.h"
 #include "commands/CmdShooterDefault.h"
 #include "commands/CmdCalculateAll.h"
@@ -17,11 +18,11 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   // *********************************Defaults*********************************************
 
   m_drivetrain.SetDefaultCommand(CmdDriveWithGamepad( &m_drivetrain, &m_bot_driver ));
-  m_rearIntake.SetDefaultCommand(CmdIntakeDefault( &m_rearIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
-  m_frontIntake.SetDefaultCommand(CmdIntakeDefault( &m_frontIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
+  m_rearIntake.SetDefaultCommand(CmdIntakeRearDefault(   &m_rearIntake,  &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
+  m_frontIntake.SetDefaultCommand(CmdIntakeFrontDefault( &m_frontIntake, &m_top_driver, &m_bot_driver, &m_shooter, &m_feeder));
   m_climber.SetDefaultCommand(CmdClimberDefault( &m_climber, &m_top_driver, &m_bot_driver));
   m_shooter.SetDefaultCommand(CmdShooterDefault( &m_shooter, &m_top_driver));
-  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_rearIntake, &m_shooter, &m_climber));
+  m_driverFeedback.SetDefaultCommand(CmdDriverFeedbackDefault( &m_driverFeedback, &m_top_driver, &m_shooter, &m_climber));
   m_feeder.SetDefaultCommand(CmdFeederDefault(&m_feeder, &m_top_driver));
 
   //*************************************Auto**********************************************

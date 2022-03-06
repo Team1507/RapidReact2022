@@ -3,13 +3,13 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeRear.h"
 
 
 class CmdIntakeSetPower
     : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeSetPower> {
  public:
-  CmdIntakeSetPower(Intake *intake, double power);
+  CmdIntakeSetPower(IntakeRear *intake, double power);
 
   void Initialize() override;
 
@@ -19,6 +19,6 @@ class CmdIntakeSetPower
 
   bool IsFinished() override;
   private:
-    Intake *m_intake;
+    IntakeRear *m_intake;
     double m_power;
 };

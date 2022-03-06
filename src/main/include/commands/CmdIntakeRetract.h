@@ -2,13 +2,13 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/Intake.h"
+#include "subsystems/IntakeRear.h"
 
 
 class CmdIntakeRetract
     : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeRetract> {
  public:
-  CmdIntakeRetract(Intake *intake);
+  CmdIntakeRetract(IntakeRear *intake);
 
   void Initialize() override;
 
@@ -18,5 +18,5 @@ class CmdIntakeRetract
 
   bool IsFinished() override;
   private:
-    Intake *m_intake;
+    IntakeRear *m_intake;
 };

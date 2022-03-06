@@ -18,7 +18,7 @@
 #include "commands/CmdTurretSetHome.h"
 #include "commands/CmdHoodFindHome.h"
 
-AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,Intake *rearintake, Feeder *feeder ) //
+AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *rearintake, Feeder *feeder ) //
 {
     AddCommands
     (

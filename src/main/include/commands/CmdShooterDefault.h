@@ -7,7 +7,6 @@
 #include <frc/XboxController.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "GamepadMap.h"
-#include "subsystems/Intake.h"
 
 //x = return to home
 //Lt = caculate all
