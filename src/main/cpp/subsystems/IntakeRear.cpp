@@ -8,7 +8,7 @@ IntakeRear::IntakeRear()
 
 void IntakeRear::IntakeInit(void)
 {
-    frc::SmartDashboard::PutNumber("FRONT_INTAKE_POWER", 0.6);
+    frc::SmartDashboard::PutNumber("REAR_INTAKE_POWER", 0.6);
 }
 
 void IntakeRear::Deploy(void)

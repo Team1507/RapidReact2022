@@ -44,6 +44,8 @@ AutoOneBall::AutoOneBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
 
         //Backup Out of Terminal
+        CmdIntakeDeploy(rearintake),
+        CmdIntakeSetPower(rearintake, .55), // Tele-op power
         CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 40.0, true, true, 0.0),  
         frc2::WaitCommand(1.0_s),
 
