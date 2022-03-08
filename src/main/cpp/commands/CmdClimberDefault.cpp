@@ -54,30 +54,17 @@ void CmdClimberDefault::Execute()
 		// }
 
 		//*****************************************
-		if(m_topDriver->GetBButton())
+		if(m_topDriver->GetBButtonPressed())
 		{
-			if(m_isClimbBrakeEngaged == false)
+			if(!m_climber->IsClimbBrakeActivated())
 			{
 				m_climber->ClimbBrakeExtend();
 			}
-			else if(m_isClimbBrakeEngaged == true)
+			else if(m_climber->IsClimbBrakeActivated())
 			{
 				m_climber->ClimbBrakeRetract();
 			}
 		}
-		else if(m_topDriver->GetBButtonReleased())
-		{
-			if(m_isClimbBrakeEngaged == false)
-			{
-				m_isClimbBrakeEngaged = true;
-			}
-			else if(m_isClimbBrakeEngaged == true)
-			{
-				m_isClimbBrakeEngaged = false;
-			}
-		}
-
-
 	}
 	else
 	{

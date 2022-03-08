@@ -33,12 +33,12 @@ void Climber::ClimbBrakeRetract()
 
 bool Climber::GetHighHallEffect(void)
 {
-    return m_lowClimbRightMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
+    return m_lowClimbRightMotor.GetSensorCollection().IsRevLimitSwitchClosed();
 }
 
 bool Climber::GetLowHallEffect(void)
 {
-    return m_lowClimbRightMotor.GetSensorCollection().IsRevLimitSwitchClosed();
+    return m_lowClimbRightMotor.GetSensorCollection().IsFwdLimitSwitchClosed();
 }
 
 bool Climber::IsClimbActivated(void)
@@ -62,7 +62,7 @@ void Climber::TalonsInit(void)
     m_lowClimbLeftMotor.SetInverted(false);
     m_lowClimbRightMotor.SetInverted(true);
 
-    //Set Coast Mode
+    //Set Mode
     m_lowClimbLeftMotor.SetNeutralMode(NeutralMode::Brake);
     m_lowClimbRightMotor.SetNeutralMode(NeutralMode::Brake);
 

@@ -4,10 +4,10 @@ Feeder::Feeder() = default;
 
 void Feeder::FeederInit(void)
 {
-  frc::SmartDashboard::PutNumber("TOP_FEEDER_SHOOT_POWER", .7);
+  frc::SmartDashboard::PutNumber("TOP_FEEDER_SHOOT_POWER", .9);
   frc::SmartDashboard::PutNumber("BOTTOM_FEEDER_SHOOT_POWER", .7);
-  frc::SmartDashboard::PutNumber("TOP_FEEDER_INTAKE_POWER", .4);
-  frc::SmartDashboard::PutNumber("BOTTOM_FEEDER_INTAKE_POWER", .4);
+  frc::SmartDashboard::PutNumber("TOP_FEEDER_INTAKE_POWER", .6);
+  frc::SmartDashboard::PutNumber("BOTTOM_FEEDER_INTAKE_POWER", .6);
   m_topFeeder.SetInverted(true);
 }
 

@@ -16,13 +16,13 @@ void CmdFeederDefault::Execute()
 {
   bool TopFeederActivate = m_topDriver->GetYButton();
   bool BottomFeederActivate = m_topDriver->GetAButton();
-  bool ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
+  double ShootPressed = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_R_TRIG);
 //*******************************************************
   //rt = shoot
-  if(ShootPressed == 1) // pressed
+  if(ShootPressed > 0.9) // pressed
   {
-    double topFeederPower = frc::SmartDashboard::GetNumber("FEEDER_TOP_SHOOT_POWER", 0);
-    double bottomFeederPower = frc::SmartDashboard::GetNumber("FEEDER_BOTTOM_SHOOT_POWER", 0);
+    double topFeederPower = frc::SmartDashboard::GetNumber("TOP_FEEDER_SHOOT_POWER", 0);
+    double bottomFeederPower = frc::SmartDashboard::GetNumber("BOTTOM_FEEDER_SHOOT_POWER", 0);
     m_feeder->SetTopFeederPower(topFeederPower);
     m_feeder->SetBottomFeederPower(bottomFeederPower);
     m_feeder->SetFeederOn(false); 
@@ -30,8 +30,9 @@ void CmdFeederDefault::Execute()
     //This is here to allow shooting and intake, ignore intake if shooter is on
 
   }
-  else if ((ShootPressed == 0) && (m_isManualOn == false)) // released 
+  else if ((ShootPressed < 0.1) && m_isManualOn) // released 
   {
+    m_isManualOn = false;
     m_feeder->SetTopFeederPower(0);
     m_feeder->SetBottomFeederPower(0);
     //std::cout<<"Feeder Stopped after shot"<<std::endl;

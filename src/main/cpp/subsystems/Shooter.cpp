@@ -66,7 +66,10 @@ void Shooter::ShooterInit(void)
 
     ResetTurretEncoder();
     ResetHoodEncoder();
-    frc::SmartDashboard::PutNumber("Shooter Trigger Power",0.3);
+    frc::SmartDashboard::PutNumber("Shooter Idle Power",0.25);
+    frc::SmartDashboard::PutNumber("Shooter Fender Power",0.375);
+    frc::SmartDashboard::PutNumber("Shooter Launch Pad Power",0.45);
+    frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.4);
 }
 
 void Shooter::Periodic() 
@@ -258,7 +261,7 @@ void Shooter::ResetHoodEncoder(void)
 {
     //Jack Waz Here
     m_hoodMotor.SetSelectedSensorPosition(0,0,0);
-    m_wantedHoodAngle = 0;
+    //m_wantedHoodAngle = 0;
 }
 int Shooter::GetHoodEncoder(void) 
 {

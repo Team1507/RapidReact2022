@@ -4,7 +4,7 @@
 
 //Drive limiter
 const double MAX_DRIVE_POWER = 1.0;
-const double MAX_TURN_POWER  = 0.9;
+const double MAX_TURN_POWER  = 0.45;
 
 CmdDriveWithGamepad::CmdDriveWithGamepad(Drivetrain *drivetrain, frc::XboxController *driver_xbox )
 {
@@ -52,10 +52,11 @@ void CmdDriveWithGamepad::Execute()
     //Arcade Drive
 
     static const double LEFT_TRIGGER_DEADBAND = 0.9;
+    static const double RIGHT_TRIGGER_DEADBAND = 0.9;
     //Creep Mode
-    if(m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND)
+    if((m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND) || (m_ptrDriverXbox->GetRightTriggerAxis() >= RIGHT_TRIGGER_DEADBAND))
     {
-        m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)/2)    , ((xR * MAX_TURN_POWER)/2) );
+      m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)/3)    , ((xR * MAX_TURN_POWER)/2) );
     }
     else
     {
