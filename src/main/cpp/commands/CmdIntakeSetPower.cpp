@@ -4,6 +4,7 @@ CmdIntakeSetPower::CmdIntakeSetPower(IntakeRear *intake, double power)
 {
   m_intake = intake;
   m_power = power;
+  AddRequirements({m_intake});
 }
 
 

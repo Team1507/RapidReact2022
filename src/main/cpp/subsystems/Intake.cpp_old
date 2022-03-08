@@ -7,7 +7,7 @@ Intake::Intake(Intake::Type type)
     if(type == Type::FRONT)
     {
         m_intakeSpark = new frc::Spark(FRONT_INTAKE_PWM);
-        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, FRONT_INTAKE_DEPLOY_PCM, FRONT_INTAKE_RETRACT_PCM);
+        m_doubleSolinoid = new frc::DoubleSolenoid(PCM_CAN_ID, frc::PneumaticsModuleType::, FRONT_INTAKE_DEPLOY_PCM, FRONT_INTAKE_RETRACT_PCM);
     }
     if(type == Type::REAR)
     {

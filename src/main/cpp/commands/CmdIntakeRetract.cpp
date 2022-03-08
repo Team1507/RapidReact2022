@@ -3,6 +3,7 @@
 CmdIntakeRetract::CmdIntakeRetract(IntakeRear *intake) 
 {
   m_intake = intake;
+  AddRequirements({m_intake});
 }
 
 
@@ -19,5 +20,5 @@ void CmdIntakeRetract::End(bool interrupted) {}
 
 
 bool CmdIntakeRetract::IsFinished() {
-  return false;
+  return true;
 }

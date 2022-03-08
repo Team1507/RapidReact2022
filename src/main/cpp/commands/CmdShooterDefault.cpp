@@ -1,5 +1,6 @@
 #include "commands/CmdShooterDefault.h"
 #include "commands/CmdCalculateAllV2.h"
+#include "commands/CmdCalculateAll.h"
 #include <math.h>
 #include <iostream>
 
@@ -43,7 +44,7 @@ void CmdShooterDefault::Execute()
   //Lt = caculate all
   if(CalculateAllPressed)
   {
-    CmdCalculateAllV2(m_shooter,3);
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
   }
 
 

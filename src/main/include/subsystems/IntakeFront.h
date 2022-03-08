@@ -25,7 +25,7 @@ class IntakeFront : public frc2::SubsystemBase
 
  private:
   frc::Spark           m_intakeSpark {FRONT_INTAKE_PWM};
-  frc::DoubleSolenoid  m_doubleSolinoid{PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, FRONT_INTAKE_DEPLOY_PCM, FRONT_INTAKE_RETRACT_PCM};
+  frc::DoubleSolenoid  m_doubleSolinoid{PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, FRONT_INTAKE_DEPLOY_PCM, FRONT_INTAKE_RETRACT_PCM};
   bool m_isIntaking;
   
  

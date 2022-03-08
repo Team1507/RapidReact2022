@@ -38,7 +38,7 @@ class Climber : public frc2::SubsystemBase {
 	bool m_isClimbActivated;
 	bool m_isClimbBrakeActivated;
 	//frc::DoubleSolenoid m_highBarControl {PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, HI_CLIMB_DEPLOY_PCM, HI_CLIMB_RETURN_PCM};
-    frc::DoubleSolenoid m_climbBrake {PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM};
+    frc::DoubleSolenoid m_climbBrake {PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, CLIMB_BRAKE_ENGAGE_PCM, CLIMB_BRAKE_DISENGAGE_PCM};
 
 
 

@@ -31,7 +31,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   //m_chooser.AddOption("Auto Just Shoot With Limelight", &m_autoJustShootLimelight);
  // m_chooser.AddOption("Auto Just Shoot Without Limelight", &m_autoJustShootNoLimelight);
   m_chooser.AddOption("Auto Shoot ONE Ball", &m_autoOneBall);
-  //m_chooser.AddOption("Auto Shoot Two Ball", &m_autoTwoBall);
+  m_chooser.AddOption("Auto Shoot Two Ball", &m_autoTwoBall);
   //m_chooser.AddOption("Auto Shoot Four Ball", &m_autoFourBall);
   frc::SmartDashboard::PutData(&m_chooser);
 

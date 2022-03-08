@@ -8,8 +8,8 @@ const double PI  = 3.14159265;
 
 //Drivetrain Constants
 //Encoder TICKS PER INCH Calibration
-const int    Drivetrain::LEFT_ENCODER_TPI  = 1153;			//*** Calibrated 3/3/2020
-const int    Drivetrain::RIGHT_ENCODER_TPI = 1153;			//*** Calibrated 3/3/2020
+const int    Drivetrain::LEFT_ENCODER_TPI  = 892;			//*** Calibrated 3/7/2022
+const int    Drivetrain::RIGHT_ENCODER_TPI = 892;			//*** Calibrated 3/7/2022 
 
 const double Drivetrain::RAMP_FACTOR       = 0.03;         //Drive Acceleration Ramp Factor
 
@@ -136,12 +136,12 @@ int Drivetrain::GetLeftEncoder3(void)
 
 int Drivetrain::GetRightEncoder(void)
 {
-    return -(m_rightMotorFront.GetSelectedSensorPosition(0) - m_r1_enc_zero);
+    return (m_rightMotorFront.GetSelectedSensorPosition(0) - m_r1_enc_zero);
 }
 
 int Drivetrain::GetRightEncoder2(void)
 {
-    return -(m_rightMotorBack.GetSelectedSensorPosition(0) - m_r2_enc_zero);
+    return (m_rightMotorBack.GetSelectedSensorPosition(0) - m_r2_enc_zero);
 }
 
 int Drivetrain::GetRightEncoder3(void)

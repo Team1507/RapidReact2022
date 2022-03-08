@@ -133,8 +133,8 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutBoolean("Bottom Feeder PhotoEye", m_container.m_feeder.GetBotFeederPhotoeye());
 
   //DriveTrain
-  frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder3());
-  frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder3());
+  frc::SmartDashboard::PutNumber("Drivetrain Left Encoder", m_container.m_drivetrain.GetLeftEncoder());
+  frc::SmartDashboard::PutNumber("DriveTrain Right Encoder", m_container.m_drivetrain.GetRightEncoder());
   
   //Motors
   frc::SmartDashboard::PutNumber("L_Motor",  m_container.m_drivetrain.GetLeftMotor()  );

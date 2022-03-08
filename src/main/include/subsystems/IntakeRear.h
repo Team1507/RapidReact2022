@@ -25,7 +25,7 @@ class IntakeRear : public frc2::SubsystemBase
 
  private:
   frc::Spark           m_intakeSpark {REAR_INTAKE_PWM};
-  frc::DoubleSolenoid  m_doubleSolinoid{PCM_CAN_ID, frc::PneumaticsModuleType::REVPH, REAR_INTAKE_DEPLOY_PCM, REAR_INTAKE_RETRACT_PCM};
+  frc::DoubleSolenoid  m_doubleSolinoid{PCM_CAN_ID, frc::PneumaticsModuleType::CTREPCM, REAR_INTAKE_DEPLOY_PCM, REAR_INTAKE_RETRACT_PCM};
   bool m_isIntaking;
   
  

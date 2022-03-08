@@ -12,11 +12,14 @@
 //**********FEEDER************
 #include "commands/CmdFeederSetPower.h"
 #include "commands/CmdFeederStop.h"
+#include "commands/CmdFeederSetStatus.h"
 //**********SHOOTER***********
 #include "commands/CmdCalculateAllV2.h"
 #include "commands/CmdShooterSetPower.h"
 #include "commands/CmdTurretSetHome.h"
 #include "commands/CmdHoodFindHome.h"
+#include "commands/CmdHoodSetAngle.h"
+#include "commands/CmdTurretSetAngle.h"
 
 AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *rearintake, Feeder *feeder ) //
 {
@@ -26,26 +29,29 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdPrintAutoText("Auto2Ball Start"),
 
         CmdDriveClearAll(drivetrain),
-        CmdShooterSetPower(shooter, SHOOTER_IDLE_VELOCITY),
+        frc2::WaitCommand(0.5_s),
+        CmdShooterSetPower(shooter, 0.25),                               //Inital Shooter Idle Power
         frc2::WaitCommand(2.0_s),
 
-        //Shoot Ball 1 (Up Close)
-        CmdShooterSetPower(shooter, SHOOTER_CLOSE_VELOCITY),
-        frc2::WaitCommand(1.5_s),
-        CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
-        CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
-        frc2::WaitCommand(2.0_s),
+        // //Shoot Ball 1 (Up Close)
+        // CmdShooterSetPower(shooter, SHOOTER_CLOSE_VELOCITY),
+        // frc2::WaitCommand(1.5_s),
+        // CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
+        // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
+        // frc2::WaitCommand(2.0_s),
 
-        //Reset
-        CmdShooterSetPower(shooter, SHOOTER_IDLE_VELOCITY),
-        CmdFeederStop(feeder, Feeder::Level::Bottom),
-        CmdFeederStop(feeder, Feeder::Level::Top),
+        // //Reset
+        // CmdShooterSetPower(shooter, SHOOTER_IDLE_VELOCITY),
+        // CmdFeederStop(feeder, Feeder::Level::Bottom),
+        // CmdFeederStop(feeder, Feeder::Level::Top),
 
         //Backup for Ball 2
         CmdIntakeDeploy(rearintake),
         CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
-        CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
-        CmdDriveRevGyroV2(drivetrain, 0.7, 0.0, 40.44, true, true, 0.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
+        CmdFeederSetStatus(feeder,true),
+        // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
+        CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 28.44, true, false, 0.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
+        CmdDriveRevGyroV2(drivetrain, 0.1, 0.0, 12, false, true, 3.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         frc2::WaitCommand(1.0_s),
 
         //Bring Everything back in
@@ -53,35 +59,30 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdIntakeRetract(rearintake),
 
         //Pre-Shoot for Ball 2
-        CmdDriveFwdGyroV2(drivetrain, 0.7, 0, 32.5, true, true, 0.0),
-        CmdCalculateAllV2(shooter, 0.0),//Sets ShooterRPM, Hood, and Turret. Thanks Limelight :)
+        CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 32.5, true, true, 0.0),
+        // CmdCalculateAllV2(shooter, 0.0),//Sets ShooterRPM, Hood, and Turret. Thanks Limelight :)
 
 
         //Shoot Ball 2
+        CmdShooterSetPower(shooter,0.375),
+        CmdHoodSetAngle(shooter,   5000),                               //Set Hood Angle
+        CmdTurretSetAngle(shooter,10),
+        frc2::WaitCommand(1.5_s),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
-        frc2::WaitCommand(2.0_s),
+        frc2::WaitCommand(6.0_s),
 
         //Post-Shoot
         CmdFeederStop(feeder, Feeder::Level::Bottom),
         CmdFeederStop(feeder, Feeder::Level::Top),
         CmdIntakeSetPower(rearintake, 0.0),
         CmdIntakeRetract(rearintake),
-        CmdTurretSetHome(shooter),
-        CmdHoodFindHome(shooter),
-        CmdShooterSetPower(shooter, SHOOTER_IDLE_VELOCITY),
-
+        CmdTurretSetAngle(shooter,0),
+        CmdHoodSetAngle(shooter,   0),                               //Set Hood Angle
+        CmdShooterSetPower(shooter, 0.25),
 
 
         CmdPrintAutoText("Auto2Ball Finish")
-
-
-
-        
-
-
-
-    
     
     );
 }
