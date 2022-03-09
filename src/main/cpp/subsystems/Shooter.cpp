@@ -70,6 +70,7 @@ void Shooter::ShooterInit(void)
     frc::SmartDashboard::PutNumber("Shooter Fender Power",0.375);
     frc::SmartDashboard::PutNumber("Shooter Launch Pad Power",0.45);
     frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.4);
+    frc::SmartDashboard::PutNumber("Limelight H Offset", -1.5);
 }
 
 void Shooter::Periodic() 

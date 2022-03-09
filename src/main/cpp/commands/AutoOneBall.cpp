@@ -31,12 +31,12 @@ AutoOneBall::AutoOneBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         
         frc2::WaitCommand(0.5_s),
         CmdShooterSetPower(shooter, 0.25),                               //Inital Shooter Idle Power
-        CmdHoodSetAngle(shooter,   5000),                               //Set Hood Angle
+        //CmdHoodSetAngle(shooter,   5000),                               //Set Hood Angle
 
         frc2::WaitCommand(2.0_s),
 
         //Shoot Ball 1 (Up Close)
-        CmdShooterSetPower(shooter, 0.375),                               //First Ball shot power
+        CmdShooterSetPower(shooter, 0.365),                               //First Ball shot power
         frc2::WaitCommand(1.5_s),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
@@ -44,7 +44,7 @@ AutoOneBall::AutoOneBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
 
         //Backup Out of Terminal
-        CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 40.0, true, true, 0.0),  
+        CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 95.0, true, true, 0.0),  
         frc2::WaitCommand(1.0_s),
 
 

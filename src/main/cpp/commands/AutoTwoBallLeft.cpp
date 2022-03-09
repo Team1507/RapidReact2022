@@ -1,4 +1,4 @@
-#include "commands/AutoTwoBall.h"
+#include "commands/AutoOneBall.h"
 #include "frc2/command/WaitCommand.h"
 #include "commands/CmdPrintAutoText.h"
 //**********DRIVETRAIN********
@@ -17,16 +17,18 @@
 #include "commands/CmdCalculateAllV2.h"
 #include "commands/CmdShooterSetPower.h"
 #include "commands/CmdTurretSetHome.h"
-#include "commands/CmdHoodFindHome.h"
-#include "commands/CmdHoodSetAngle.h"
 #include "commands/CmdTurretSetAngle.h"
+#include "commands/CmdHoodSetAngle.h"
+#include "commands/CmdHoodFindHome.h"
 
-AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *rearintake, Feeder *feeder ) //
+#include "commands/AutoTwoBallLeft.h"
+
+AutoTwoBallLeft::AutoTwoBallLeft(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *rearintake, Feeder *feeder) 
 {
-    AddCommands
+   AddCommands
     (
-        //Pre-Shoot for Ball 1
-        CmdPrintAutoText("Auto2Ball Start"),
+                //Pre-Shoot for Ball 1
+        CmdPrintAutoText("Auto2BallLeft Start"),
 
         CmdDriveClearAll(drivetrain),
         frc2::WaitCommand(0.5_s),
@@ -50,7 +52,7 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
         CmdFeederSetStatus(feeder,true),
         // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
-        CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 28.44, true, false, 0.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
+        CmdDriveRevGyroV2(drivetrain, 0.3, 0.0, 52.44, true, false, 0.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         CmdDriveRevGyroV2(drivetrain, 0.1, 0.0, 12, false, true, 3.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         frc2::WaitCommand(1.0_s),
 
@@ -59,14 +61,14 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdIntakeRetract(rearintake),
 
         //Pre-Shoot for Ball 2
-        CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 32.5, true, true, 0.0),
+        CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 20.0, true, true, 0.0),
         // CmdCalculateAllV2(shooter, 0.0),//Sets ShooterRPM, Hood, and Turret. Thanks Limelight :)
 
 
         //Shoot Ball 2
-        CmdShooterSetPower(shooter,0.375),
+        CmdShooterSetPower(shooter,0.4),
         CmdHoodSetAngle(shooter,   5000),                               //Set Hood Angle
-        CmdTurretSetAngle(shooter,10),
+        CmdTurretSetAngle(shooter, -35),
         frc2::WaitCommand(1.5_s),
         CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
@@ -82,10 +84,13 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdHoodSetAngle(shooter,   0),                               //Set Hood Angle
         CmdShooterSetPower(shooter, 0.25),
 
-        CmdDriveRevGyroV2(drivetrain, .3, 0, 38.0, false, true, 0.0),
+        CmdDriveRevGyroV2(drivetrain, .3, 0, 46.0, false, true, 0.0),
 
 
-        CmdPrintAutoText("Auto2Ball Finish")
-    
+        CmdPrintAutoText("Auto2BallLeft Finish")
+
+
+  
+
     );
 }

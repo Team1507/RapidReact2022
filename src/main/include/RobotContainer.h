@@ -27,6 +27,7 @@
 #include "commands/AutoTwoBall.h"
 #include "commands/AutoFourBall.h"
 #include "commands/AutoFiveBallBlitz.h"
+#include "commands/AutoTwoBallLeft.h"
 
 
 class RobotContainer 
@@ -51,6 +52,7 @@ class RobotContainer
   AutoJustShootNoLimelight m_autoJustShootNoLimelight {&m_shooter,&m_drivetrain,&m_feeder};
   AutoOneBall m_autoOneBall {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};//
   AutoTwoBall m_autoTwoBall {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};//
+  AutoTwoBallLeft m_autoTwoBallLeft {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};
   AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};// 
   AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};
 

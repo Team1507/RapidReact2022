@@ -44,7 +44,8 @@ void CmdShooterDefault::Execute()
   //Lt = caculate all
   if(CalculateAllPressed)
   {
-    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
+    double limelightHOffset = frc::SmartDashboard::GetNumber("Limelight H Offset", 0.0);
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle() + limelightHOffset);
   }
 
 
@@ -166,7 +167,7 @@ void CmdShooterDefault::Execute()
   }
   else
   {
-    const double TURRET_TOLERANCE = 2.0;
+    const double TURRET_TOLERANCE = 1.0;
     const double TURRET_MIN_POWER = 0.07;
     
     const double MAX_POS_TURRET_POWER = 0.3;
