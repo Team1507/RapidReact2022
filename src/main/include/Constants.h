@@ -52,7 +52,7 @@
 #define LEFT_SHOOTER_CAN           10
 #define RIGHT_SHOOTER_CAN          11
 #define HOOD_TALON_CAN             12
-#define HOOD_SLOW_POWER            0.3
+#define HOOD_SLOW_POWER            0.4
 
 #define SHOOTER_IDLE_VELOCITY      11
 #define SHOOTER_CLOSE_VELOCITY     16 //TBD
