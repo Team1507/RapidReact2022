@@ -26,13 +26,14 @@ void CmdClimberDefault::Initialize()
 void CmdClimberDefault::Execute() 
 {
 	double topLYAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_Y);
-	//double topLXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_X);
+	double topLXAxis = m_topDriver->GetRawAxis(GAMEPADMAP_AXIS_L_X);
 
 	//*** IGNORE BOTTOM DRIVER FOR TESTING ONLY!!!!!
 
-	if(m_topDriver->GetBackButton() )   //&& m_bottomDriver->GetLeftBumper())	<<<<<   NEET TO PUT BACK IN
+	if(m_topDriver->GetBackButton() && (m_bottomDriver->GetLeftBumper() || m_bottomDriver->GetRightBumper()))	//<<<<<   NEET TO PUT BACK IN
 	{
 		if(topLYAxis>LYAXIS_DEADBAND || topLYAxis<-LYAXIS_DEADBAND)
+		
 		{
 			m_climber->SetMidBarPower(topLYAxis); //Raise/Lower Winch for Mid Bar
 		}

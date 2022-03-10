@@ -82,18 +82,19 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
 
 
-        CmdDriveRevGyroV2(drivetrain, .55, 0, 129.0, false, false, 0.0),
+        CmdDriveRevGyroV2(drivetrain, .55, 0, 105.0, false, false, 0.0), // gunning it to player station war 129
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, .6),
 		CmdFeederSetStatus(feeder, true),
-		CmdDriveRevGyroV2(drivetrain, 0.1, 0, 24, false, true, 3.0),
-		frc2::WaitCommand(1.5_s),
+		CmdDriveRevGyroV2(drivetrain, 0.1, 0, 24, false, true, 3.0), // DONT CHANGE
+		frc2::WaitCommand(1.5_s), // human player load time
+
 		CmdIntakeRetract(rearintake),
 		CmdIntakeSetPower(rearintake, 0.0),
 		CmdShooterSetPower(shooter, .4),
 		CmdHoodSetAngle(shooter, 8000),
 		CmdTurretSetAngle(shooter, -30),
-		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 144.0, true, true, 0.0),
+		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 120.0, true, true, 0.0), // going back to shoot was 144
 		frc2::WaitCommand(1.0_s),
 		CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
