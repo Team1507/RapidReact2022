@@ -14,7 +14,7 @@
 #include "commands/CmdFeederStop.h"
 #include "commands/CmdFeederSetStatus.h"
 //**********SHOOTER***********
-#include "commands/CmdCalculateAllV2.h"
+#include "commands/CmdCalculateAll.h"
 #include "commands/CmdShooterSetPower.h"
 #include "commands/CmdTurretSetHome.h"
 #include "commands/CmdHoodFindHome.h"
@@ -65,7 +65,8 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
         //Shoot Ball 2
         CmdShooterSetPower(shooter,0.42),
-        CmdHoodSetAngle(shooter,   12000),                               //Set Hood Angle
+        CmdHoodSetAngle(shooter,   12000),//Set Hood Angle
+        CmdCalculateAll(shooter),              //Turret angle               
         //CmdTurretSetAngle(shooter,10),
         frc2::WaitCommand(1.5_s),
         CmdFeederSetStatus(feeder, false),

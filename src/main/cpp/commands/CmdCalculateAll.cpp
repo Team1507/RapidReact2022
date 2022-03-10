@@ -1,4 +1,5 @@
 #include "commands/CmdCalculateAll.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <iostream>
 
 CmdCalculateAll::CmdCalculateAll(Shooter *shooter) 
@@ -18,7 +19,8 @@ void CmdCalculateAll::Initialize()
   if(m_shooter->GetLimelightTargetValid() == true) 
   {
     std::cout<<"Aiming towards target with limelight"<<std::endl;
-    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
+    double limelightHOffset = frc::SmartDashboard::GetNumber("Limelight H Offset", 0.0);
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle() + limelightHOffset);
     // m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
     // m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);
   }
