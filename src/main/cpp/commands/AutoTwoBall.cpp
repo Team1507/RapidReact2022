@@ -59,14 +59,14 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdIntakeRetract(rearintake),
 
         //Pre-Shoot for Ball 2
-        CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 32.5, true, true, 0.0),
+        CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 8, true, true, 0.0),
         // CmdCalculateAllV2(shooter, 0.0),//Sets ShooterRPM, Hood, and Turret. Thanks Limelight :)
 
 
         //Shoot Ball 2
         CmdShooterSetPower(shooter,0.42),
         CmdHoodSetAngle(shooter,   12000),//Set Hood Angle
-        CmdCalculateAll(shooter),              //Turret angle               
+        CmdCalculateAll(shooter),              //Turret               
         //CmdTurretSetAngle(shooter,10),
         frc2::WaitCommand(1.5_s),
         CmdFeederSetStatus(feeder, false),
@@ -83,7 +83,7 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdHoodSetAngle(shooter,   0),                               //Set Hood Angle
         CmdShooterSetPower(shooter, 0.25),
 
-        CmdDriveRevGyroV2(drivetrain, .3, 0, 38.0, false, true, 0.0),
+        CmdDriveRevGyroV2(drivetrain, .3, 0, 18.0, false, true, 0.0),
 
 
         CmdPrintAutoText("Auto2Ball Finish")
