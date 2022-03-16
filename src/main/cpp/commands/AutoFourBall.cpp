@@ -47,11 +47,11 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
         CmdIntakeDeploy(rearintake),
         CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
         CmdFeederSetStatus(feeder,true),
-        CmdHoodSetAngle(shooter, 12000),
+        CmdHoodSetAngle(shooter, 13000),
         // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 32.44, true, false, 0.0), 
-		CmdShooterSetPower(shooter,0.42),                               //was 0.41
-        CmdHoodSetAngle(shooter,   12000),                               //Set Hood Angle
+		CmdShooterSetPower(shooter,0.425),                               //was 0.41
+        CmdHoodSetAngle(shooter,   13000),                               //Set Hood Angle
         CmdTurretSetAngle(shooter, -35),   
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 20, false, true, 3.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         frc2::WaitCommand(2.5_s),
@@ -92,8 +92,8 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
 		CmdIntakeRetract(rearintake),
 		CmdIntakeSetPower(rearintake, 0.0),
-		CmdShooterSetPower(shooter, .4),                            //was 0.4
-		CmdHoodSetAngle(shooter, 12000),
+		CmdShooterSetPower(shooter, .435),                            //was 0.4
+		CmdHoodSetAngle(shooter, 14000),
 		CmdTurretSetAngle(shooter, -30),
 		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 144.0, true, true, 0.0), // going back to shoot was 144; It was 120 added 18
 		frc2::WaitCommand(1.0_s),

@@ -30,7 +30,7 @@ void CmdClimberDefault::Execute()
 
 	//*** IGNORE BOTTOM DRIVER FOR TESTING ONLY!!!!!
 
-	if(m_topDriver->GetBackButton() && (m_bottomDriver->GetLeftBumper() || m_bottomDriver->GetRightBumper()))	//<<<<<   NEET TO PUT BACK IN
+	if(m_topDriver->GetBackButton())	//&& (m_bottomDriver->GetLeftBumper() || m_bottomDriver->GetRightBumper())<<<<<   NEET TO PUT BACK IN
 	{
 		if(topLYAxis>LYAXIS_DEADBAND || topLYAxis<-LYAXIS_DEADBAND)
 		

@@ -67,9 +67,9 @@ void Shooter::ShooterInit(void)
     ResetTurretEncoder();
     ResetHoodEncoder();
     frc::SmartDashboard::PutNumber("Shooter Idle Power",0.25);
-    frc::SmartDashboard::PutNumber("Shooter Fender Power",0.37);
-    frc::SmartDashboard::PutNumber("Shooter Launch Pad Power",0.45);
-    frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.4);
+    frc::SmartDashboard::PutNumber("Shooter Fender Power",0.355);
+    frc::SmartDashboard::PutNumber("Shooter Low Goal Power",0.25);
+    frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.42); // was .4
     frc::SmartDashboard::PutNumber("Limelight H Offset", -1.5);
 }
 

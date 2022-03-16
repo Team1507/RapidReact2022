@@ -93,11 +93,11 @@ void CmdShooterDefault::Execute()
         std::cout << "DPAD: Idle" << std::endl;
         isDpadCenter = false;
         break;
-      case 180: //Launch Pad Shot
+      case 180: //Low Goal Shot
         //m_shooter->SetShooterRPM(0);
         m_shooter->SetHoodAngle(16000);
-        m_shooter->SetTurretAngle(15.0);
-        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Launch Pad Power",0.0));   
+        m_shooter->SetTurretAngle(0.0);
+        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Low Goal Power",0.0));   
         std::cout << "DPAD: Launch Pad" << std::endl;
         isDpadCenter = false;
         break;
