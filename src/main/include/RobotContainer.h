@@ -75,5 +75,4 @@ class RobotContainer
   frc2::JoystickButton m_top_driver_LB{&m_top_driver, GAMEPADMAP_BUTTON_LBUMP};
   frc2::JoystickButton m_top_driver_START{&m_top_driver, GAMEPADMAP_BUTTON_START};
   frc2::JoystickButton m_top_driver_BACK{&m_top_driver, GAMEPADMAP_BUTTON_BACK};
-
 };

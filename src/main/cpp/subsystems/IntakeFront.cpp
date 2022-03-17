@@ -3,7 +3,7 @@
 
 IntakeFront::IntakeFront()
 {
-
+    m_isIntaking = true;
 }
 
 void IntakeFront::IntakeInit(void)
@@ -13,13 +13,19 @@ void IntakeFront::IntakeInit(void)
 
 void IntakeFront::Deploy(void)
 {
-    m_doubleSolinoid.Set(frc::DoubleSolenoid::kForward);
-    m_isIntaking = true;
+    if(!m_isIntaking)
+    {
+        m_doubleSolinoid.Set(frc::DoubleSolenoid::kForward);
+        m_isIntaking = true;
+    }
 }
 void IntakeFront::Retract(void)
 {
-    m_doubleSolinoid.Set(frc::DoubleSolenoid::kReverse);
-    m_isIntaking = false;
+    if(m_isIntaking)
+    {
+        m_doubleSolinoid.Set(frc::DoubleSolenoid::kReverse);
+        m_isIntaking = false;
+    }
 }
 
 void IntakeFront::SetPower(double power)

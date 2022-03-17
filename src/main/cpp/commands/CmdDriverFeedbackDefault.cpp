@@ -1,4 +1,5 @@
 #include "commands/CmdDriverFeedbackDefault.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/WaitCommand.h>
 #include <iostream>
 CmdDriverFeedbackDefault::CmdDriverFeedbackDefault(DriverFeedback *driverfeedback, frc::XboxController *topDriver, Shooter *shooter, Climber *climber) // 
@@ -27,7 +28,8 @@ void CmdDriverFeedbackDefault::Execute()
   double ShooterRPM        = m_shooter->GetCurrentShooterRPM();
   double LimeLightAngle    = m_shooter->GetLimelightHAngle();
 
-
+  //BALLS!!!!!!
+  
   if (1 == 2)
   {
     std::cout<<"ahhhhh"<<std::endl;
@@ -42,10 +44,11 @@ void CmdDriverFeedbackDefault::Execute()
     m_driverFeedback->UpdateLEDs(0,0,0);
   }
 
-  else if((HoodAngle      < (WantedHoodAngle   + m_shooter->HOOD_TOLERANCE))        && (HoodAngle      > (WantedHoodAngle   - m_shooter->HOOD_TOLERANCE)) && 
+  else if((HoodAngle < (WantedHoodAngle   + m_shooter->HOOD_TOLERANCE))        && (HoodAngle      > (WantedHoodAngle   - m_shooter->HOOD_TOLERANCE)) && 
      (TurretAngle    < (WantedTurretAngle + m_shooter->TURRET_TOLERANCE))      && (TurretAngle    > (WantedTurretAngle - m_shooter->HOOD_TOLERANCE)) &&
      (ShooterRPM     < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE)) && (ShooterRPM     > (WantedShooterRPM  - m_shooter->SHOOTER_RPM_TOLERANCE)) &&
-     (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE) && m_shooter->GetLimelightTargetValid())
+     (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE) && 
+     m_shooter->GetLimelightTargetValid() && !m_shooter->IsIdle())
   {
     m_driverFeedback->RumbleOn();
     m_driverFeedback->UpdateLEDs(0,255,0);//green
@@ -58,11 +61,12 @@ void CmdDriverFeedbackDefault::Execute()
 
   else if(m_shooter->GetLimelightTargetValid())
   {
-      m_driverFeedback->UpdateLEDs(255,165,0); // orange
+    m_driverFeedback->UpdateLEDs(255,165,0); // orange
   }
   else
   {
-      m_driverFeedback->UpdateLEDs(0,0,0);
+    m_driverFeedback->RumbleOff();
+    m_driverFeedback->UpdateLEDs(0,0,0);
   }
 }
 

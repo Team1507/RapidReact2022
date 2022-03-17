@@ -56,8 +56,13 @@ void Robot::DisabledInit()
   m_container.m_feeder.SetBottomFeederPower(0.0);
   m_container.m_feeder.SetTopFeederPower(0.0);
   m_container.m_feeder.SetFeederOn(false);
+  
+  //Turn off Shooter
+  m_container.m_shooter.SetShooterRPM(0.0);
 
-
+  //Turn off Rumble and LEDs
+  m_container.m_driverFeedback.RumbleOff();
+  m_container.m_driverFeedback.UpdateLEDs(0,0,0);
 
 }
 
@@ -85,6 +90,9 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+  //reset hood/turret
+  m_container.m_shooter.SetHoodAngle(13000);
+  m_container.m_shooter.SetTurretAngle(0);
 }
 
 
@@ -100,6 +108,7 @@ void Robot::WriteToSmartDashboard(void)
 
   //Shooter
   frc::SmartDashboard::PutNumber("Shooter Curr RPM", m_container.m_shooter.GetCurrentShooterRPM());  
+  frc::SmartDashboard::PutNumber("Shooter Curr2 RPM", m_container.m_shooter.GetCurrentShooterRPM());  
   frc::SmartDashboard::PutNumber("Shooter Wanted RPM", m_container.m_shooter.GetWantedShooterRPM());  
   frc::SmartDashboard::PutNumber("Shooter L Power", m_container.m_shooter.GetLeftShooterPower());  
   frc::SmartDashboard::PutNumber("Shooter R Power", m_container.m_shooter.GetRightShooterPower());  

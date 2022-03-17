@@ -3,16 +3,15 @@
 #include <networktables/NetworkTableInstance.h>
 #include <iostream>
 #include "frc/smartdashboard/SmartDashboard.h"
-//#define SHOOTER_PID
+#define SHOOTER_PID
 
 #define PI 3.1415
-
 
 #ifdef SHOOTER_PID
 #define SHOOTER_PID_SLOT 0
 #define SHOOTER_kF_CONSTANT 0.0501          //Slightly highter than calculated 0.0467    
-#define SHOOTER_kP_CONSTANT 0.5
-#define SHOOTER_RAMP_TIME 0.5
+#define SHOOTER_kP_CONSTANT 0.300            //started 0.5
+#define SHOOTER_RAMP_TIME 0.25              // started at 0.5
 #endif
 
 
@@ -23,7 +22,7 @@
 #define TURRET_ENCODER_AT_LEFT              -3930
 #define TURRET_ENCODER_AT_RIGHT              4260
 #define TURRET_ENCODER_TICKS_PER_ANGLE       106.36
-
+//Max hood 16000
 
 
 typedef struct 
@@ -34,11 +33,11 @@ typedef struct
 } shooterInterpolation_t;
 
 
-shooterInterpolation_t shooterInfo[] = {{0.0, 0.0, 0.0}, //Distance, RPM, Hood Angle
+shooterInterpolation_t shooterInfo[] = {{87, 2100, 13000}, //Distance, RPM, Hood Angle
                                         {1.0, 1.0, 1.0},
                                         {2.0, 2.0, 2.0},
                                         {3.0, 3.0, 3.0},
-                                        {4.0, 4.0, 4.0}};
+                                        {142, 2300, 16000}};
 
 
 #define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo) / sizeof(shooterInterpolation_t))
@@ -63,13 +62,21 @@ void Shooter::ShooterInit(void)
     SetShooterPower(0);
     SetHoodPower(0);
     SetTurretPower(0);
+    SetIdle(false);
 
     ResetTurretEncoder();
     ResetHoodEncoder();
-    frc::SmartDashboard::PutNumber("Shooter Idle Power",0.25);
-    frc::SmartDashboard::PutNumber("Shooter Fender Power",0.355);
+    frc::SmartDashboard::PutNumber("Shooter Idle Power",0.25); //1440RPM
+    frc::SmartDashboard::PutNumber("Shooter Launch Pad Power",0.355);
     frc::SmartDashboard::PutNumber("Shooter Low Goal Power",0.25);
-    frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.42); // was .4
+    frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.42); // 2470RPM
+
+    frc::SmartDashboard::PutNumber("Shooter Idle RPM",1440); //1440RPM
+    frc::SmartDashboard::PutNumber("Shooter Launch Pad RPM",2325);
+    frc::SmartDashboard::PutNumber("Shooter Low Goal RPM",1000);
+    frc::SmartDashboard::PutNumber("Shooter Tarmac Line RPM",2200); // 2470RPM
+
+    frc::SmartDashboard::PutNumber("Shooter test RPM",0.0);
     frc::SmartDashboard::PutNumber("Limelight H Offset", -1.5);
 }
 
@@ -167,7 +174,7 @@ void Shooter::FalconsInit()
     m_rightShooter.ConfigPeakOutputReverse(-0.0,10);
     m_leftShooter.ConfigPeakOutputReverse(0.0,10);
 
-
+    m_isIdle = true;
 }
 
 
@@ -183,9 +190,13 @@ void Shooter::SetShooterPower(double power)
 void Shooter::SetShooterRPM(double rpm)
 {
     #ifdef SHOOTER_PID
-    m_leftShooter.Set(ControlMode::Velocity, RPM2Velocity(rpm));
+    m_rightShooter.Set(ControlMode::Velocity, RPM2Velocity(rpm));
     #endif
     m_wantedShooterRPM = rpm;
+}
+void Shooter::SetIdle(bool idle)
+{
+    m_isIdle = idle;
 }
 double Shooter::GetShooterPower(void)
 {
@@ -200,7 +211,10 @@ double Shooter::GetLeftShooterPower(void)
 {
     return m_leftShooter.GetMotorOutputPercent();
 }
-
+bool Shooter::IsIdle()
+{
+    return m_isIdle;
+}
 
 
 

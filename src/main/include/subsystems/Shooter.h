@@ -22,6 +22,7 @@ class Shooter : public frc2::SubsystemBase {
 //*********************SHOOTER********************
   void   SetShooterPower(double power);
   void   SetShooterRPM(double rpm);
+  void   SetIdle(bool idle);
 
   double GetShooterPower(void);
   double GetLeftShooterPower(void);
@@ -29,13 +30,14 @@ class Shooter : public frc2::SubsystemBase {
   double GetShooterVelocity(void);
   double GetWantedShooterRPM(void);
   double GetCurrentShooterRPM(void);
+  bool   IsIdle();
 
   double GetTempatureLeftShooter(void);
   double GetTempatureRightShooter(void);
 
   void   FalconsInit(void);
 
-  const double SHOOTER_RPM_TOLERANCE = 0; //CHANGE LATER
+  const double SHOOTER_RPM_TOLERANCE = 20; //CHANGE LATER
 
 //**********************HOOD**********************
   void   SetHoodAngle(double angle);
@@ -52,7 +54,7 @@ class Shooter : public frc2::SubsystemBase {
 
   int    GetHoodEncoder(void);
 
-  const double HOOD_TOLERANCE = 0; //CHANGE LATER
+  const double HOOD_TOLERANCE = 500; //CHANGE LATER
 
 //**********************TURRET**********************
   void   SetTurretAngle(double angle);
@@ -72,7 +74,7 @@ class Shooter : public frc2::SubsystemBase {
 
   int    GetTurretEncoder(void);
 
-  const double TURRET_TOLERANCE = 0; //CHANGE LATER
+  const double TURRET_TOLERANCE = 1; //CHANGE LATER
 
 //*********************LIMELIGHT*********************
   double GetLimelightHAngle(void);
@@ -84,7 +86,7 @@ class Shooter : public frc2::SubsystemBase {
 
   
 
-  const double LIMELIGHT_ANGLE_TOLERANCE = 0; //CHANGE LATER
+  const double LIMELIGHT_ANGLE_TOLERANCE = 1; //CHANGE LATER
 
  private:
     // frc::DigitalInput m_topHoodLimitSwitch    {HOOD_TOP_LIMIT_SWITCH};
@@ -106,4 +108,5 @@ class Shooter : public frc2::SubsystemBase {
     double m_wantedHoodAngle;
     double m_wantedTurretAngle;
     double m_wantedShooterRPM;
+    bool m_isIdle;
 };

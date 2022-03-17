@@ -77,35 +77,42 @@ void CmdShooterDefault::Execute()
   {
     switch(DpadState)
     {
-      case 0: //Fender Shot
-        //m_shooter->SetShooterRPM(0);
-        m_shooter->SetHoodAngle(0);
+      case 0: //Launch Pad Shot
+        m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Launch Pad RPM",2100));
+        m_shooter->SetHoodAngle(16000);
         m_shooter->SetTurretAngle(0);
-        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Fender Power",0.0));        
-        std::cout << "DPAD: Fender Shot" << std::endl;
+        m_shooter->SetIdle(false);
+        //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Launch Pad Power",0.0));        
+        std::cout << "DPAD: Launch Pad Shot" << std::endl;
         isDpadCenter = false;
         break;
       case 90: // Idle 
-        //m_shooter->SetShooterRPM(0);
-        m_shooter->SetHoodAngle(0);
+        m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Idle RPM",0.0));
+        m_shooter->SetHoodAngle(13000);
         m_shooter->SetTurretAngle(0);
-        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Idle Power",0.0));   
+        m_shooter->SetIdle(true);
+        //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Idle Power",0.0));   
         std::cout << "DPAD: Idle" << std::endl;
         isDpadCenter = false;
         break;
       case 180: //Low Goal Shot
-        //m_shooter->SetShooterRPM(0);
-        m_shooter->SetHoodAngle(16000);
+
+      // *********************** MODIFIED FOR TESTING! *********************************************
+
+        m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Low Goal RPM",0.0));
+        m_shooter->SetHoodAngle(16000);//was 16000
         m_shooter->SetTurretAngle(0.0);
-        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Low Goal Power",0.0));   
+        m_shooter->SetIdle(false);
+        //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Low Goal Power",0.0));   
         std::cout << "DPAD: Launch Pad" << std::endl;
         isDpadCenter = false;
         break;
       case 270: //Tarmac Line Shot
-        //m_shooter->SetShooterRPM(0);
-        m_shooter->SetHoodAngle(12000);
+        m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Tarmac Line RPM",0.0));
+        m_shooter->SetHoodAngle(13000);
+        m_shooter->SetIdle(false);
         //m_shooter->SetTurretAngle(0);
-        m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Tarmac Line Power",0.0));   
+        //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Tarmac Line Power",0.0));   
         std::cout << "DPAD: Tarmac" << std::endl;
         isDpadCenter = false;
         break;

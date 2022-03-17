@@ -39,9 +39,9 @@ void CmdCalculateAllV2::End(bool interrupted) {}
 
 bool CmdCalculateAllV2::IsFinished() 
 {
-  double wantedShooterPower = m_limeLightDistance * SHOOTER_POWER_RATIO;
-  double wantedHoodAngle = m_limeLightDistance * SHOOTER_HOOD_RATIO;
-  double shooterPower = m_shooter->GetShooterPower();
+  double wantedShooterPower = m_shooter->GetWantedShooterRPM();
+  double wantedHoodAngle = m_shooter->GetWantedHoodAngle();
+  double shooterRPM = m_shooter->GetCurrentShooterRPM();
   double hoodEncoder = m_shooter->GetCurrentHoodAngle();
 
   if ((units::time::second_t) m_timeout > m_timer.Get()) 
@@ -50,7 +50,7 @@ bool CmdCalculateAllV2::IsFinished()
   }
   else if (
     (m_limeLightAngle > -SHOOTER_ANGLE_TOLERANCE)                       && (m_limeLightAngle < SHOOTER_ANGLE_TOLERANCE) && 
-    (shooterPower     > (wantedShooterPower - SHOOTER_ANGLE_TOLERANCE)) && (shooterPower     < (wantedShooterPower + SHOOTER_ANGLE_TOLERANCE))&&
+    (shooterRPM     > (wantedShooterPower - SHOOTER_ANGLE_TOLERANCE)) && (shooterRPM     < (wantedShooterPower + SHOOTER_ANGLE_TOLERANCE))&&
     (hoodEncoder      > (wantedHoodAngle    - SHOOTER_ANGLE_TOLERANCE)) && (hoodEncoder      < (wantedHoodAngle    + SHOOTER_ANGLE_TOLERANCE))&& 
      m_shooterInterpolationCalculation) 
   {

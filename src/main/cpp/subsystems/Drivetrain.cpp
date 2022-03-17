@@ -19,9 +19,22 @@ Drivetrain::Drivetrain()
 
 }
 
+int delay = 0;
 // This method will be called once per scheduler run
 void Drivetrain::Periodic() 
-{
+{ 
+    if(delay >= 250) // 5 second delay
+    {
+        std::cout<<" Right Front "<<m_rightMotorFront.GetTemperature();
+        std::cout<<" Right Back "<<m_rightMotorBack.GetTemperature();
+        std::cout<<" Left Front "<<m_leftMotorFront.GetTemperature();
+        std::cout<<" Left Back "<<m_leftMotorBack.GetTemperature()<<std::endl;
+        delay = 0;
+    }
+    else
+    {
+        delay++;
+    }
     //OdometryPeriodic();
 }
 
@@ -59,6 +72,8 @@ void Drivetrain::FalconsInit(void)
     m_rightMotorFront.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,10);
     m_rightMotorBack.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,10);
 
+    // limit current
+    //m_leftMotorFront.ConfigStatorCurrentLimit( new StatorCurrentLimitConfiguration())
 
     //limit speed
     // m_leftMotorBack.ConfigPeakOutputForward(PEAK_FALCON_POWER, 10);
