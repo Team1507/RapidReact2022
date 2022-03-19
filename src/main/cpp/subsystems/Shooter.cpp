@@ -33,11 +33,18 @@ typedef struct
 } shooterInterpolation_t;
 
 
-shooterInterpolation_t shooterInfo[] = {{87, 2100, 13000}, //Distance, RPM, Hood Angle
-                                        {1.0, 1.0, 1.0},
-                                        {2.0, 2.0, 2.0},
-                                        {3.0, 3.0, 3.0},
-                                        {142, 2300, 16000}};
+shooterInterpolation_t shooterInfo[] = {{87,  2100, 13000}, //Distance, RPM, Hood Angle
+                                        {92,  2120, 13000},
+                                        {97,  2120, 13000},
+                                        {102, 2150, 13000},
+                                        {107, 2200, 13000},
+                                        {112, 2.0, 2.0},
+                                        {117, 3.0, 3.0},
+                                        {122, 1.0, 1.0},
+                                        {127, 2.0, 2.0},
+                                        {132, 3.0, 3.0},
+                                        {137, 3.0, 3.0},
+                                        {145, 2350, 16000}};
 
 
 #define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo) / sizeof(shooterInterpolation_t))
@@ -72,9 +79,9 @@ void Shooter::ShooterInit(void)
     frc::SmartDashboard::PutNumber("Shooter Tarmac Line Power",0.42); // 2470RPM
 
     frc::SmartDashboard::PutNumber("Shooter Idle RPM",1440); //1440RPM
-    frc::SmartDashboard::PutNumber("Shooter Launch Pad RPM",2325);
+    frc::SmartDashboard::PutNumber("Shooter Launch Pad RPM",2400);
     frc::SmartDashboard::PutNumber("Shooter Low Goal RPM",1000);
-    frc::SmartDashboard::PutNumber("Shooter Tarmac Line RPM",2200); // 2470RPM
+    frc::SmartDashboard::PutNumber("Shooter Tarmac Line RPM",2100); // 2470RPM
 
     frc::SmartDashboard::PutNumber("Shooter test RPM",0.0);
     frc::SmartDashboard::PutNumber("Limelight H Offset", -1.5);

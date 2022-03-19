@@ -88,7 +88,7 @@ void CmdShooterDefault::Execute()
         break;
       case 90: // Idle 
         m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Idle RPM",0.0));
-        m_shooter->SetHoodAngle(13000);
+        m_shooter->SetHoodAngle(10000);
         m_shooter->SetTurretAngle(0);
         m_shooter->SetIdle(true);
         //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Idle Power",0.0));   
@@ -109,7 +109,7 @@ void CmdShooterDefault::Execute()
         break;
       case 270: //Tarmac Line Shot
         m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Tarmac Line RPM",0.0));
-        m_shooter->SetHoodAngle(13000);
+        m_shooter->SetHoodAngle(11000);
         m_shooter->SetIdle(false);
         //m_shooter->SetTurretAngle(0);
         //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Tarmac Line Power",0.0));   

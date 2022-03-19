@@ -37,7 +37,7 @@ class Shooter : public frc2::SubsystemBase {
 
   void   FalconsInit(void);
 
-  const double SHOOTER_RPM_TOLERANCE = 20; //CHANGE LATER
+  const double SHOOTER_RPM_TOLERANCE = 50; //CHANGE LATER
 
 //**********************HOOD**********************
   void   SetHoodAngle(double angle);

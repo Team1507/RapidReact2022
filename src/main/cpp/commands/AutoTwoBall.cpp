@@ -20,6 +20,7 @@
 #include "commands/CmdHoodFindHome.h"
 #include "commands/CmdHoodSetAngle.h"
 #include "commands/CmdTurretSetAngle.h"
+#include "commands/CmdShooterSetRPM.h"
 
 AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *rearintake, Feeder *feeder ) //
 {
@@ -30,7 +31,8 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
         CmdDriveClearAll(drivetrain),
         frc2::WaitCommand(0.5_s),
-        CmdShooterSetPower(shooter, 0.25),                               //Inital Shooter Idle Power
+        //CmdShooterSetPower(shooter, 0.25),                               
+        CmdShooterSetRPM(shooter, 1440),//Inital Shooter Idle RPM
         frc2::WaitCommand(2.0_s),
 
         // //Shoot Ball 1 (Up Close)
@@ -64,8 +66,9 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
 
         //Shoot Ball 2
-        CmdShooterSetPower(shooter,0.425),
-        CmdHoodSetAngle(shooter,   12000),//Set Hood Angle
+        //CmdShooterSetPower(shooter,0.425),
+        CmdShooterSetRPM(shooter, 2100),
+        CmdHoodSetAngle(shooter,   13000),//Set Hood Angle
         CmdCalculateAll(shooter),              //Turret               
         //CmdTurretSetAngle(shooter,10),
         frc2::WaitCommand(1.5_s),
@@ -81,8 +84,8 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         CmdIntakeRetract(rearintake),
         CmdTurretSetAngle(shooter,0),
         CmdHoodSetAngle(shooter,   0),                               //Set Hood Angle
-        CmdShooterSetPower(shooter, 0.25),
-
+        // CmdShooterSetPower(shooter, 0.25),
+        CmdShooterSetRPM(shooter, 1440),
         CmdDriveRevGyroV2(drivetrain, .3, 0, 18.0, false, true, 0.0),
 
 

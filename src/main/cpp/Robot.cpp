@@ -91,7 +91,7 @@ void Robot::TeleopInit() {
     m_autonomousCommand = nullptr;
   }
   //reset hood/turret
-  m_container.m_shooter.SetHoodAngle(13000);
+  m_container.m_shooter.SetHoodAngle(0);
   m_container.m_shooter.SetTurretAngle(0);
 }
 

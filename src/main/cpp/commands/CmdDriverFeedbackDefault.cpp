@@ -26,7 +26,7 @@ void CmdDriverFeedbackDefault::Execute()
   double WantedTurretAngle = m_shooter->GetWantedTurretAngle();
   double WantedShooterRPM  = m_shooter->GetWantedShooterRPM();
   double ShooterRPM        = m_shooter->GetCurrentShooterRPM();
-  double LimeLightAngle    = m_shooter->GetLimelightHAngle();
+  double LimeLightAngle    = m_shooter->GetLimelightHAngle()+frc::SmartDashboard::GetNumber("Limelight H Offset", -1.5);
 
   //BALLS!!!!!!
   
@@ -36,33 +36,33 @@ void CmdDriverFeedbackDefault::Execute()
   }
   else if(m_climber->IsClimbBrakeActivated())
   {
-    m_driverFeedback->UpdateLEDs(128,0,128);// purple
+    m_driverFeedback->UpdateLEDs(0,255,64);// purple
   }
   else if(m_topDriver->GetRightTriggerAxis() > 0.7)  
   {
     m_driverFeedback->RumbleOff();
     m_driverFeedback->UpdateLEDs(0,0,0);
   }
-
   else if((HoodAngle < (WantedHoodAngle   + m_shooter->HOOD_TOLERANCE))        && (HoodAngle      > (WantedHoodAngle   - m_shooter->HOOD_TOLERANCE)) && 
      (TurretAngle    < (WantedTurretAngle + m_shooter->TURRET_TOLERANCE))      && (TurretAngle    > (WantedTurretAngle - m_shooter->HOOD_TOLERANCE)) &&
      (ShooterRPM     < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE)) && (ShooterRPM     > (WantedShooterRPM  - m_shooter->SHOOTER_RPM_TOLERANCE)) &&
-     (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE) && 
-     m_shooter->GetLimelightTargetValid() && !m_shooter->IsIdle())
+     (LimeLightAngle <  m_shooter->LIMELIGHT_ANGLE_TOLERANCE)                  && (LimeLightAngle > -m_shooter->LIMELIGHT_ANGLE_TOLERANCE && !m_shooter->IsIdle())) //&& m_shooter->GetLimelightTargetValid()) //&& !m_shooter->IsIdle())
   {
     m_driverFeedback->RumbleOn();
-    m_driverFeedback->UpdateLEDs(0,255,0);//green
+    m_driverFeedback->UpdateLEDs(255,0,0);//green
   }
+  else if(m_shooter->GetLimelightTargetValid())
+  {
+    m_driverFeedback->UpdateLEDs(0,255,0); // orange ben wuz here
+    
+  }
+
 
   else if(ShooterRPM < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE) && (ShooterRPM > (WantedShooterRPM - m_shooter->SHOOTER_RPM_TOLERANCE))) // if we need to shoot from up close and are not using the limelight
   {
     m_driverFeedback->UpdateLEDs(0,0,255); //blue
   }
 
-  else if(m_shooter->GetLimelightTargetValid())
-  {
-    m_driverFeedback->UpdateLEDs(255,165,0); // orange
-  }
   else
   {
     m_driverFeedback->RumbleOff();

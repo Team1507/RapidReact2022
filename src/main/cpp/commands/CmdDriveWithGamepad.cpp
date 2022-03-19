@@ -56,7 +56,7 @@ void CmdDriveWithGamepad::Execute()
     //Creep Mode
     if((m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND) || (m_ptrDriverXbox->GetRightTriggerAxis() >= RIGHT_TRIGGER_DEADBAND))
     {
-      m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)/3)    , ((xR * MAX_TURN_POWER)/2) );
+      m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)*2/5)    , ((xR * MAX_TURN_POWER)*3/4) );
     }
     else
     {

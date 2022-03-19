@@ -7,10 +7,12 @@
 #include "commands/CmdDriveClearAll.h"
 //***********SHOOTER***************
 #include "commands/CmdShooterSetPower.h"
+#include "commands/CmdShooterSetRPM.h"
 #include "commands/CmdCalculateAllV2.h"
 #include "commands/CmdShooterStop.h"
 #include "commands/CmdHoodSetAngle.h"
 #include "commands/CmdTurretSetAngle.h"
+#include "commands/CmdCalculateAll.h"
 //***********FEEDER****************
 #include "commands/CmdFeederSetPower.h"
 #include "commands/CmdFeederStop.h"
@@ -28,7 +30,8 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
         CmdDriveClearAll(drivetrain),
         //frc2::WaitCommand(0.5_s),
-        CmdShooterSetPower(shooter, 0.25),                               //Inital Shooter Idle Power
+        //CmdShooterSetPower(shooter, 0.25),  
+        CmdShooterSetRPM(shooter, 1440),                             //Inital Shooter Idle Power
         //frc2::WaitCommand(2.0_s),
 
         // //Shoot Ball 1 (Up Close)
@@ -50,10 +53,12 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
         CmdHoodSetAngle(shooter, 13000),
         // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 32.44, true, false, 0.0), 
-		CmdShooterSetPower(shooter,0.425),                               //was 0.41
+		//CmdShooterSetPower(shooter,0.425),                               //was 0.41
+        CmdShooterSetRPM(shooter, 2100),
         CmdHoodSetAngle(shooter,   13000),                               //Set Hood Angle
         CmdTurretSetAngle(shooter, -35),   
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 20, false, true, 3.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
+        CmdCalculateAll(shooter),
         frc2::WaitCommand(2.5_s),
 
         //Bring Everything back in
@@ -66,7 +71,6 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
 
         //Shoot Ball 2
-
         CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, .6),
@@ -79,7 +83,8 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
         CmdIntakeRetract(rearintake),
         CmdTurretSetAngle(shooter,0),
         CmdHoodSetAngle(shooter,   0),                               //Set Hood Angle
-        CmdShooterSetPower(shooter, 0.25),
+        //CmdShooterSetPower(shooter, 0.25),
+        CmdShooterSetRPM(shooter, 1440),
 
 
 
@@ -87,15 +92,18 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, .6),
 		CmdFeederSetStatus(feeder, true),
-		CmdDriveRevGyroV2(drivetrain, 0.1, 0, 24, false, true, 3.0), // DONT CHANGE
-		frc2::WaitCommand(1.5_s), // human player load time
+		CmdDriveRevGyroV2(drivetrain, 0.1, 0, 24, false, true, 3.0), // DONT CHANGE ------- This is for the human player to have a chance to get ball 4 in
+		frc2::WaitCommand(0.5_s), // human player load time  was 1.5_s
 
-		CmdIntakeRetract(rearintake),
+		
+		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 44.0, true, false, 0.0),
+        CmdIntakeRetract(rearintake),
 		CmdIntakeSetPower(rearintake, 0.0),
-		CmdShooterSetPower(shooter, .435),                            //was 0.4
-		CmdHoodSetAngle(shooter, 14000),
+		CmdShooterSetRPM(shooter, 2100),                            //was 0.4
+		CmdHoodSetAngle(shooter, 13000),
 		CmdTurretSetAngle(shooter, -30),
-		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 144.0, true, true, 0.0), // going back to shoot was 144; It was 120 added 18
+        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 100.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
+        CmdCalculateAll(shooter),
 		frc2::WaitCommand(1.0_s),
 		CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),

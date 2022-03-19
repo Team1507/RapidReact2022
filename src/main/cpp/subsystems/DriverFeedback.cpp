@@ -8,9 +8,9 @@ DriverFeedback::DriverFeedback(frc::XboxController *topDriver)
 
 void DriverFeedback::UpdateLEDs(int R, int G, int B)
 {
-    // m_LED.SetLEDOutput(R, CANifier::LEDChannelA);
-    // m_LED.SetLEDOutput(G, CANifier::LEDChannelB);
-    // m_LED.SetLEDOutput(B, CANifier::LEDChannelC);
+    m_LED.SetLEDOutput(R, CANifier::LEDChannelA);
+    m_LED.SetLEDOutput(G, CANifier::LEDChannelB);
+    m_LED.SetLEDOutput(B, CANifier::LEDChannelC);
 }
 
 void DriverFeedback::RumbleOn(void)
