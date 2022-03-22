@@ -83,7 +83,7 @@ void CmdShooterDefault::Execute()
       case 0: //Launch Pad Shot
         m_shooter->SetShooterRPM(frc::SmartDashboard::GetNumber("Shooter Launch Pad RPM",2100));
         m_shooter->SetHoodAngle(16000);
-        m_shooter->SetTurretAngle(0);
+        //m_shooter->SetTurretAngle(0);
         m_shooter->SetIdle(false);
         //m_shooter->SetShooterPower(frc::SmartDashboard::GetNumber("Shooter Launch Pad Power",0.0));        
         std::cout << "DPAD: Launch Pad Shot" << std::endl;

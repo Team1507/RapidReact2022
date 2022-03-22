@@ -33,7 +33,7 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         frc2::WaitCommand(0.5_s),
         //CmdShooterSetPower(shooter, 0.25),                               
         CmdShooterSetRPM(shooter, 1440),//Inital Shooter Idle RPM
-        frc2::WaitCommand(2.0_s),
+        //frc2::WaitCommand(2.0_s),
 
         // //Shoot Ball 1 (Up Close)
         // CmdShooterSetPower(shooter, SHOOTER_CLOSE_VELOCITY),
@@ -59,7 +59,8 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         //Bring Everything back in
         CmdIntakeSetPower(rearintake, 0.0),
         CmdIntakeRetract(rearintake),
-
+        CmdShooterSetRPM(shooter, 2100),
+        CmdHoodSetAngle(shooter,   7000),
         //Pre-Shoot for Ball 2
         CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 8, true, true, 0.0),
         // CmdCalculateAllV2(shooter, 0.0),//Sets ShooterRPM, Hood, and Turret. Thanks Limelight :)
@@ -67,15 +68,14 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
 
         //Shoot Ball 2
         //CmdShooterSetPower(shooter,0.425),
-        CmdShooterSetRPM(shooter, 2100),
-        CmdHoodSetAngle(shooter,   11000),//Set Hood Angle
+  //Set Hood Angle
         CmdCalculateAll(shooter),              //Turret               
         //CmdTurretSetAngle(shooter,10),
-        frc2::WaitCommand(1.5_s),
+        frc2::WaitCommand(2.5_s),
         CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),
-        frc2::WaitCommand(6.0_s),
+        frc2::WaitCommand(3.5_s),
 
         //Post-Shoot
         CmdFeederStop(feeder, Feeder::Level::Bottom),
