@@ -46,6 +46,9 @@ void CmdShooterDefault::Execute()
   {
     double limelightHOffset = frc::SmartDashboard::GetNumber("Limelight H Offset", 0.0);
     m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle() + limelightHOffset);
+    m_shooter->SetIdle(false);
+    m_shooter->ShooterInterpolation(m_shooter->GetLimelightDistance());
+    
   }
 
 

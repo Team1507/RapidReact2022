@@ -32,7 +32,7 @@ void CmdIntakeFrontDefault::Execute()
 		m_feeder->SetFeederOn(true);
 
 		m_isFrontActive = true;
-		m_offDelayCount = 0;				//1sec = 50 counts @20ms
+		m_offDelayCount = 25;				//1sec = 50 counts @20ms
 	}
 	else
 	if( !m_topDriver->GetLeftBumper() && m_isFrontActive && (m_offDelayCount >0))// one intake down at a time   && !m_isRearActive

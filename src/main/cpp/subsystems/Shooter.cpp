@@ -33,18 +33,19 @@ typedef struct
 } shooterInterpolation_t;
 
 
-shooterInterpolation_t shooterInfo[] = {{87,  2100, 13000}, //Distance, RPM, Hood Angle
+shooterInterpolation_t shooterInfo[] = {{87,  2100, 11000}, //Distance, RPM, Hood Angle
                                         {92,  2120, 13000},
                                         {97,  2120, 13000},
                                         {102, 2150, 13000},
                                         {107, 2200, 13000},
-                                        {112, 2.0, 2.0},
-                                        {117, 3.0, 3.0},
-                                        {122, 1.0, 1.0},
-                                        {127, 2.0, 2.0},
-                                        {132, 3.0, 3.0},
-                                        {137, 3.0, 3.0},
-                                        {145, 2350, 16000}};
+                                        //{112, 2.0, 2.0},
+                                        {117, 2240.0, 13816.0},
+                                        //{122, 1.0, 1.0},
+                                        //{127, 2.0, 2.0},
+                                        {132, 2301.0, 15033.0},
+                                        //{137, 3.0, 3.0},
+                                        {145, 2350, 16000},
+                                        {155, 2450, 16000}};
 
 
 #define SHOOTER_LIST_LENGTH  (sizeof(shooterInfo) / sizeof(shooterInterpolation_t))
@@ -91,6 +92,7 @@ void Shooter::Periodic()
 {
     
 }
+//Distance Interpolation Calculation (DIC)
 
 bool Shooter::ShooterInterpolation(float distance)
 {
@@ -111,7 +113,7 @@ bool Shooter::ShooterInterpolation(float distance)
 
                 double RPM = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
                 std::cout<<"Interpolation RPM ="<< RPM<<std::endl;
-                m_shooterRPM = RPM;
+                SetShooterRPM(RPM);
 
 
                 y2 = shooterInfo[i+1].hoodAngle;
@@ -119,7 +121,7 @@ bool Shooter::ShooterInterpolation(float distance)
 
                 double HOOD = y1 + (distance - x1)*((y2 - y1) / (x2 - x1));
                 std::cout<<"Interpolation Hood Angle ="<< HOOD<<std::endl;
-                m_hoodAngle = HOOD;
+                SetHoodAngle(HOOD);
 
                 return true;
             }

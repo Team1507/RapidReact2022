@@ -68,7 +68,7 @@ AutoTwoBall::AutoTwoBall(Shooter *shooter, Drivetrain *drivetrain,IntakeRear *re
         //Shoot Ball 2
         //CmdShooterSetPower(shooter,0.425),
         CmdShooterSetRPM(shooter, 2100),
-        CmdHoodSetAngle(shooter,   13000),//Set Hood Angle
+        CmdHoodSetAngle(shooter,   11000),//Set Hood Angle
         CmdCalculateAll(shooter),              //Turret               
         //CmdTurretSetAngle(shooter,10),
         frc2::WaitCommand(1.5_s),

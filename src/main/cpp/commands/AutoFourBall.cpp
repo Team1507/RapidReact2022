@@ -50,20 +50,22 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
         CmdIntakeDeploy(rearintake),
         CmdIntakeSetPower(rearintake, REAR_INTAKE_POWER),
         CmdFeederSetStatus(feeder,true),
-        CmdHoodSetAngle(shooter, 13000),
+        CmdHoodSetAngle(shooter, 12000),
         // CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_INTAKE_POWER),
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 32.44, true, false, 0.0), 
 		//CmdShooterSetPower(shooter,0.425),                               //was 0.41
-        CmdShooterSetRPM(shooter, 2100),
-        CmdHoodSetAngle(shooter,   13000),                               //Set Hood Angle
+        CmdShooterSetRPM(shooter, 2150),
+        CmdHoodSetAngle(shooter,   12000),                               //Set Hood Angle
         CmdTurretSetAngle(shooter, -35),   
         CmdDriveRevGyroV2(drivetrain, 0.35, 0.0, 20, false, true, 3.0),    //Measurements brought to you by Yours Truly, Jack Skerrett
         CmdCalculateAll(shooter),
-        frc2::WaitCommand(2.5_s),
+        frc2::WaitCommand(0.5_s),
 
         //Bring Everything back in
         CmdIntakeSetPower(rearintake, 0.0),
         CmdIntakeRetract(rearintake),
+
+        //frc2::WaitCommand(0.0_s),
 
         //Pre-Shoot for Ball 2
        // CmdDriveFwdGyroV2(drivetrain, 0.3, 0, 20.0, true, true, 0.0),
@@ -73,8 +75,8 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
         //Shoot Ball 2
         CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
-        CmdFeederSetPower(feeder, Feeder::Level::Bottom, .6),
-        frc2::WaitCommand(2.0_s),
+        CmdFeederSetPower(feeder, Feeder::Level::Bottom, .8),
+        frc2::WaitCommand(3.0_s),
 
         //Post-Shoot
         CmdFeederStop(feeder, Feeder::Level::Bottom),
@@ -88,21 +90,21 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
 
 
-        CmdDriveRevGyroV2(drivetrain, .55, 0, 129.0, false, false, 0.0), // gunning it to player station war 129; It was 105 added 18
+        CmdDriveRevGyroV2(drivetrain, .55, 0, 123.0, false, false, 0.0), // gunning it to player station war 129; It was 105 added 18
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, .6),
 		CmdFeederSetStatus(feeder, true),
 		CmdDriveRevGyroV2(drivetrain, 0.1, 0, 24, false, true, 3.0), // DONT CHANGE ------- This is for the human player to have a chance to get ball 4 in
-		frc2::WaitCommand(0.5_s), // human player load time  was 1.5_s
+		frc2::WaitCommand(0.75_s), // human player load time  was 1.5_s
 
 		
-		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 44.0, true, false, 0.0),
+		CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 4.0, true, false, 0.0),
         CmdIntakeRetract(rearintake),
 		CmdIntakeSetPower(rearintake, 0.0),
-		CmdShooterSetRPM(shooter, 2100),                            //was 0.4
-		CmdHoodSetAngle(shooter, 13000),
-		CmdTurretSetAngle(shooter, -30),
-        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 100.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
+		CmdShooterSetRPM(shooter, 2400),                            //was 0.4
+		CmdHoodSetAngle(shooter, 16000),
+		CmdTurretSetAngle(shooter, -15),
+        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 87.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
         CmdCalculateAll(shooter),
 		frc2::WaitCommand(1.0_s),
 		CmdFeederSetStatus(feeder, false),

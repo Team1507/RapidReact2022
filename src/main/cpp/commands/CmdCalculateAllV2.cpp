@@ -1,6 +1,6 @@
 #include "commands/CmdCalculateAllV2.h"
 #include <iostream>
-
+#include <frc/smartdashboard/SmartDashboard.h>
 CmdCalculateAllV2::CmdCalculateAllV2(Shooter *shooter, double timeout) 
 {
   m_timeout = timeout;
@@ -24,7 +24,7 @@ void CmdCalculateAllV2::Execute()
   
   if(m_shooter->GetLimelightTargetValid() == true) 
   {
-    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle());
+    m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle() + frc::SmartDashboard::GetNumber("Limelight H Offset", 0.0));
     m_shooterInterpolationCalculation = m_shooter->ShooterInterpolation(m_limeLightDistance);
     //m_shooter->SetShooterRPM(m_shooter->GetLimelightDistance() * SHOOTER_POWER_RATIO);
     //m_shooter->SetHoodAngle(m_shooter->GetLimelightDistance() * SHOOTER_HOOD_RATIO);

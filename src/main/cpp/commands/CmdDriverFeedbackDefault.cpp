@@ -53,12 +53,12 @@ void CmdDriverFeedbackDefault::Execute()
   }
   else if(m_shooter->GetLimelightTargetValid())
   {
-    m_driverFeedback->UpdateLEDs(0,255,0); // orange ben wuz here
+    m_driverFeedback->UpdateLEDs(0,255,0); // red ben wuz here
     
   }
 
 
-  else if(ShooterRPM < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE) && (ShooterRPM > (WantedShooterRPM - m_shooter->SHOOTER_RPM_TOLERANCE))) // if we need to shoot from up close and are not using the limelight
+  else if(ShooterRPM < (WantedShooterRPM  + m_shooter->SHOOTER_RPM_TOLERANCE) && (ShooterRPM > (WantedShooterRPM - m_shooter->SHOOTER_RPM_TOLERANCE)) && (ShooterRPM > 100)) // if we need to shoot from up close and are not using the limelight
   {
     m_driverFeedback->UpdateLEDs(0,0,255); //blue
   }
