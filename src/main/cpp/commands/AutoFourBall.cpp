@@ -104,7 +104,7 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 		CmdShooterSetRPM(shooter, 2400),                            //was 0.4
 		CmdHoodSetAngle(shooter, 16000),
 		CmdTurretSetAngle(shooter, -15),
-        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 87.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
+        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 82.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
         CmdCalculateAll(shooter),
 		frc2::WaitCommand(1.0_s),
 		CmdFeederSetStatus(feeder, false),
