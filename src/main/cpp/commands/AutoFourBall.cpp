@@ -90,7 +90,7 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 
 
 
-        CmdDriveRevGyroV2(drivetrain, .55, 0, 123.0, false, false, 0.0), // gunning it to player station war 129; It was 105 added 18
+        CmdDriveRevGyroV2(drivetrain, .55, 0, 121.0, false, false, 0.0), // gunning it to player station war 129; It was 105 added 18
 		CmdIntakeDeploy(rearintake),
 		CmdIntakeSetPower(rearintake, .6),
 		CmdFeederSetStatus(feeder, true),
@@ -103,10 +103,10 @@ AutoFourBall::AutoFourBall(Drivetrain *drivetrain,  Shooter *shooter, IntakeRear
 		CmdIntakeSetPower(rearintake, 0.0),
 		CmdShooterSetRPM(shooter, 2400),                            //was 0.4
 		CmdHoodSetAngle(shooter, 16000),
-		CmdTurretSetAngle(shooter, -15),
-        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 82.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
-        CmdCalculateAll(shooter),
+		CmdTurretSetAngle(shooter, -27),
+        CmdDriveFwdGyroV2(drivetrain, 0.6, 0, 80.0, false, true, 0.0), // going back to shoot was 144; It was 120 added 18
 		frc2::WaitCommand(1.0_s),
+        CmdCalculateAll(shooter),
 		CmdFeederSetStatus(feeder, false),
         CmdFeederSetPower(feeder, Feeder::Level::Top, TOP_FEEDER_SHOOTING_POWER),
         CmdFeederSetPower(feeder, Feeder::Level::Bottom, BOTTOM_FEEDER_SHOOTING_POWER),

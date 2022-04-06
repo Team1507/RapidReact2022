@@ -42,7 +42,7 @@ void CmdShooterDefault::Execute()
 
   //*******************************************************
   //Lt = caculate all
-  if(CalculateAllPressed)
+  if(CalculateAllPressed && m_shooter->GetLimelightTargetValid())
   {
     double limelightHOffset = frc::SmartDashboard::GetNumber("Limelight H Offset", 0.0);
     m_shooter->SetTurretAngle(m_shooter->GetCurrentTurretAngle() + m_shooter->GetLimelightHAngle() + limelightHOffset);
@@ -50,7 +50,10 @@ void CmdShooterDefault::Execute()
     m_shooter->ShooterInterpolation(m_shooter->GetLimelightDistance());
     
   }
-
+  if(ShootPressed && !m_shooter->GetLimelightTargetValid())
+  {
+    std::cout<<"SHOOTING BUT TARGET NOT VALID"<<std::endl;
+  }
 
   //Check for Turret/Hood Limit Switch
   if(m_shooter->GetLeftTurretLimitSW() )
