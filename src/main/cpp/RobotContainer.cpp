@@ -34,6 +34,7 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   m_chooser.AddOption("Auto Shoot Two Ball", &m_autoTwoBall);
   //m_chooser.AddOption("Auto Two Ball Left", &m_autoTwoBallLeft);
   m_chooser.AddOption("Auto Four Ball", &m_autoFourBall);
+  m_chooser.AddOption("Auto Four Ball Interpolation", &m_autoFourBallInterpolation);
   frc::SmartDashboard::PutData(&m_chooser);
 
   //********************************Smart Dashboard Buttons**************************************

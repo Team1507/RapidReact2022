@@ -28,6 +28,7 @@
 #include "commands/AutoFourBall.h"
 #include "commands/AutoFiveBallBlitz.h"
 #include "commands/AutoTwoBallLeft.h"
+#include "commands/AutoFourBallInterpolation.h"
 
 
 class RobotContainer 
@@ -55,7 +56,7 @@ class RobotContainer
   AutoTwoBallLeft m_autoTwoBallLeft {&m_shooter, &m_drivetrain, &m_rearIntake, &m_feeder};
   AutoFourBall m_autoFourBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};// 
   AutoFiveBallBlitz m_autoFiveBall {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};
-
+  AutoFourBallInterpolation m_autoFourBallInterpolation {&m_drivetrain, &m_shooter,&m_rearIntake, &m_feeder};
   frc2::Command* GetAutonomousCommand();
   
  private:
