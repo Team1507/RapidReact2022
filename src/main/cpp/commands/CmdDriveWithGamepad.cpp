@@ -1,6 +1,7 @@
 #include "commands/CmdDriveWithGamepad.h"
 #include "GamepadMap.h"
 #include <iostream>
+#include "frc/smartdashboard/SmartDashboard.h"
 
 //Drive limiter
 const double MAX_DRIVE_POWER = 1.0;
@@ -53,8 +54,13 @@ void CmdDriveWithGamepad::Execute()
 
     static const double LEFT_TRIGGER_DEADBAND = 0.9;
     static const double RIGHT_TRIGGER_DEADBAND = 0.9;
+    
     //Creep Mode
-    if((m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND) || (m_ptrDriverXbox->GetRightTriggerAxis() >= RIGHT_TRIGGER_DEADBAND))
+    if(m_ptrDrivetrain->IsDemo())
+    {
+      m_ptrDrivetrain->ArcadeDrive(-yL * frc::SmartDashboard::GetNumber("Demo Drive Power",0.3), xR * frc::SmartDashboard::GetNumber("Demo Turn Power",0.3));
+    }
+    else if((m_ptrDriverXbox->GetLeftTriggerAxis() >= LEFT_TRIGGER_DEADBAND) || (m_ptrDriverXbox->GetRightTriggerAxis() >= RIGHT_TRIGGER_DEADBAND))
     {
       m_ptrDrivetrain->ArcadeDrive( ((-yL * MAX_DRIVE_POWER)*2/5)    , ((xR * MAX_TURN_POWER)*3/4) );
     }
@@ -62,7 +68,6 @@ void CmdDriveWithGamepad::Execute()
     {
       m_ptrDrivetrain->ArcadeDrive( -yL * MAX_DRIVE_POWER    , xR * MAX_TURN_POWER );
     }
-
     //Tank Drive
     //m_ptrDrivetrain->Drive( -yL* MAX_DRIVE_POWER , -yR * MAX_DRIVE_POWER );
 
