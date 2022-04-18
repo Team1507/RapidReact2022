@@ -46,6 +46,8 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem)
   frc::SmartDashboard::PutData( "GrpTestOne", new GrpTestOne(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake,  &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
   frc::SmartDashboard::PutData( "GrpTestTwo", new GrpTestTwo(&m_climber, &m_driverFeedback, &m_drivetrain, &m_frontIntake, &m_rearIntake, &m_shooter, &m_top_driver, &m_bot_driver, &m_feeder));//
 
+  frc::SmartDashboard::PutData("Toggle Demo", new CmdToggleDemo(&m_drivetrain));
+
   ConfigureButtonBindings();
 }
 

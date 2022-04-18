@@ -57,6 +57,9 @@ class Drivetrain : public frc2::SubsystemBase {
   double  GetOdometryRVel(void);        //in/sec
   double  GetOdometryHeading(void);     //degrees
 
+  //Demo Speed Limit
+  bool IsDemo(void);
+  void SetDemo(bool demo);  
 
  private:
 
@@ -93,5 +96,8 @@ class Drivetrain : public frc2::SubsystemBase {
     double m_curr_v;  //inches/sec
     double m_curr_Lv; //inches/sec
     double m_curr_Rv; //inches/sec
+
+    //Demo Flag
+    bool m_demo;
 
 };

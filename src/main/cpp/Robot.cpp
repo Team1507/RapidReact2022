@@ -167,6 +167,8 @@ void Robot::WriteToSmartDashboard(void)
   frc::SmartDashboard::PutNumber("Right Shooter Temp", m_container.m_shooter.GetTempatureRightShooter());
   
   m_container.m_drivetrain.WriteFalconTemps();
+
+  frc::SmartDashboard::PutBoolean("Demo",m_container.m_drivetrain.IsDemo());
   
 }
 

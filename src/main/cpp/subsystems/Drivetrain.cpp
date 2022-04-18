@@ -15,7 +15,9 @@ const double Drivetrain::RAMP_FACTOR       = 0.03;         //Drive Acceleration 
 
 Drivetrain::Drivetrain()
 {
-
+    m_demo = false;
+    frc::SmartDashboard::PutNumber("Demo Drive Power",0.5);
+    frc::SmartDashboard::PutNumber("Demo Turn Power" ,0.5);
 
 }
 
@@ -318,6 +320,14 @@ double  Drivetrain::GetOdometryHeading(void)
 {
     return GetGyroAngle();
 }
-
+//*********************** DEMO SPEED *********************
+bool Drivetrain::IsDemo(void)
+{
+    return m_demo;
+}
+void Drivetrain::SetDemo(bool demo)
+{
+    m_demo = demo;
+}
 
 

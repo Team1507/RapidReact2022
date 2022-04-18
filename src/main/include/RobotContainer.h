@@ -8,6 +8,7 @@
 #include "GamepadMap.h"
 #include <frc2/command/button/JoystickButton.h>
 #include "commands/CmdLimeLight3xMode.h"
+#include "commands/CmdToggleDemo.h"
 
 //*****************Subsystems*******************
 #include "subsystems/Drivetrain.h"
