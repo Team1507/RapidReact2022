@@ -32,7 +32,7 @@ void CmdIntakeRearDefault::Execute()
 		m_feeder->SetFeederOn(true);
 
 		m_isRearActive = true;
-		m_offDelayCount = 25;				//1sec = 50 counts @20ms
+		m_offDelayCount = 50;				//1sec = 50 counts @20ms
 
 	}
 	else
