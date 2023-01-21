@@ -13,6 +13,10 @@
 #define SHOOTER_kP_CONSTANT 0.300            //started 0.5
 #define SHOOTER_RAMP_TIME 0.25              // started at 0.5
 #endif
+#define TURRET_RAMP_TIME 0.25
+#define TURRET_KP 0.31
+#define TURRET_KI 0.000050
+#define TURRET_KD.000200
 
 
 //Turret contants
@@ -88,6 +92,15 @@ void Shooter::ShooterInit(void)
 
     frc::SmartDashboard::PutNumber("Shooter test RPM",0.0);
     frc::SmartDashboard::PutNumber("Limelight H Offset", -1.5);
+    frc::SmartDashboard::PutNumber("Turret_KI", TURRET_KI);
+    frc::SmartDashboard::PutNumber("Turret_KD",TURRET_KD);
+    frc::SmartDashboard::PutNumber("TURRET_KP", TURRET_KP);
+    frc::SmartDashboard::PutNumber("TURRET_KV",0.0);
+
+
+
+
+
 }
 
 void Shooter::Periodic() 
@@ -164,6 +177,19 @@ void Shooter::FalconsInit()
     m_rightShooter.Config_kP(SHOOTER_PID_SLOT,SHOOTER_kP_CONSTANT,10);
     #endif
 
+    //Set Turret PID ( Average ossolation time 1.64   1.6 )
+    double turret_KI = frc::SmartDashboard::GetNumber("Turret_KI", 0.0);
+    double turret_KD = frc::SmartDashboard::GetNumber("Turret_KD", 0.0);
+    m_turretMotor.Config_kI(0,turret_KI,10);
+    m_turretMotor.Config_kD(0,turret_KD,10);
+    m_turretMotor.ConfigClosedloopRamp(TURRET_RAMP_TIME,10);
+
+    double turret_kp = frc::SmartDashboard::GetNumber("TURRET_KP", TURRET_KP);
+    double turret_kF = frc::SmartDashboard::GetNumber("TURRET_KF", TURRET_KP);
+    m_turretMotor.Config_kP(0,turret_kp,10);
+    m_turretMotor.Config_kF(0,turret_kF,10);
+
+    //m_turretMotor.Config_kP(0,TURRET_KP,10);
     //Set Coast Mode
     m_leftShooter.SetNeutralMode(NeutralMode::Coast);
     m_rightShooter.SetNeutralMode(NeutralMode::Coast);
@@ -175,6 +201,7 @@ void Shooter::FalconsInit()
     m_rightShooter.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
     m_hoodMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
     m_turretMotor.ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,0);
+    m_turretMotor.SetSensorPhase(true);
 
     // //Power Limits
     //  PeakOutput is not a limiter, its a multiplier
@@ -305,6 +332,10 @@ void Shooter::SetTurretPower(double power)
 {
     m_turretMotor.Set(ControlMode::PercentOutput, power);
 }
+void Shooter::SetTurretPosition(double position)
+{
+    m_turretMotor.Set(ControlMode::Position,position);
+}
 double Shooter::GetTurretPower(void)
 {
     return m_turretMotor.GetMotorOutputPercent();
@@ -337,12 +368,12 @@ void Shooter::ResetTurretEncoder(void)
 
 void Shooter::SetTurretEncoderAtLeft(void)
 {
-    m_turretMotor.SetSelectedSensorPosition(-TURRET_ENCODER_AT_LEFT,0,0);
+    m_turretMotor.SetSelectedSensorPosition(TURRET_ENCODER_AT_LEFT,0,0);
     m_wantedTurretAngle = TURRET_MAX_LEFT_ANGLE;
 }
 void Shooter::SetTurretEncoderAtRight(void)
 {
-    m_turretMotor.SetSelectedSensorPosition(-TURRET_ENCODER_AT_RIGHT,0,0);
+    m_turretMotor.SetSelectedSensorPosition(TURRET_ENCODER_AT_RIGHT,0,0);
     m_wantedTurretAngle = TURRET_MAX_RIGHT_ANGLE;
 }
 

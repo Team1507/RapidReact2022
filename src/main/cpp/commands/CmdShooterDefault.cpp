@@ -1,6 +1,7 @@
 #include "commands/CmdShooterDefault.h"
 #include "commands/CmdCalculateAllV2.h"
 #include "commands/CmdCalculateAll.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 #include <math.h>
 #include <iostream>
 
@@ -180,36 +181,37 @@ void CmdShooterDefault::Execute()
   }
   else
   {
-    const double TURRET_TOLERANCE = 1.0;
-    const double TURRET_MIN_POWER = 0.07;
+    m_shooter->SetTurretPosition(-frc::SmartDashboard::GetNumber("test1",0.0));
+    // const double TURRET_TOLERANCE = 1.0;
+    // const double TURRET_MIN_POWER = 0.07;
     
-    const double MAX_POS_TURRET_POWER = 0.3;
-    const double MAX_NEG_TURRET_POWER = -0.3;
+    // const double MAX_POS_TURRET_POWER = 0.3;
+    // const double MAX_NEG_TURRET_POWER = -0.3;
 
-    double turretangle = m_shooter->GetCurrentTurretAngle();
-    double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
+    // double turretangle = -frc::SmartDashboard::GetNumber("test1",0.0);
+    // double wantedTurretAngle = m_shooter->GetWantedTurretAngle();
     
-    double turret_error = wantedTurretAngle - turretangle;
-    double turret_power = (turret_error * TURRET_kP_CONSTANT);
+    // double turret_error = wantedTurretAngle - turretangle;
+    // double turret_power = (turret_error * TURRET_kP_CONSTANT);
 
         
-    if( turret_power > MAX_POS_TURRET_POWER ) turret_power = MAX_POS_TURRET_POWER;
-    if( turret_power < MAX_NEG_TURRET_POWER ) turret_power = MAX_NEG_TURRET_POWER;
-    if( abs(turret_error) > TURRET_TOLERANCE)
-    {
-      if(turret_power < 0)
-      {
-        m_shooter->SetTurretPower(turret_power -TURRET_MIN_POWER); 
-      }
-      else if(turret_power > 0)
-      {
-        m_shooter->SetTurretPower(turret_power +TURRET_MIN_POWER); 
-      }
-    }
-    else
-    {
-      m_shooter->SetTurretPower(0.0);
-    }
+    // if( turret_power > MAX_POS_TURRET_POWER ) turret_power = MAX_POS_TURRET_POWER;
+    // if( turret_power < MAX_NEG_TURRET_POWER ) turret_power = MAX_NEG_TURRET_POWER;
+    // if( abs(turret_error) > TURRET_TOLERANCE)
+    // {
+    //   if(turret_power < 0)
+    //   {
+    //     m_shooter->SetTurretPower(turret_power -TURRET_MIN_POWER); 
+    //   }
+    //   else if(turret_power > 0)
+    //   {
+    //     m_shooter->SetTurretPower(turret_power +TURRET_MIN_POWER); 
+    //   }
+    // }
+    // else
+    // {
+    //   m_shooter->SetTurretPower(0.0);
+    // }
   }
 
 

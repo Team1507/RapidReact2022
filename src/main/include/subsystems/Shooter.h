@@ -59,7 +59,7 @@ class Shooter : public frc2::SubsystemBase {
 //**********************TURRET**********************
   void   SetTurretAngle(double angle);
   void   SetTurretPower(double power);
-
+  void   SetTurretPosition(double position);
   double GetTurretPower(void);
   double GetWantedTurretAngle(void);
   double GetCurrentTurretAngle(void);

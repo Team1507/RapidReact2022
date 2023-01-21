@@ -11,6 +11,8 @@ void Robot::RobotInit()
     std::cout<<"          ~~~ Deus ~~~"<<std::endl;
     std::cout<<"Version: " << __DATE__ <<"  "<<__TIME__<<std::endl<<std::endl; 
 
+    frc::SmartDashboard::PutNumber("test1",0.0);
+
     m_container.m_drivetrain.FalconsInit();
     m_container.m_drivetrain.Stop();
     m_container.m_drivetrain.HardResetEncoders();
@@ -44,6 +46,7 @@ void Robot::RobotPeriodic()
 {
   frc2::CommandScheduler::GetInstance().Run();
   WriteToSmartDashboard();
+  frc::SmartDashboard::PutNumber( "Error", frc::SmartDashboard::GetNumber("test1", 0 )- m_container.m_shooter.GetTurretEncoder());  
 }
 
 
@@ -90,6 +93,9 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+  
+  m_container.m_shooter.FalconsInit();
+
   //reset hood/turret
   m_container.m_shooter.SetHoodAngle(0);
   m_container.m_shooter.SetTurretAngle(0);
