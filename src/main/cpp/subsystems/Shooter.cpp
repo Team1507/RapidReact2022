@@ -17,7 +17,7 @@
 #define TURRET_KP 0.31
 #define TURRET_KI 0.000050
 #define TURRET_KD.000200
-
+#define TURRET_KF 0.0
 
 //Turret contants
 //Calibrated 3/6/22
@@ -95,7 +95,7 @@ void Shooter::ShooterInit(void)
     frc::SmartDashboard::PutNumber("Turret_KI", TURRET_KI);
     frc::SmartDashboard::PutNumber("Turret_KD",TURRET_KD);
     frc::SmartDashboard::PutNumber("TURRET_KP", TURRET_KP);
-    frc::SmartDashboard::PutNumber("TURRET_KV",0.0);
+    frc::SmartDashboard::PutNumber("TURRET_KF",0.0);
 
 
 
@@ -178,14 +178,14 @@ void Shooter::FalconsInit()
     #endif
 
     //Set Turret PID ( Average ossolation time 1.64   1.6 )
-    double turret_KI = frc::SmartDashboard::GetNumber("Turret_KI", 0.0);
-    double turret_KD = frc::SmartDashboard::GetNumber("Turret_KD", 0.0);
+    double turret_KI = frc::SmartDashboard::GetNumber("Turret_KI", TURRET_KI);
+    double turret_KD = frc::SmartDashboard::GetNumber("Turret_KD", TURRET_KD);
     m_turretMotor.Config_kI(0,turret_KI,10);
     m_turretMotor.Config_kD(0,turret_KD,10);
     m_turretMotor.ConfigClosedloopRamp(TURRET_RAMP_TIME,10);
-
+    
     double turret_kp = frc::SmartDashboard::GetNumber("TURRET_KP", TURRET_KP);
-    double turret_kF = frc::SmartDashboard::GetNumber("TURRET_KF", TURRET_KP);
+    double turret_kF = frc::SmartDashboard::GetNumber("TURRET_KF", TURRET_KF);
     m_turretMotor.Config_kP(0,turret_kp,10);
     m_turretMotor.Config_kF(0,turret_kF,10);
 
